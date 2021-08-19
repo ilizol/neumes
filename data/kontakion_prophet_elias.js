@@ -67,7 +67,7 @@ neumes.push(
         "l": "των",
         "n2": "\\" // DIASTOLE
     },
-    // { "br": "wd" }, // WORD BREAK
+    { "br": "wd" }, // WORD BREAK
     {
         "n": "0",
         "l": "με"
@@ -177,7 +177,7 @@ neumes.push(
         "n": "!",
         "l": "σου"
     },
-    // { "br": "wd" }, // WORD BREAK
+    { "br": "wd" }, // WORD BREAK
     {
         "nb": "\\", // DIASTOLE
         "n": "1",
@@ -194,7 +194,7 @@ neumes.push(
         "l": "τα",
         "n2": "\\" // DIASTOLE
     },
-    // { "br": "wd" }, // WORD BREAK
+    { "br": "wd" }, // WORD BREAK
     {
         "n": "0",
         "l": "υ"
@@ -284,7 +284,7 @@ neumes.push(
         "n": "!",
         "l": "τον"
     },
-    //{ "br": "wd" }, // WORD BREAK
+    { "br": "wd" }, // WORD BREAK
     {
         "nb": "\\", // DIASTOLE
         "n": "1",
