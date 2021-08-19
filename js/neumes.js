@@ -27,7 +27,8 @@ var title2Font = "Alegreya-Medium";
 var dropcapsFont = "Alegreya-Bold";
 //### MUSIC FONT FAMILY
 //var musicFontFamily = "KANewStathis";
-var musicFontFamily = "KAAlmouzios";
+//var musicFontFamily = "KAAlmouzios";
+var musicFontFamily = "KAEZ";
 //### NEUMES
 var neumesFont = musicFontFamily + "Main-Regular";
 //### FTHORA
