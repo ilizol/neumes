@@ -25,22 +25,25 @@ var title2Font = "Alegreya-Medium";
 //### DROPCAPS
 //var dropcapsFont = "Alegreya-BoldItalic";
 var dropcapsFont = "Alegreya-Bold";
+//### MUSIC FONT FAMILY
+//var musicFontFamily = "KANewStathis";
+var musicFontFamily = "KAAlmouzios";
 //### NEUMES
-var neumesFont = "KANewStathisMain-Regular";
+var neumesFont = musicFontFamily + "Main-Regular";
 //### FTHORA
-var fthoraFont = "KANewStathisFthora-Regular";
+var fthoraFont = musicFontFamily + "Fthora-Regular";
 //### FTHORA INFO
-var fthoraInfoFont = "KANewStathisFthora-Regular";
+var fthoraInfoFont = musicFontFamily + "Fthora-Regular";
 //### CHRONOS
-var chronosFont = "KANewStathisChronos-Regular";
+var chronosFont = musicFontFamily + "Chronos-Regular";
 //### QUALITY
-var qualityFont = "KANewStathisMain-Regular";
+var qualityFont = musicFontFamily + "Main-Regular";
 //### ETERON
-var eteronFont = "KANewStathisMain-Regular";
+var eteronFont = musicFontFamily + "Main-Regular";
 //### OLD
-var oldFont = "KANewStathisArchaia-Regular";
+var oldFont = musicFontFamily + "Archaia-Regular";
 //### MARTYRIA
-var martyriaFont = "KANewStathisMartyria-Regular";
+var martyriaFont = musicFontFamily + "Martyria-Regular";
 //### ISON
 //var isonFont = "Alegreya-BoldItalic";
 var isonFont = "Alegreya-Bold";
@@ -51,9 +54,9 @@ var rythmFont = "Alegreya-Medium";
 //### ASTERISK
 var asteriskFont = "NotoSansSymbols2-Regular";
 //### BREATH
-var breathFont = "KANewStathisMain-Regular";
+var breathFont = musicFontFamily + "Main-Regular";
 //### SPECIAL
-var specialFont = "KANewStathisCombo-Regular";
+var specialFont = musicFontFamily + "Combo-Regular";
 //### LYRICS
 //var lyricsFont = "Alegreya-MediumItalic";
 var lyricsFont = "Alegreya-Medium";
