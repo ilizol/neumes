@@ -54,7 +54,7 @@ function setFont(type)
     //### NEUMES ###
     else if (type == 'neumes')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(neumesFont);
         doc.setFontSize(neumesFontSize);
         color = neumesFontColor;
@@ -62,7 +62,7 @@ function setFont(type)
     //### NEUMES TITLE ###
     else if (type == 'neumes_title')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(neumesFont);
         doc.setFontSize(neumesFontSize);
         color = titleFontColor;
@@ -70,7 +70,7 @@ function setFont(type)
     //### MARTYRIA ###
     else if (type == 'martyria')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(martyriaFont);
         doc.setFontSize(martyriaFontSize);
         color = martyriaFontColor;
@@ -78,7 +78,7 @@ function setFont(type)
     //### MARTYRIA DIASTOLE ###
     else if (type == 'martyria_diastole')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(martyriaFont);
         doc.setFontSize(martyriaFontSize);
         color = neumesFontColor;
@@ -86,7 +86,7 @@ function setFont(type)
     //### MARTYRIA FTHORA ###
     else if (type == 'martyria_fthora')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(fthoraFont);
         doc.setFontSize(martyriaFontSize);
         color = martyriaFontColor;
@@ -94,7 +94,7 @@ function setFont(type)
     //### FTHORA ###
     else if (type == 'fthora')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(fthoraFont);
         doc.setFontSize(fthoraFontSize);
         color = fthoraFontColor;
@@ -102,7 +102,7 @@ function setFont(type)
     //### FTHORA INFO ###
     else if (type == 'fthoraInfo')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(fthoraInfoFont);
         doc.setFontSize(fthoraInfoFontSize);
         color = fthoraInfoFontColor;
@@ -131,7 +131,7 @@ function setFont(type)
     //### BREATH ###
     else if (type == 'breath')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(breathFont);
         doc.setFontSize(breathFontSize);
         color = breathFontColor;
@@ -139,7 +139,7 @@ function setFont(type)
     //### OLD ###
     else if (type == 'old')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(oldFont);
         doc.setFontSize(oldFontSize);
         color = oldFontColor;
@@ -147,7 +147,7 @@ function setFont(type)
     //### SPECIAL ###
     else if (type == 'special')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(specialFont);
         doc.setFontSize(specialFontSize);
         color = specialFontColor;
@@ -155,7 +155,7 @@ function setFont(type)
     //### CHRONOS ###
     else if (type == 'chronos')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(chronosFont);
         doc.setFontSize(chronosFontSize);
         color = chronosFontColor;
@@ -163,7 +163,7 @@ function setFont(type)
     //### QUALITY ###
     else if (type == 'quality')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(qualityFont);
         doc.setFontSize(qualityFontSize);
         color = qualityFontColor;
@@ -171,7 +171,7 @@ function setFont(type)
     //### ETERON ###
     else if (type == 'eteron')
     {
-        //stroke = true;
+        stroke = musicFontStroke;
         doc.setFont(eteronFont);
         doc.setFontSize(eteronFontSize);
         color = eteronFontColor;

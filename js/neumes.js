@@ -29,6 +29,7 @@ var dropcapsFont = "Alegreya-Bold";
 //var musicFontFamily = "KANewStathis";
 //var musicFontFamily = "KAAlmouzios";
 var musicFontFamily = "KAEZ";
+var musicFontStroke = true;
 //### NEUMES
 var neumesFont = musicFontFamily + "Main-Regular";
 //### FTHORA
