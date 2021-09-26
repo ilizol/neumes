@@ -9,6 +9,11 @@ var doc = new jsPDF(
 //var dim = doc.getTextDimensions("test");
 //alert(dim);
 
+//### FILE NAME
+//var fileName = "neumes.pdf";
+//var fileName = "kontakion_prophet_elias.pdf";
+var fileName = "kontakion_saint_john_theologian.pdf";
+
 //### HEADER
 var headerFont = "Alegreya-Bold";
 //### HEADER 2
@@ -26,10 +31,11 @@ var title2Font = "Alegreya-Medium";
 //var dropcapsFont = "Alegreya-BoldItalic";
 var dropcapsFont = "Alegreya-Bold";
 //### MUSIC FONT FAMILY
-//var musicFontFamily = "KANewStathis";
+var musicFontFamily = "KANewStathis";
 //var musicFontFamily = "KAAlmouzios";
-var musicFontFamily = "KAEZ";
-var musicFontStroke = true;
+//var musicFontFamily = "KAEZ";
+var musicFontStroke = false;
+//var musicFontStroke = true;
 //### NEUMES
 var neumesFont = musicFontFamily + "Main-Regular";
 //### FTHORA
@@ -789,7 +795,7 @@ neumes.forEach(function (ng, i)
         {
             setFont('rythm');
             var ruHeight = doc.internal.getLineHeight();
-            var yOffset = ruHeight / 6;
+            var yOffset = ruHeight / 1.25;
             texts.push({
                 f: 'rythm',
                 x: currentX,
@@ -1721,6 +1727,4 @@ neumes.forEach(function (ng, i)
 });
 
 
-//doc.save('neumes.pdf');
-
-doc.save('kontakion_prophet_elias.pdf');
+doc.save(fileName);
