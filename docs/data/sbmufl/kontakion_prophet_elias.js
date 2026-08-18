@@ -11,12 +11,12 @@ neumes.push(
     { "tl": "Ἦχος" },
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
-    { "mu2": "o" },
+    { "m": "\uE2A8" },
     { "t": " " }, // SPACE
     { "tl": "Δι" },
     { "t": "  " }, // SPACE
     //###### MARTYRIA ######
-    { "mf": "∂" },
+    { "mf": "\uE19A" },
     { "br": "ln2" }, // LINE BREAK
     { "br": "ln2" }, // LINE BREAK
     //{"br":"ln"}, // LINE BREAK
@@ -146,7 +146,7 @@ neumes.push(
         "n": "\uE021\uE0D0",
         "l": "με",
         //###### MARTYRIA ######
-        "m": "d$"
+        "m": "\uE13C\uE159"
     },
     {
         "n": "\uE024",
@@ -246,7 +246,7 @@ neumes.push(
         "n": "\uE000\uE0D0",
         "l": "φη",
         //###### MARTYRIA ######
-        "m": "d@"
+        "m": "\uE13A\uE159"
     },
     {
         "n": "\uE003\uE0A1",
