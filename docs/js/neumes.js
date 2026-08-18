@@ -89,35 +89,26 @@ var specialFont = musicFontFamily + "Combo-Regular";
 var lyricsFont = "Alegreya-Medium";
 
 //### DEFAULT SIZES
-var hFS = 18;
-var h2FS = 18;
-//var h3FS = 40;
-//TODO change this
-var h3FS = 26;
-// var h3FS = 24;
-//var h4FS = 26;
-var h4FS = 18;
-var tFS = 16;
-var t2FS = 14;
-var dFS = 40;
-//var dFS = 26;
-var nFS = 30;
-//var nFS = 30;
-var eFS = nFS;
-//var iFS = 10;
-var iFS = 12;
+// Get font sizes from window config or use defaults
+var fontSizesConfig = window.neumesFontSizes || {};
+
+var hFS = fontSizesConfig.hFS !== undefined ? fontSizesConfig.hFS : 18;
+var h2FS = fontSizesConfig.h2FS !== undefined ? fontSizesConfig.h2FS : 18;
+var h3FS = fontSizesConfig.h3FS !== undefined ? fontSizesConfig.h3FS : 26;
+var h4FS = fontSizesConfig.h4FS !== undefined ? fontSizesConfig.h4FS : 18;
+var tFS = fontSizesConfig.tFS !== undefined ? fontSizesConfig.tFS : 16;
+var t2FS = fontSizesConfig.t2FS !== undefined ? fontSizesConfig.t2FS : 14;
+var dFS = fontSizesConfig.dFS !== undefined ? fontSizesConfig.dFS : 40;
+var nFS = fontSizesConfig.nFS !== undefined ? fontSizesConfig.nFS : 30;
+var eFS = fontSizesConfig.eFS !== undefined ? fontSizesConfig.eFS : nFS;
+var iFS = fontSizesConfig.iFS !== undefined ? fontSizesConfig.iFS : 12;
 // ISON PARENTHESIS
-var iPar = 1;
-//var iFS = 0;
-var rFS = 9;
-//var rFS = 0;
-var aFS = tFS;
-//var aFS = 0;
-var bFS = nFS;
-//var bFS = 0;
-var lFS = 16;
-//var lFS = 0;
-var sFS = 30;
+var iPar = fontSizesConfig.iPar !== undefined ? fontSizesConfig.iPar : 1;
+var rFS = fontSizesConfig.rFS !== undefined ? fontSizesConfig.rFS : 9;
+var aFS = fontSizesConfig.aFS !== undefined ? fontSizesConfig.aFS : tFS;
+var bFS = fontSizesConfig.bFS !== undefined ? fontSizesConfig.bFS : nFS;
+var lFS = fontSizesConfig.lFS !== undefined ? fontSizesConfig.lFS : 16;
+var sFS = fontSizesConfig.sFS !== undefined ? fontSizesConfig.sFS : nFS;
 var headerFontSize = hFS;
 var header2FontSize = h2FS;
 var header3FontSize = h3FS;
