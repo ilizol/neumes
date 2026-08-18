@@ -29,14 +29,23 @@
   ];
 
   const head = document.head || document.getElementsByTagName("head")[0];
+  const version = window.neumesCacheVersion;
+
+  function withVersion(src) {
+    if (!version) {
+      return src;
+    }
+    return src + (src.indexOf('?') >= 0 ? '&' : '?') + 'v=' + encodeURIComponent(version);
+  }
 
   scripts.forEach((src) => {
-    if (document.querySelector('script[src="' + src + '"]')) {
+    const resolvedSrc = withVersion(src);
+    if (document.querySelector('script[src="' + src + '"]') || document.querySelector('script[src="' + resolvedSrc + '"]')) {
       return;
     }
 
     const script = document.createElement("script");
-    script.src = src;
+    script.src = resolvedSrc;
     script.async = false;
     head.appendChild(script);
   });
