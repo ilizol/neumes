@@ -6,6 +6,8 @@
     "fonts/Alegreya-BoldItalic-normal.js",
     "fonts/Alegreya-Medium-normal.js",
     "fonts/Alegreya-MediumItalic-normal.js",
+    //### Almouzios
+    "fonts/Almouzios-normal.js",
     //### KA New Stathis
     "fonts/KANewStathisArchaia-Regular-normal.js",
     "fonts/KANewStathisChronos-Regular-normal.js",
