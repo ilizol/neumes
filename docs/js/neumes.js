@@ -29,10 +29,10 @@ var title2Font = "Alegreya-Medium";
 //var dropcapsFont = "Alegreya-BoldItalic";
 var dropcapsFont = "Alegreya-Bold";
 //### MUSIC FONT FAMILY
-var musicFontFamily = "KANewStathis";
+var musicFontFamily = window.musicFontFamily || "KANewStathis";
 //var musicFontFamily = "KAAlmouzios";
 //var musicFontFamily = "KAEZ";
-var musicFontStroke = false;
+var musicFontStroke = window.musicFontStroke !== undefined ? window.musicFontStroke : false;
 //var musicFontStroke = true;
 //### NEUMES
 var neumesFont = musicFontFamily + "Main-Regular";
