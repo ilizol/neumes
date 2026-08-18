@@ -32,24 +32,45 @@ var dropcapsFont = "Alegreya-Bold";
 var musicFontFamily = window.musicFontFamily || "KANewStathis";
 //var musicFontFamily = "KAAlmouzios";
 //var musicFontFamily = "KAEZ";
+//var musicFontFamily = "Almouzios";
 var musicFontStroke = window.musicFontStroke !== undefined ? window.musicFontStroke : false;
 //var musicFontStroke = true;
+//### DYNAMIC FONT RESOLVER
+function getCustomFont(fontType)
+{
+    return (window.customFonts && window.customFonts[fontType]) || null;
+}
+function resolveFont(fontType, suffix)
+{
+    var customFont = getCustomFont(fontType);
+    if (customFont)
+    {
+        return customFont;
+    }
+    // Almouzios uses a single unified font file, no suffix needed
+    if (musicFontFamily === 'Almouzios')
+    {
+        return 'Almouzios-Regular';
+    }
+    // KA-prefixed fonts use separate files per character type
+    return musicFontFamily + suffix + '-Regular';
+}
 //### NEUMES
-var neumesFont = musicFontFamily + "Main-Regular";
+var neumesFont = resolveFont('neumes', 'Main');
 //### FTHORA
-var fthoraFont = musicFontFamily + "Fthora-Regular";
+var fthoraFont = resolveFont('fthora', 'Fthora');
 //### FTHORA INFO
-var fthoraInfoFont = musicFontFamily + "Fthora-Regular";
+var fthoraInfoFont = resolveFont('fthoraInfo', 'Fthora');
 //### CHRONOS
-var chronosFont = musicFontFamily + "Chronos-Regular";
+var chronosFont = resolveFont('chronos', 'Chronos');
 //### QUALITY
-var qualityFont = musicFontFamily + "Main-Regular";
+var qualityFont = resolveFont('quality', 'Main');
 //### ETERON
-var eteronFont = musicFontFamily + "Main-Regular";
+var eteronFont = resolveFont('eteron', 'Main');
 //### OLD
-var oldFont = musicFontFamily + "Archaia-Regular";
+var oldFont = resolveFont('archaia', 'Archaia');
 //### MARTYRIA
-var martyriaFont = musicFontFamily + "Martyria-Regular";
+var martyriaFont = resolveFont('martyria', 'Martyria');
 //### ISON
 //var isonFont = "Alegreya-BoldItalic";
 var isonFont = "Alegreya-Bold";

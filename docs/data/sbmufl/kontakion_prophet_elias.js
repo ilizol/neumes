@@ -29,7 +29,7 @@ neumes.push(
     },
     {
         "nb": "\\", // DIASTOLE
-        "n": "0",
+        "n": "\uE000",
         "l": "φη"
     },
     {
@@ -37,7 +37,7 @@ neumes.push(
         "l": "η"
     },
     {
-        "n": "0",
+        "n": "\uE000",
         "i": "Δ",
         "l": "τα"
     },
@@ -63,17 +63,17 @@ neumes.push(
     },
     { "br": "wd" }, // WORD BREAK
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "των",
         "n2": "\\" // DIASTOLE
     },
     { "br": "wd" }, // WORD BREAK
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "με"
     },
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "γα"
     },
     {
@@ -92,7 +92,7 @@ neumes.push(
     },
     { "br": "wd" }, // WORD BREAK
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "του"
     },
     { "br": "wd" }, // WORD BREAK
@@ -115,7 +115,7 @@ neumes.push(
         "l": "λι"
     },
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "α"
     },
     { "br": "wd" }, // WORD BREAK
@@ -155,7 +155,7 @@ neumes.push(
     },
     { "br": "wd" }, // WORD BREAK
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "τω"
     },
     { "br": "wd" }, // WORD BREAK
@@ -185,7 +185,7 @@ neumes.push(
         "l": "στη"
     },
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "σας"
     },
     { "br": "wd" }, // WORD BREAK
@@ -196,11 +196,11 @@ neumes.push(
     },
     { "br": "wd" }, // WORD BREAK
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "υ"
     },
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "δα"
     },
     {
@@ -214,7 +214,7 @@ neumes.push(
         "l": "ρυ"
     },
     {
-        "n": "0",
+        "n": "\uE000",
         "l": "τα",
         "n2": "\\" // DIASTOLE
     },
@@ -236,7 +236,7 @@ neumes.push(
     },
     {
         "v": "/", //TODO change
-        "n": "0",
+        "n": "\uE000",
         "l": "ε",
         "n2": "!",
         "cm2": "v",

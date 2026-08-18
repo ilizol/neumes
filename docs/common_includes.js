@@ -1,4 +1,5 @@
-(function () {
+(function ()
+{
   const scripts = [
     "js/jspdf.min.js",
     //### Alegreya
@@ -33,16 +34,20 @@
   const head = document.head || document.getElementsByTagName("head")[0];
   const version = window.neumesCacheVersion;
 
-  function withVersion(src) {
-    if (!version) {
+  function withVersion(src)
+  {
+    if (!version)
+    {
       return src;
     }
     return src + (src.indexOf('?') >= 0 ? '&' : '?') + 'v=' + encodeURIComponent(version);
   }
 
-  scripts.forEach((src) => {
+  scripts.forEach((src) =>
+  {
     const resolvedSrc = withVersion(src);
-    if (document.querySelector('script[src="' + src + '"]') || document.querySelector('script[src="' + resolvedSrc + '"]')) {
+    if (document.querySelector('script[src="' + src + '"]') || document.querySelector('script[src="' + resolvedSrc + '"]'))
+    {
       return;
     }
 
