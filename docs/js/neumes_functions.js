@@ -265,7 +265,9 @@ function writeLineTexts(lineTexts, availSpace, alignment)
     {
         lineElements--;
         lineTexts.pop();
-        setFont('neumes');
+        //TODO check this
+        //setFont('neumes');
+        setFont('lyrics');
         var wsWidth = doc.getTextWidth(" ");
         availSpace += wsWidth;
         //alert(lineElements);
