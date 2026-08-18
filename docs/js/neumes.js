@@ -10,10 +10,7 @@ var doc = new jsPDF(
 //alert(dim);
 
 //### FILE NAME
-//var fileName = "neumes.pdf";
-//var fileName = "kontakion_prophet_elias.pdf";
-//var fileName = "kontakion_saint_john_theologian.pdf";
-var fileName = "kontakion_saint_spyridon.pdf";
+var fileName = window.neumesFileName || "neumes.pdf";
 
 //### HEADER
 var headerFont = "Alegreya-Bold";
