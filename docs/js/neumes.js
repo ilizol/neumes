@@ -50,7 +50,7 @@ function resolveFont(fontType, suffix)
     // Almouzios uses a single unified font file, no suffix needed
     if (musicFontFamily === 'Almouzios')
     {
-        return 'Almouzios-Regular';
+        return 'Almouzios';
     }
     // KA-prefixed fonts use separate files per character type
     return musicFontFamily + suffix + '-Regular';
