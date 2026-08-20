@@ -1,19 +1,125 @@
 var pdfEngine = window.pdfEngine || "jspdf";
 // var pdfEngine = 'pdfkit';
 
+var doc;
+
 if (pdfEngine === 'jspdf')
 {
     var pageFormat = 'a4';
-    var doc = new jsPDF(
+    doc = new jsPDF(
         'p', 'pt', pageFormat
     );
 }
 else if (pdfEngine === 'pdfkit')
 {
-    const doc = new PDFDocument({
+    // A4 portrait dimensions in points (pt)
+    //var pdfKitPageSize = [595.28, 841.89];
+    var pdfKitDoc = new PDFDocument({
         size: 'A4',
-        // margin: 50
+        //size: pdfKitPageSize,
+        layout: 'portrait',
+        margin: 0
     });
+    const pdfKitStream = pdfKitDoc.pipe(blobStream());
+    var pdfKitFonts = {};
+    var jsPdfFontSource = new jsPDF();
+
+    function registerPdfKitFont(font)
+    {
+        if (pdfKitFonts[font])
+        {
+            return;
+        }
+        var fileName = font + '-normal.ttf';
+        if (!jsPdfFontSource.existsFileInVFS(fileName))
+        {
+            return;
+        }
+        var base64 = jsPdfFontSource.getFileFromVFS(fileName);
+        var binary = atob(base64);
+        var fontData = Uint8Array.from(binary, function (character)
+        {
+            return character.charCodeAt(0);
+        });
+        pdfKitDoc.registerFont(font, fontData);
+        pdfKitFonts[font] = true;
+    }
+
+    doc = {
+        internal: {
+            pageSize: {
+                width: pdfKitDoc.page.width,
+                height: pdfKitDoc.page.height
+            },
+            getLineHeight: function ()
+            {
+                return pdfKitDoc.currentLineHeight();
+            }
+        },
+        getTextWidth: function (text)
+        {
+            return pdfKitDoc.widthOfString(text);
+        },
+        setFont: function (font)
+        {
+            registerPdfKitFont(font);
+            pdfKitDoc.font(font);
+        },
+        setFontSize: function (size)
+        {
+            pdfKitDoc.fontSize(size);
+        },
+        setTextColor: function (red, green, blue)
+        {
+            pdfKitDoc.fillColor([red, green, blue]);
+        },
+        setDrawColor: function (red, green, blue)
+        {
+            pdfKitDoc.strokeColor([red, green, blue]);
+        },
+        text: function (first, second, third, options)
+        {
+            if (typeof first === 'string')
+            {
+                pdfKitDoc.text(first, second, third, options);
+            }
+            else
+            {
+                pdfKitDoc.text(third, first, second);
+            }
+        },
+        addPage: function ()
+        {
+            pdfKitDoc.addPage();
+        },
+        save: function (fileName)
+        {
+            pdfKitDoc.end();
+
+            pdfKitStream.on('finish', () =>
+            {
+                // const pdfUrl = pdfKitStream.toBlobURL('application/pdf');
+                // window.open(pdfUrl, '_blank');
+
+                // 1. Get the Blob directly from blob-stream
+                const blob = pdfKitStream.toBlob('application/pdf');
+                const pdfUrl = URL.createObjectURL(blob);
+
+                // 2. Create a hidden download link
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.download = fileName; // Set your filename here
+
+                // 3. Trigger download and clean up
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Free up memory after download triggers
+                setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
+            });
+        }
+    };
 }
 
 //var height = doc.internal.getLineHeight();
