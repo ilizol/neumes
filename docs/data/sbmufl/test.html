@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Browser PDFKit OTF Demo</title>
+
+    <!-- 
+    <script src="https://github.com/foliojs/pdfkit/releases/download/v0.19.1/pdfkit.standalone.js"></script>
+    <script src="https://github.com/devongovett/blob-stream/releases/download/v0.1.3/blob-stream.js"></script> -->
+
+    <script src="../../js/pdfkit.standalone.js"></script>
+    <script src="../../js/blob-stream.js"></script>
+
+    <script src="../../fonts/Almouzios.js"></script>
+</head>
+
+<body>
+    <script>
+        // Convert base64 string to ArrayBuffer for PDFKit
+        function base64ToArrayBuffer(base64)
+        {
+            const binaryString = window.atob(base64);
+            const bytes = new Uint8Array(binaryString.length);
+            for (let i = 0; i < binaryString.length; i++)
+            {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        const fontBase64 = window.fontBase64Almouzios;
+        const fontBuffer = base64ToArrayBuffer(fontBase64);
+
+        // 2. Instantiate PDFKit Document
+        const doc = new PDFDocument({ size: 'A4', margin: 50 });
+        const stream = doc.pipe(blobStream());
+
+        // 3. Register the OTF font buffer with PDFKit
+        doc.registerFont('Almouzios', fontBuffer);
+        doc.font('Almouzios');
+
+        // 4. Render text enabling OpenType mark features
+        doc.fontSize(18).text('\uE082\uE13C\uE159');
+
+        // 5. Finalize and open PDF in browser
+        doc.end();
+
+        stream.on('finish', () =>
+        {
+            // const pdfUrl = stream.toBlobURL('application/pdf');
+            // window.open(pdfUrl, '_blank');
+
+            // 1. Get the Blob directly from blob-stream
+            const blob = stream.toBlob('application/pdf');
+            const pdfUrl = URL.createObjectURL(blob);
+
+            // 2. Create a hidden download link
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = 'test.pdf'; // Set your filename here
+
+            // 3. Trigger download and clean up
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Free up memory after download triggers
+            setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
+        });
+    </script>
+
+</body>
+
+</html>
