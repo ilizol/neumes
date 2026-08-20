@@ -15,21 +15,36 @@
 
 <body>
     <script>
+        async function loadFont(path)
+        {
+            const fontResponse = await fetch(path);
+            return await fontResponse.arrayBuffer();
+        }
+
         document.addEventListener('DOMContentLoaded', async () =>
         {
-            // 1. Fetch your .otf font file as an ArrayBuffer
-            const fontResponse = await fetch('../../fonts/Almouzios.otf');
-            const fontBuffer = await fontResponse.arrayBuffer();
+            // 1. Fetch font files as an ArrayBuffer
+            const alegreyaBoldFont = await loadFont('../../fonts/Alegreya-Bold.ttf');
+            const alegreyaMediumFont = await loadFont('../../fonts/Alegreya-Medium.ttf');
+            const almouziosFont = await loadFont('../../fonts/Almouzios.otf');
 
             // 2. Instantiate PDFKit Document
             const doc = new PDFDocument({ size: 'A4', margin: 50 });
             const stream = doc.pipe(blobStream());
 
-            // 3. Register the OTF font buffer with PDFKit
-            doc.registerFont('Almouzios', fontBuffer);
-            doc.font('Almouzios');
+            // 3. Register the font buffers with PDFKit
+            doc.registerFont('Alegreya-Bold', alegreyaBoldFont);
+            doc.registerFont('Alegreya-Medium', alegreyaMediumFont);
+            doc.registerFont('Almouzios', almouziosFont);
+
+            doc.font('Alegreya-Bold');
+            doc.fontSize(18).text('Alegreya Bold');
+
+            doc.font('Alegreya-Medium');
+            doc.fontSize(18).text('Alegreya Medium');
 
             // 4. Render text enabling OpenType mark features
+            doc.font('Almouzios');
             doc.fontSize(18).text('\uE082\uE13C\uE159');
 
             // 5. Finalize and open PDF in browser
