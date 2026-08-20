@@ -1,7 +1,20 @@
-var pageFormat = 'a4';
-var doc = new jsPDF(
-    'p', 'pt', pageFormat
-);
+var pdfEngine = window.pdfEngine || "jspdf";
+// var pdfEngine = 'pdfkit';
+
+if (pdfEngine === 'jspdf')
+{
+    var pageFormat = 'a4';
+    var doc = new jsPDF(
+        'p', 'pt', pageFormat
+    );
+}
+else if (pdfEngine === 'pdfkit')
+{
+    const doc = new PDFDocument({
+        size: 'A4',
+        // margin: 50
+    });
+}
 
 //var height = doc.internal.getLineHeight();
 //alert(height);
@@ -50,7 +63,7 @@ function resolveFont(fontType, suffix)
     // Almouzios uses a single unified font file, no suffix needed
     if (musicFontFamily === 'Almouzios')
     {
-        return 'Almouzios';
+        return musicFontFamily;
     }
     // KA-prefixed fonts use separate files per character type
     return musicFontFamily + suffix + '-Regular';

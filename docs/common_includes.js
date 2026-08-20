@@ -1,7 +1,11 @@
 (function ()
 {
   const scripts = [
+    //### jsPDF
     "js/jspdf.min.js",
+    //### PDFKit
+    "js/pdfkit.standalone.js",
+    "js/blob-stream.js",
     //### Alegreya
     "fonts/Alegreya-Bold-normal.js",
     "fonts/Alegreya-BoldItalic-normal.js",
