@@ -77,16 +77,15 @@ else if (pdfEngine === 'pdfkit')
         {
             pdfKitDoc.strokeColor([red, green, blue]);
         },
-        text: function (first, second, third, options)
+        text: function (text, x, y, options)
         {
-            if (typeof first === 'string')
-            {
-                pdfKitDoc.text(first, second, third, options);
-            }
-            else
-            {
-                pdfKitDoc.text(third, first, second);
-            }
+            const scale = pdfKitDoc._fontSize / pdfKitDoc._font.font.unitsPerEm;
+
+            // Convert top-left 'y' coordinate to baseline 'y' coordinate using font ascent
+            const ascent = pdfKitDoc._font.font.ascent * scale;
+            const baselineY = y - ascent;
+
+            pdfKitDoc.text(text, x, baselineY, options);
         },
         addPage: function ()
         {
@@ -1859,5 +1858,53 @@ neumes.forEach(function (ng, i)
     }
 });
 
+// setFont('neumes');
+// doc.setFont(neumesFont);
+// doc.setFontSize(neumesFontSize);
+// doc.text("\uE084\uE0F0", 100, 0);
+// doc.text("\uE084\uE0F0", 400, 0);
+
+function drawStyledWord(doc, text, colorMap, x, y)
+{
+    const scale = doc._fontSize / doc._font.font.unitsPerEm;
+
+    // 1. Shape the full string ONCE to preserve GPOS anchors
+    const run = doc._font.font.layout(text);
+
+    let currentX = x;
+
+    // 2. Iterate glyphs and position each using fontkit's calculated layout
+    run.glyphs.forEach((glyph, index) =>
+    {
+        const pos = run.positions[index];
+        const color = colorMap[index] || '#000000';
+
+        // Calculate position relative to baselineY
+        const gx = currentX + pos.xOffset * scale;
+        const gy = y - pos.yOffset * scale;
+
+        // Output glyph path directly to preserve exact visual alignment
+        if (glyph.path && glyph.path.commands.length > 0)
+        {
+            doc.save()
+                .translate(gx, gy)
+                .scale(scale, -scale)
+                .path(glyph.path.toSVG())
+                .fillColor(color)
+                .fill()
+                .restore();
+        }
+
+        currentX += pos.xAdvance * scale;
+    });
+}
+
+// Usage: shape string once, map mark indices to colors
+const text = "\uE084\uE0F0\uE084\uE0F0\uE084\uE0F0";
+// Index 1 and Index 3 set to red:
+const colors = { 1: 'red', 3: 'red' };
+
+// drawStyledWord(pdfKitDoc, text, colors, 100, 100);
+// drawStyledWord(pdfKitDoc, text, colors, 400, 100);
 
 doc.save(fileName);
