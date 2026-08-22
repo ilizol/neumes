@@ -314,8 +314,10 @@ var lyricsDistance = 26;
 var lineDistance = 60;
 //var lineDistance = 65;
 var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDistance : lyricsDistance / 3.5;
+var martyriaLowerDistance = window.martyriaLowerDistance !== undefined ? window.martyriaLowerDistance : lyricsDistance / 3;
 var martyriaFthoraDistance = window.martyriaFthoraDistance !== undefined ? window.martyriaFthoraDistance : lyricsDistance / 2.2;
 // var martyriaDistance = 0;
+// var martyriaLowerDistance = 0;
 // var martyriaFthoraDistance = 0;
 
 //### BASIC VARIABLES
@@ -446,6 +448,13 @@ neumes.forEach(function (ng, i)
         setFont('martyria');
         var mu2Width = doc.getTextWidth(ng.mu2);
         ngWidth += mu2Width;
+    }
+    //### MARTYRIA LOWER ###
+    if (ng.ml)
+    {
+        setFont('martyria');
+        var mlWidth = doc.getTextWidth(ng.ml);
+        ngWidth += mlWidth;
     }
     //### ASTERISK ###
     if (ng.a && aFS)
@@ -1775,6 +1784,16 @@ neumes.forEach(function (ng, i)
             x: currentX,
             y: ngY + martyriaDistance,
             t: ng.mu2
+        });
+    }
+    //### MARTYRIA LOWER ###
+    if (ng.ml)
+    {
+        texts.push({
+            f: 'martyria',
+            x: currentX,
+            y: ngY + martyriaLowerDistance,
+            t: ng.ml
         });
     }
     //### MARTYRIA FTHORA ###

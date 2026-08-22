@@ -8,15 +8,14 @@ neumes.push(
     { "t": "Χουρμουζίου Χαρτοφύλακος (†1840)" },
     { "br": "ln2" }, // LINE BREAK
     //{"t":"Ἦχος β' Δι"},
-    { "tl": "Ἦχος" },
-    { "t": " " }, // SPACE
+    // { "tl": "Ἦχος" },
+    { "ml": "\uE2F1" }, // U+E2F1 = modeWordEchos
+    // { "t": " " }, // SPACE
     //###### MARTYRIA ######
-    { "m": "\uE2A8" }, // U+E2A8 = modeSecond
-    { "t": " " }, // SPACE
-    { "tl": "Δι" },
-    { "t": "  " }, // SPACE
-    //###### MARTYRIA ######
-    { "mf": "\uE19A" }, // U+E19A = fthoraSoftChromaticDiAbove
+    { "ml": "\uE2A8" }, // U+E2A8 = modeSecond
+    // { "t": " " }, // SPACE
+    // { "tl": "Δι" },
+    { "ml": "\uE2E4\uE19A" }, // U+E2E4 = modeDi, U+E19A = fthoraSoftChromaticDiAbove
     { "br": "ln2" }, // LINE BREAK
     { "br": "ln2" }, // LINE BREAK
     //{"br":"ln"}, // LINE BREAK
