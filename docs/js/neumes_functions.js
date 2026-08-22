@@ -206,13 +206,6 @@ function writeText(text, offsetX)
     var textY = text.y;
     var textT = text.t;
     var stroke = setFont(textF);
-    /*
-    doc.text(
-        textX,
-        textY,
-        textT
-    );
-    */
     if (stroke)
     {
         doc.text(
@@ -227,9 +220,9 @@ function writeText(text, offsetX)
     else
     {
         doc.text(
+            textT,
             textX,
-            textY,
-            textT
+            textY
         );
     }
     /* TODO
@@ -265,7 +258,9 @@ function writeLineTexts(lineTexts, availSpace, alignment)
     {
         lineElements--;
         lineTexts.pop();
-        setFont('neumes');
+        //TODO check this
+        //setFont('neumes');
+        setFont('lyrics');
         var wsWidth = doc.getTextWidth(" ");
         availSpace += wsWidth;
         //alert(lineElements);

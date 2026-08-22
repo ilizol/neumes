@@ -1,7 +1,125 @@
-var pageFormat = 'a4';
-var doc = new jsPDF(
-    'p', 'pt', pageFormat
-);
+var pdfEngine = window.pdfEngine !== undefined ? window.pdfEngine : "jspdf";
+// var pdfEngine = 'pdfkit';
+
+var doc;
+
+if (pdfEngine === 'jspdf')
+{
+    var pageFormat = 'a4';
+    doc = new jsPDF(
+        'p', 'pt', pageFormat
+    );
+}
+else if (pdfEngine === 'pdfkit')
+{
+    // A4 portrait dimensions in points (pt)
+    //var pdfKitPageSize = [595.28, 841.89];
+    var pdfKitDoc = new PDFDocument({
+        size: 'A4',
+        //size: pdfKitPageSize,
+        layout: 'portrait',
+        margin: 0
+    });
+    const pdfKitStream = pdfKitDoc.pipe(blobStream());
+    var pdfKitFonts = {};
+    var jsPdfFontSource = new jsPDF();
+
+    function registerPdfKitFont(font)
+    {
+        if (pdfKitFonts[font])
+        {
+            return;
+        }
+        var fileName = font + '-normal.ttf';
+        if (!jsPdfFontSource.existsFileInVFS(fileName))
+        {
+            return;
+        }
+        var base64 = jsPdfFontSource.getFileFromVFS(fileName);
+        var binary = atob(base64);
+        var fontData = Uint8Array.from(binary, function (character)
+        {
+            return character.charCodeAt(0);
+        });
+        pdfKitDoc.registerFont(font, fontData);
+        pdfKitFonts[font] = true;
+    }
+
+    doc = {
+        internal: {
+            pageSize: {
+                width: pdfKitDoc.page.width,
+                height: pdfKitDoc.page.height
+            },
+            getLineHeight: function ()
+            {
+                return pdfKitDoc.currentLineHeight();
+            }
+        },
+        getTextWidth: function (text)
+        {
+            return pdfKitDoc.widthOfString(text);
+        },
+        setFont: function (font)
+        {
+            registerPdfKitFont(font);
+            pdfKitDoc.font(font);
+        },
+        setFontSize: function (size)
+        {
+            pdfKitDoc.fontSize(size);
+        },
+        setTextColor: function (red, green, blue)
+        {
+            pdfKitDoc.fillColor([red, green, blue]);
+        },
+        setDrawColor: function (red, green, blue)
+        {
+            pdfKitDoc.strokeColor([red, green, blue]);
+        },
+        text: function (text, x, y, options)
+        {
+            const scale = pdfKitDoc._fontSize / pdfKitDoc._font.font.unitsPerEm;
+
+            // Convert top-left 'y' coordinate to baseline 'y' coordinate using font ascent
+            const ascent = pdfKitDoc._font.font.ascent * scale;
+            const baselineY = y - ascent;
+
+            pdfKitDoc.text(text, x, baselineY, options);
+        },
+        addPage: function ()
+        {
+            pdfKitDoc.addPage();
+        },
+        save: function (fileName)
+        {
+            pdfKitDoc.end();
+
+            pdfKitStream.on('finish', () =>
+            {
+                // const pdfUrl = pdfKitStream.toBlobURL('application/pdf');
+                // window.open(pdfUrl, '_blank');
+
+                // 1. Get the Blob directly from blob-stream
+                const blob = pdfKitStream.toBlob('application/pdf');
+                const pdfUrl = URL.createObjectURL(blob);
+
+                // 2. Create a hidden download link
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.download = fileName; // Set your filename here
+
+                // 3. Trigger download and clean up
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Free up memory after download triggers
+                setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
+            });
+        }
+    };
+}
 
 //var height = doc.internal.getLineHeight();
 //alert(height);
@@ -32,24 +150,45 @@ var dropcapsFont = "Alegreya-Bold";
 var musicFontFamily = window.musicFontFamily || "KANewStathis";
 //var musicFontFamily = "KAAlmouzios";
 //var musicFontFamily = "KAEZ";
+//var musicFontFamily = "Almouzios";
 var musicFontStroke = window.musicFontStroke !== undefined ? window.musicFontStroke : false;
 //var musicFontStroke = true;
+//### DYNAMIC FONT RESOLVER
+function getCustomFont(fontType)
+{
+    return (window.customFonts && window.customFonts[fontType]) || null;
+}
+function resolveFont(fontType, suffix)
+{
+    var customFont = getCustomFont(fontType);
+    if (customFont)
+    {
+        return customFont;
+    }
+    // Almouzios uses a single unified font file, no suffix needed
+    if (musicFontFamily === 'Almouzios')
+    {
+        return musicFontFamily;
+    }
+    // KA-prefixed fonts use separate files per character type
+    return musicFontFamily + suffix + '-Regular';
+}
 //### NEUMES
-var neumesFont = musicFontFamily + "Main-Regular";
+var neumesFont = resolveFont('neumes', 'Main');
 //### FTHORA
-var fthoraFont = musicFontFamily + "Fthora-Regular";
+var fthoraFont = resolveFont('fthora', 'Fthora');
 //### FTHORA INFO
-var fthoraInfoFont = musicFontFamily + "Fthora-Regular";
+var fthoraInfoFont = resolveFont('fthoraInfo', 'Fthora');
 //### CHRONOS
-var chronosFont = musicFontFamily + "Chronos-Regular";
+var chronosFont = resolveFont('chronos', 'Chronos');
 //### QUALITY
-var qualityFont = musicFontFamily + "Main-Regular";
+var qualityFont = resolveFont('quality', 'Main');
 //### ETERON
-var eteronFont = musicFontFamily + "Main-Regular";
+var eteronFont = resolveFont('eteron', 'Main');
 //### OLD
-var oldFont = musicFontFamily + "Archaia-Regular";
+var oldFont = resolveFont('archaia', 'Archaia');
 //### MARTYRIA
-var martyriaFont = musicFontFamily + "Martyria-Regular";
+var martyriaFont = resolveFont('martyria', 'Martyria');
 //### ISON
 //var isonFont = "Alegreya-BoldItalic";
 var isonFont = "Alegreya-Bold";
@@ -68,35 +207,26 @@ var specialFont = musicFontFamily + "Combo-Regular";
 var lyricsFont = "Alegreya-Medium";
 
 //### DEFAULT SIZES
-var hFS = 18;
-var h2FS = 18;
-//var h3FS = 40;
-//TODO change this
-var h3FS = 26;
-// var h3FS = 24;
-//var h4FS = 26;
-var h4FS = 18;
-var tFS = 16;
-var t2FS = 14;
-var dFS = 40;
-//var dFS = 26;
-var nFS = 30;
-//var nFS = 30;
-var eFS = nFS;
-//var iFS = 10;
-var iFS = 12;
+// Get font sizes from window config or use defaults
+var fontSizesConfig = window.neumesFontSizes || {};
+
+var hFS = fontSizesConfig.hFS !== undefined ? fontSizesConfig.hFS : 18;
+var h2FS = fontSizesConfig.h2FS !== undefined ? fontSizesConfig.h2FS : 18;
+var h3FS = fontSizesConfig.h3FS !== undefined ? fontSizesConfig.h3FS : 26;
+var h4FS = fontSizesConfig.h4FS !== undefined ? fontSizesConfig.h4FS : 18;
+var tFS = fontSizesConfig.tFS !== undefined ? fontSizesConfig.tFS : 16;
+var t2FS = fontSizesConfig.t2FS !== undefined ? fontSizesConfig.t2FS : 14;
+var dFS = fontSizesConfig.dFS !== undefined ? fontSizesConfig.dFS : 40;
+var nFS = fontSizesConfig.nFS !== undefined ? fontSizesConfig.nFS : 30;
+var eFS = fontSizesConfig.eFS !== undefined ? fontSizesConfig.eFS : nFS;
+var iFS = fontSizesConfig.iFS !== undefined ? fontSizesConfig.iFS : 12;
 // ISON PARENTHESIS
-var iPar = 1;
-//var iFS = 0;
-var rFS = 9;
-//var rFS = 0;
-var aFS = tFS;
-//var aFS = 0;
-var bFS = nFS;
-//var bFS = 0;
-var lFS = 16;
-//var lFS = 0;
-var sFS = 30;
+var iPar = fontSizesConfig.iPar !== undefined ? fontSizesConfig.iPar : 1;
+var rFS = fontSizesConfig.rFS !== undefined ? fontSizesConfig.rFS : 9;
+var aFS = fontSizesConfig.aFS !== undefined ? fontSizesConfig.aFS : tFS;
+var bFS = fontSizesConfig.bFS !== undefined ? fontSizesConfig.bFS : nFS;
+var lFS = fontSizesConfig.lFS !== undefined ? fontSizesConfig.lFS : 16;
+var sFS = fontSizesConfig.sFS !== undefined ? fontSizesConfig.sFS : nFS;
 var headerFontSize = hFS;
 var header2FontSize = h2FS;
 var header3FontSize = h3FS;
@@ -183,6 +313,12 @@ var lyricsDistance = 26;
 //var lyricsDistance = 10;
 var lineDistance = 60;
 //var lineDistance = 65;
+var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDistance : lyricsDistance / 3.5;
+var martyriaLowerDistance = window.martyriaLowerDistance !== undefined ? window.martyriaLowerDistance : lyricsDistance / 3;
+var martyriaFthoraDistance = window.martyriaFthoraDistance !== undefined ? window.martyriaFthoraDistance : lyricsDistance / 2.2;
+// var martyriaDistance = 0;
+// var martyriaLowerDistance = 0;
+// var martyriaFthoraDistance = 0;
 
 //### BASIC VARIABLES
 var hasPageNum = false;
@@ -313,6 +449,13 @@ neumes.forEach(function (ng, i)
         var mu2Width = doc.getTextWidth(ng.mu2);
         ngWidth += mu2Width;
     }
+    //### MARTYRIA LOWER ###
+    if (ng.ml)
+    {
+        setFont('martyria');
+        var mlWidth = doc.getTextWidth(ng.ml);
+        ngWidth += mlWidth;
+    }
     //### ASTERISK ###
     if (ng.a && aFS)
     {
@@ -337,7 +480,9 @@ neumes.forEach(function (ng, i)
     //### WORD BREAK ###
     if (ng.br == 'wd')
     {
-        setFont('neumes');
+        //TODO check this
+        //setFont('neumes');
+        setFont('lyrics');
         var wsWidth = doc.getTextWidth(" ");
         ngWidth += wsWidth;
     }
@@ -652,7 +797,9 @@ neumes.forEach(function (ng, i)
         )
         {
             texts.push({
-                f: 'neumes',
+                //TODO check this
+                //f: 'neumes',
+                f: 'lyrics',
                 x: ngX,
                 y: ngY,
                 t: ' '
@@ -1559,7 +1706,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.m
         });
         /*
@@ -1582,7 +1729,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX - xOffset,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.mn
         });
         currentX += mnWidth + xOffset / 2;
@@ -1592,7 +1739,7 @@ neumes.forEach(function (ng, i)
             texts.push({
                 f: 'martyria_diastole',
                 x: currentX,
-                y: ngY + lyricsDistance / 3.5,
+                y: ngY + martyriaDistance,
                 t: ng.mdn
             });
         }
@@ -1604,7 +1751,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.mr
         });
     }
@@ -1615,7 +1762,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria_diastole',
             x: currentX + xOffset,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.md
         });
     }
@@ -1635,8 +1782,18 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.mu2
+        });
+    }
+    //### MARTYRIA LOWER ###
+    if (ng.ml)
+    {
+        texts.push({
+            f: 'martyria',
+            x: currentX,
+            y: ngY + martyriaLowerDistance,
+            t: ng.ml
         });
     }
     //### MARTYRIA FTHORA ###
@@ -1645,7 +1802,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria_fthora',
             x: currentX,
-            y: ngY + lyricsDistance / 2.2,
+            y: ngY + martyriaFthoraDistance,
             t: ng.mf
         });
     }
@@ -1724,5 +1881,53 @@ neumes.forEach(function (ng, i)
     }
 });
 
+// setFont('neumes');
+// doc.setFont(neumesFont);
+// doc.setFontSize(neumesFontSize);
+// doc.text("\uE084\uE0F0", 100, 0);
+// doc.text("\uE084\uE0F0", 400, 0);
+
+function drawStyledWord(doc, text, colorMap, x, y)
+{
+    const scale = doc._fontSize / doc._font.font.unitsPerEm;
+
+    // 1. Shape the full string ONCE to preserve GPOS anchors
+    const run = doc._font.font.layout(text);
+
+    let currentX = x;
+
+    // 2. Iterate glyphs and position each using fontkit's calculated layout
+    run.glyphs.forEach((glyph, index) =>
+    {
+        const pos = run.positions[index];
+        const color = colorMap[index] || '#000000';
+
+        // Calculate position relative to baselineY
+        const gx = currentX + pos.xOffset * scale;
+        const gy = y - pos.yOffset * scale;
+
+        // Output glyph path directly to preserve exact visual alignment
+        if (glyph.path && glyph.path.commands.length > 0)
+        {
+            doc.save()
+                .translate(gx, gy)
+                .scale(scale, -scale)
+                .path(glyph.path.toSVG())
+                .fillColor(color)
+                .fill()
+                .restore();
+        }
+
+        currentX += pos.xAdvance * scale;
+    });
+}
+
+// Usage: shape string once, map mark indices to colors
+const text = "\uE084\uE0F0\uE084\uE0F0\uE084\uE0F0";
+// Index 1 and Index 3 set to red:
+const colors = { 1: 'red', 3: 'red' };
+
+// drawStyledWord(pdfKitDoc, text, colors, 100, 100);
+// drawStyledWord(pdfKitDoc, text, colors, 400, 100);
 
 doc.save(fileName);

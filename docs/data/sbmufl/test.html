@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Browser PDFKit OTF Demo</title>
+
+    <!-- 
+    <script src="https://github.com/foliojs/pdfkit/releases/download/v0.19.1/pdfkit.standalone.js"></script>
+    <script src="https://github.com/devongovett/blob-stream/releases/download/v0.1.3/blob-stream.js"></script> -->
+
+    <script src="../../js/pdfkit.standalone.js"></script>
+    <script src="../../js/blob-stream.js"></script>
+</head>
+
+<body>
+    <script>
+        async function loadFont(path)
+        {
+            const fontResponse = await fetch(path);
+            return await fontResponse.arrayBuffer();
+        }
+
+        document.addEventListener('DOMContentLoaded', async () =>
+        {
+            // 1. Fetch font files as an ArrayBuffer
+            const alegreyaBoldFont = await loadFont('../../fonts/Alegreya-Bold.ttf');
+            const alegreyaMediumFont = await loadFont('../../fonts/Alegreya-Medium.ttf');
+            const almouziosFont = await loadFont('../../fonts/Almouzios.otf');
+
+            // 2. Instantiate PDFKit Document
+            const doc = new PDFDocument({ size: 'A4', margin: 50 });
+            const stream = doc.pipe(blobStream());
+
+            // 3. Register the font buffers with PDFKit
+            doc.registerFont('Alegreya-Bold', alegreyaBoldFont);
+            doc.registerFont('Alegreya-Medium', alegreyaMediumFont);
+            doc.registerFont('Almouzios', almouziosFont);
+
+            doc.font('Alegreya-Bold');
+            doc.fontSize(18).text('Alegreya Bold');
+
+            doc.font('Alegreya-Medium');
+            doc.fontSize(18).text('Alegreya Medium');
+
+            // 4. Render text enabling OpenType mark features
+            doc.font('Almouzios');
+            doc.fontSize(18).text('\uE082\uE13C\uE159');
+
+            // 5. Finalize and open PDF in browser
+            doc.end();
+
+            stream.on('finish', () =>
+            {
+                // const pdfUrl = stream.toBlobURL('application/pdf');
+                // window.open(pdfUrl, '_blank');
+
+                // 1. Get the Blob directly from blob-stream
+                const blob = stream.toBlob('application/pdf');
+                const pdfUrl = URL.createObjectURL(blob);
+
+                // 2. Create a hidden download link
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.download = 'test.pdf'; // Set your filename here
+
+                // 3. Trigger download and clean up
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Free up memory after download triggers
+                setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
