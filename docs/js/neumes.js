@@ -1,4 +1,4 @@
-var pdfEngine = window.pdfEngine || "jspdf";
+var pdfEngine = window.pdfEngine !== undefined ? window.pdfEngine : "jspdf";
 // var pdfEngine = 'pdfkit';
 
 var doc;
@@ -313,6 +313,10 @@ var lyricsDistance = 26;
 //var lyricsDistance = 10;
 var lineDistance = 60;
 //var lineDistance = 65;
+var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDistance : lyricsDistance / 3.5;
+var martyriaFthoraDistance = window.martyriaFthoraDistance !== undefined ? window.martyriaFthoraDistance : lyricsDistance / 2.2;
+// var martyriaDistance = 0;
+// var martyriaFthoraDistance = 0;
 
 //### BASIC VARIABLES
 var hasPageNum = false;
@@ -1693,7 +1697,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.m
         });
         /*
@@ -1716,7 +1720,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX - xOffset,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.mn
         });
         currentX += mnWidth + xOffset / 2;
@@ -1726,7 +1730,7 @@ neumes.forEach(function (ng, i)
             texts.push({
                 f: 'martyria_diastole',
                 x: currentX,
-                y: ngY + lyricsDistance / 3.5,
+                y: ngY + martyriaDistance,
                 t: ng.mdn
             });
         }
@@ -1738,7 +1742,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.mr
         });
     }
@@ -1749,7 +1753,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria_diastole',
             x: currentX + xOffset,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.md
         });
     }
@@ -1769,7 +1773,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.mu2
         });
     }
@@ -1779,7 +1783,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria_fthora',
             x: currentX,
-            y: ngY + lyricsDistance / 2.2,
+            y: ngY + martyriaFthoraDistance,
             t: ng.mf
         });
     }
