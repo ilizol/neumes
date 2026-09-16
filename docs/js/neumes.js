@@ -1887,6 +1887,7 @@ setFont('neumes');
 // doc.setFontSize(neumesFontSize);
 // doc.text("\uE084\uE0F0", 100, 100);
 // doc.text("\uE084\uE0F0", 400, 100);
+// doc.text("\uE000\uE0F0\uE0D3", 400, 100);
 
 /**
  * Draws a base character with multiple colored combining accent marks.
@@ -2006,10 +2007,15 @@ function drawMultiColoredMarks(doc, baseChar, marks = [], x, y, options = {})
 //     '\uE000',
 //     [
 //         { mark: '\uE0F0', color: 'red' },
-//         { mark: '\uE0D3', color: 'black' }
+//         { mark: '\uE0D3', color: 'red' }
 //     ],
 //     400,
-//     100
+//     100,
+//     { baseColor: 'red' }
 // );
+
+// colorRGB = blackRGB;
+// doc.setTextColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+// doc.text("\uE000\uE0F0\uE0D3", 400, 100);
 
 doc.save(fileName);
