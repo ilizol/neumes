@@ -202,11 +202,7 @@ function writeText(text, offsetX)
 {
     (typeof offsetX == 'undefined') ? offsetX = 0 : null;
     var textF = text.f;
-    //TODO check this
     var textX = text.x + offsetX;
-    // var textX = text.x;
-    // var textX = text.x + offsetX * 2;
-    // var textX = text.x + 10;
     var textY = text.y;
     var textT = text.t;
     if (text.m)

@@ -2004,15 +2004,13 @@ neumes.forEach(function (ng, i)
         });
     }
 
-    //TODO change this
+    //### SEQUENCES ###
     if (sequences.length > 0)
     {
-        //writeTexts(sequences);
-
-        lineTexts.push(sequences);
+        texts = sequences.concat(texts);
         if (sequencesAfter.length > 0)
         {
-            lineTexts.push(sequencesAfter);
+            textsAfter = sequencesAfter.concat(textsAfter);
         }
     }
     if (texts.length > 0)
