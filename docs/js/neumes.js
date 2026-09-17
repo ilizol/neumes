@@ -906,29 +906,12 @@ neumes.forEach(function (ng, i)
         //### NEUMES BEFORE ###
         if (ng.nb)
         {
-            if (pdfKitDoc)
-            {
-                //### SEQUENCE ###
-                //TODO change this
-                if (!sequenceX)
-                {
-                    sequenceX = currentX;
-                }
-                if (!sequenceY)
-                {
-                    sequenceY = ngY;
-                }
-                sequenceText += ng.nb;
-            }
-            else
-            {
-                texts.push({
-                    f: 'neumes',
-                    x: currentX,
-                    y: ngY,
-                    t: ng.nb
-                });
-            }
+            texts.push({
+                f: 'neumes',
+                x: currentX,
+                y: ngY,
+                t: ng.nb
+            });
             lxOffset += nbWidth;
             currentX += nbWidth;
         }
@@ -936,29 +919,12 @@ neumes.forEach(function (ng, i)
         if (ng.v)
         {
             setFont('quality');
-            if (pdfKitDoc)
-            {
-                //### SEQUENCE ###
-                //TODO change this
-                if (!sequenceX)
-                {
-                    sequenceX = currentX;
-                }
-                if (!sequenceY)
-                {
-                    sequenceY = ngY;
-                }
-                sequenceText += ng.v;
-            }
-            else
-            {
-                texts.push({
-                    f: 'quality',
-                    x: currentX,
-                    y: ngY,
-                    t: ng.v
-                });
-            }
+            texts.push({
+                f: 'quality',
+                x: currentX,
+                y: ngY,
+                t: ng.v
+            });
             lxOffset += vWidth;
             currentX += vWidth;
         }
@@ -1280,14 +1246,8 @@ neumes.forEach(function (ng, i)
         {
             //### SEQUENCE ###
             //TODO change this
-            if (!sequenceX)
-            {
-                sequenceX = currentX;
-            }
-            if (!sequenceY)
-            {
-                sequenceY = ngY;
-            }
+            sequenceX = currentX;
+            sequenceY = ngY;
             sequenceText += ng.n;
         }
         else
