@@ -86,8 +86,9 @@ else if (pdfEngine === 'pdfkit')
             const ascent = pdfKitDoc._font.font.ascent * scale;
             const baselineY = y - ascent;
             //options = { lineBreak: false };
+            //pdfKitDoc.text(text, x, baselineY, options);
 
-            pdfKitDoc.text(text, x, baselineY, options);
+            pdfKitDoc.text(text, x, baselineY);
         },
         addPage: function ()
         {
@@ -349,10 +350,10 @@ var lineTexts = [];
 var lineNum = 1;
 var ngLength = neumes.length;
 //### LINE NUMBER ###
-//writeLineNum(
-//  ngY,
-//  lineNum
-//);
+// writeLineNum(
+//     ngY,
+//     lineNum
+// );
 if (hasPageNum && pageNum > 0)
 {
     //### PAGE NUMBER ###
@@ -652,22 +653,6 @@ neumes.forEach(function (ng, i)
         endX > pageWidth - startX
     )
     {
-        if (endX > pageWidth - startX)
-        {
-            var availSpace = pageWidth - startX - ngX;
-            //### AVAIL SPACE ###
-            //writeAvailSpace(ngY, availSpace);
-            if (availSpace > 0)
-            {
-                //### LINE TEXTS ###
-                writeLineTexts(
-                    lineTexts,
-                    availSpace
-                );
-            }
-            lineTexts = [];
-        }
-        ngX = startX;
         if (ng.br == 'ln2')
         {
             ngY += tFS * 1.3;
@@ -684,6 +669,28 @@ neumes.forEach(function (ng, i)
         {
             ngY += lineDistance;
         }
+        if (endX > pageWidth - startX)
+        {
+            var availSpace = pageWidth - startX - ngX;
+            //### AVAIL SPACE ###
+            //writeAvailSpace(ngY, availSpace);
+            if (availSpace > 0)
+            {
+                //### LINE TEXTS ###
+                writeLineTexts(
+                    lineTexts,
+                    availSpace
+                );
+            }
+            lineTexts = [];
+            lineNum++;
+            //### LINE NUMBER ###
+            // writeLineNum(
+            //     ngY,
+            //     lineNum
+            // );
+        }
+        ngX = startX;
         endX = ngX + ngWidth;
         endY = ngY + lyricsDistance;
     }
@@ -1961,26 +1968,21 @@ neumes.forEach(function (ng, i)
         if (textsAfter.length > 0)
         {
             lineTexts.push(textsAfter);
-            ngX += charSpace;
         }
-        ngX += ngWidth;
-        ngX += charSpace;
     }
     //TODO change this
     if (sequences.length > 0)
     {
-        // writeTexts(sequences);
+        //writeTexts(sequences);
 
         lineTexts.push(sequences);
         if (sequencesAfter.length > 0)
         {
             lineTexts.push(sequencesAfter);
-            ngX += charSpace;
         }
-        //TODO check this
-        // ngX += ngWidth;
-        ngX += charSpace;
     }
+    ngX += ngWidth;
+    ngX += charSpace;
     if (i == ngLength - 1)
     {
         //### LINE TEXTS ###
@@ -2004,8 +2006,8 @@ setFont('neumes');
  *
  * @param {string} baseChar - Base character (e.g., 'a', 'e').
  * @param {Array<{ mark: string, color: string }>} marks - List of marks with colors.
- * @param {number} [x] - X position for base character (defaults to doc.x).
- * @param {number} [y] - Y position for base character (defaults to doc.y).
+ * @param {number} [x] - X position for base character.
+ * @param {number} [y] - Y position for base character.
  * @param {Object} [options] - Formatting options.
  * @param {string} [options.baseColor='black'] - Color for base character.
  */
@@ -2016,20 +2018,8 @@ function drawMultiColoredMarks(baseChar, marks = [], x, y, options = {})
         return;
     }
 
-    // Support overload flexibility: drawMultiColoredMarks(char, marks, options)
-    if (typeof x === 'object')
-    {
-        options = x;
-        x = undefined;
-        y = undefined;
-    } else if (typeof y === 'object')
-    {
-        options = y;
-        y = undefined;
-    }
-
-    const startX = typeof x === 'number' ? x : pdfKitDoc.x;
-    const startY = typeof y === 'number' ? y : pdfKitDoc.y;
+    const startX = x;
+    const startY = y;
     const baseColor = options.baseColor || 'black';
     const fontkitFont = pdfKitDoc._font.font;
     const fontSize = pdfKitDoc._fontSize;
@@ -2041,7 +2031,7 @@ function drawMultiColoredMarks(baseChar, marks = [], x, y, options = {})
     if (!marks.length)
     {
         pdfKitDoc.fillColor(baseColor)
-            .text(baseChar, startX, baselineY, { lineBreak: false });
+            .text(baseChar, startX, baselineY);
         return;
     }
 
@@ -2051,7 +2041,7 @@ function drawMultiColoredMarks(baseChar, marks = [], x, y, options = {})
 
     // 2. Draw base character at explicitly provided (x, y) coordinates
     pdfKitDoc.fillColor(baseColor)
-        .text(baseChar, startX, baselineY, { lineBreak: false });
+        .text(baseChar, startX, baselineY);
 
     // 3. Render each mark at calculated offset relative to start position
     let accumulatedAdvance = run.glyphs[0].advanceWidth;
@@ -2067,14 +2057,10 @@ function drawMultiColoredMarks(baseChar, marks = [], x, y, options = {})
         const markY = baselineY - (markPos.yOffset * scale); // PDF Y-axis is top-down
 
         pdfKitDoc.fillColor(markColor)
-            .text(marks[i].mark, markX, markY, { lineBreak: false });
+            .text(marks[i].mark, markX, markY);
 
         accumulatedAdvance += markGlyph.advanceWidth + markPos.xAdvance;
     }
-
-    // 4. Set document cursor position to end of entire layout sequence
-    pdfKitDoc.x = startX + (run.advanceWidth * scale);
-    pdfKitDoc.y = startY;
 }
 
 // ==========================================
