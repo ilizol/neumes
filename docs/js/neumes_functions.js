@@ -208,7 +208,13 @@ function writeText(text, offsetX)
     if (text.m)
     {
         var textM = text.m;
-        textT += textM.map(m => m.t).join('');
+        if (pdfKitDoc)
+        {
+            setFont(textF);
+            drawMultiColoredMarks(textT, textM, textX, textY);
+            return;
+        }
+        textT += textM.map(m => m.mark).join('');
     }
     var stroke = setFont(textF);
     if (stroke)

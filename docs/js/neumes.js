@@ -2,6 +2,7 @@ var pdfEngine = window.pdfEngine !== undefined ? window.pdfEngine : "jspdf";
 // var pdfEngine = 'pdfkit';
 
 var doc;
+var pdfKitDoc;
 
 if (pdfEngine === 'jspdf')
 {
@@ -14,7 +15,7 @@ else if (pdfEngine === 'pdfkit')
 {
     // A4 portrait dimensions in points (pt)
     //var pdfKitPageSize = [595.28, 841.89];
-    var pdfKitDoc = new PDFDocument({
+    pdfKitDoc = new PDFDocument({
         size: 'A4',
         //size: pdfKitPageSize,
         layout: 'portrait',
@@ -1230,33 +1231,46 @@ neumes.forEach(function (ng, i)
             });
         }
         //### NEUMES ###
-        texts.push({
-            f: 'neumes',
-            x: currentX,
-            y: ngY,
-            t: ng.n
-        });
-        //### SEQUENCE ###
-        //TODO change this
-        sequenceX = currentX;
-        sequenceY = ngY;
-        sequenceText += ng.n;
+        if (pdfKitDoc)
+        {
+            //### SEQUENCE ###
+            //TODO change this
+            sequenceX = currentX;
+            sequenceY = ngY;
+            sequenceText += ng.n;
+        }
+        else
+        {
+            texts.push({
+                f: 'neumes',
+                x: currentX,
+                y: ngY,
+                t: ng.n
+            });
+        }
         currentX += nWidth;
         //### CHRONOS ###
         if (ng.c)
         {
-            texts.push({
-                f: 'chronos',
-                x: currentX,
-                y: ngY,
-                t: ng.c
-            });
-            //### SEQUENCE MARKS ###
-            //TODO change this
-            sequenceMarks.push({
-                f: 'chronos',
-                t: ng.c
-            });
+            if (pdfKitDoc)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequenceMarks.push({
+                    mark: ng.c,
+                    //color: chronosFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                texts.push({
+                    f: 'chronos',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.c
+                });
+            }
         }
         //### CHRONOS MIDDLE ###
         if (ng.cm)
@@ -1631,17 +1645,23 @@ neumes.forEach(function (ng, i)
                 });
             }
             //### NEUMES AFTER (2) ###
-            textsAfter.push({
-                f: 'neumes',
-                x: currentX,
-                y: ngY,
-                t: ng.n2
-            });
-            //### SEQUENCE AFTER (2) ###
-            //TODO change this
-            sequenceAfterX = currentX;
-            sequenceAfterY = ngY;
-            sequenceAfterText += ng.n2;
+            if (pdfKitDoc)
+            {
+                //### SEQUENCE AFTER (2) ###
+                //TODO change this
+                sequenceAfterX = currentX;
+                sequenceAfterY = ngY;
+                sequenceAfterText += ng.n2;
+            }
+            else
+            {
+                textsAfter.push({
+                    f: 'neumes',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.n2
+                });
+            }
             //### FTHORA AFTER AFTER (2) ###
             if (ng.f2a)
             {
@@ -1667,19 +1687,26 @@ neumes.forEach(function (ng, i)
             //### CHRONOS AFTER (2) ###
             if (ng.c2)
             {
-                var xOffset = n2Width;
-                textsAfter.push({
-                    f: 'chronos',
-                    x: currentX + xOffset,
-                    y: ngY,
-                    t: ng.c2
-                });
-                //### SEQUENCE MARKS AFTER (2) ###
-                //TODO change this
-                sequenceAfterMarks.push({
-                    f: 'chronos',
-                    t: ng.c2
-                });
+                if (pdfKitDoc)
+                {
+                    //### SEQUENCE MARKS AFTER (2) ###
+                    //TODO change this
+                    sequenceAfterMarks.push({
+                        mark: ng.c2,
+                        //color: chronosFontColor
+                        color: redRGB
+                    });
+                }
+                else
+                {
+                    var xOffset = n2Width;
+                    textsAfter.push({
+                        f: 'chronos',
+                        x: currentX + xOffset,
+                        y: ngY,
+                        t: ng.c2
+                    });
+                }
             }
             //### CHRONOS MIDDLE AFTER (2) ###
             if (ng.cm2)
@@ -1740,28 +1767,31 @@ neumes.forEach(function (ng, i)
             }
             currentX += n2Width;
         }
-        //### SEQUENCE ###
-        //TODO change this
-        if (sequenceText.length > 0)
+        if (pdfKitDoc)
         {
-            sequences.push({
-                f: 'neumes',
-                x: sequenceX,
-                y: sequenceY,
-                t: sequenceText,
-                m: sequenceMarks
-            });
-
-            //### SEQUENCE AFTER (2) ###
-            if (sequenceAfterText.length > 0)
+            //### SEQUENCE ###
+            //TODO change this
+            if (sequenceText.length > 0)
             {
-                sequencesAfter.push({
+                sequences.push({
                     f: 'neumes',
-                    x: sequenceAfterX,
-                    y: sequenceAfterY,
-                    t: sequenceAfterText,
-                    m: sequenceAfterMarks
+                    x: sequenceX,
+                    y: sequenceY,
+                    t: sequenceText,
+                    m: sequenceMarks
                 });
+
+                //### SEQUENCE AFTER (2) ###
+                if (sequenceAfterText.length > 0)
+                {
+                    sequencesAfter.push({
+                        f: 'neumes',
+                        x: sequenceAfterX,
+                        y: sequenceAfterY,
+                        t: sequenceAfterText,
+                        m: sequenceAfterMarks
+                    });
+                }
             }
         }
     }
@@ -1937,19 +1967,20 @@ neumes.forEach(function (ng, i)
         ngX += charSpace;
     }
     //TODO change this
-    // if (sequences.length > 0)
-    // {
-    //     // writeTexts(sequences);
+    if (sequences.length > 0)
+    {
+        // writeTexts(sequences);
 
-    //     lineTexts.push(sequences);
-    //     if (sequencesAfter.length > 0)
-    //     {
-    //         lineTexts.push(sequencesAfter);
-    //         ngX += charSpace;
-    //     }
-    //     ngX += ngWidth;
-    //     ngX += charSpace;
-    // }
+        lineTexts.push(sequences);
+        if (sequencesAfter.length > 0)
+        {
+            lineTexts.push(sequencesAfter);
+            ngX += charSpace;
+        }
+        //TODO check this
+        // ngX += ngWidth;
+        ngX += charSpace;
+    }
     if (i == ngLength - 1)
     {
         //### LINE TEXTS ###
@@ -1971,7 +2002,6 @@ setFont('neumes');
  * Draws a base character with multiple colored combining accent marks.
  * Supports explicit (x, y) positioning like PDFKit's doc.text(text, x, y, options).
  *
- * @param {PDFKit.PDFDocument} doc - Active PDFKit instance.
  * @param {string} baseChar - Base character (e.g., 'a', 'e').
  * @param {Array<{ mark: string, color: string }>} marks - List of marks with colors.
  * @param {number} [x] - X position for base character (defaults to doc.x).
@@ -1979,9 +2009,14 @@ setFont('neumes');
  * @param {Object} [options] - Formatting options.
  * @param {string} [options.baseColor='black'] - Color for base character.
  */
-function drawMultiColoredMarks(doc, baseChar, marks = [], x, y, options = {})
+function drawMultiColoredMarks(baseChar, marks = [], x, y, options = {})
 {
-    // Support overload flexibility: drawMultiColoredMarks(doc, char, marks, options)
+    if (!pdfKitDoc)
+    {
+        return;
+    }
+
+    // Support overload flexibility: drawMultiColoredMarks(char, marks, options)
     if (typeof x === 'object')
     {
         options = x;
@@ -1993,30 +2028,29 @@ function drawMultiColoredMarks(doc, baseChar, marks = [], x, y, options = {})
         y = undefined;
     }
 
-    const startX = typeof x === 'number' ? x : doc.x;
-    const startY = typeof y === 'number' ? y : doc.y;
+    const startX = typeof x === 'number' ? x : pdfKitDoc.x;
+    const startY = typeof y === 'number' ? y : pdfKitDoc.y;
     const baseColor = options.baseColor || 'black';
+    const fontkitFont = pdfKitDoc._font.font;
+    const fontSize = pdfKitDoc._fontSize;
+    const scale = fontSize / fontkitFont.unitsPerEm;
+    // Convert top-left 'y' coordinate to baseline 'y' coordinate using font ascent
+    const ascent = pdfKitDoc._font.font.ascent * scale;
+    const baselineY = startY - ascent;
 
     if (!marks.length)
     {
-        doc.fillColor(baseColor)
-            .text(baseChar, startX, startY, { lineBreak: false });
+        pdfKitDoc.fillColor(baseColor)
+            .text(baseChar, startX, baselineY, { lineBreak: false });
         return;
     }
-
-    const fontkitFont = doc._font.font;
-    const fontSize = doc._fontSize;
-    const scale = fontSize / fontkitFont.unitsPerEm;
-    // Convert top-left 'y' coordinate to baseline 'y' coordinate using font ascent
-    const ascent = doc._font.font.ascent * scale;
-    const baselineY = startY - ascent;
 
     // 1. Compute full GPOS layout sequence
     const combinedStr = baseChar + marks.map(m => m.mark).join('');
     const run = fontkitFont.layout(combinedStr);
 
     // 2. Draw base character at explicitly provided (x, y) coordinates
-    doc.fillColor(baseColor)
+    pdfKitDoc.fillColor(baseColor)
         .text(baseChar, startX, baselineY, { lineBreak: false });
 
     // 3. Render each mark at calculated offset relative to start position
@@ -2032,15 +2066,15 @@ function drawMultiColoredMarks(doc, baseChar, marks = [], x, y, options = {})
         const markX = startX + (accumulatedAdvance + markPos.xOffset) * scale;
         const markY = baselineY - (markPos.yOffset * scale); // PDF Y-axis is top-down
 
-        doc.fillColor(markColor)
+        pdfKitDoc.fillColor(markColor)
             .text(marks[i].mark, markX, markY, { lineBreak: false });
 
         accumulatedAdvance += markGlyph.advanceWidth + markPos.xAdvance;
     }
 
     // 4. Set document cursor position to end of entire layout sequence
-    doc.x = startX + (run.advanceWidth * scale);
-    doc.y = startY;
+    pdfKitDoc.x = startX + (run.advanceWidth * scale);
+    pdfKitDoc.y = startY;
 }
 
 // ==========================================
@@ -2049,7 +2083,6 @@ function drawMultiColoredMarks(doc, baseChar, marks = [], x, y, options = {})
 
 // 1. Explicit X and Y coordinates (matching doc.text(str, 100, 100))
 // drawMultiColoredMarks(
-//     pdfKitDoc,
 //     '\uE084',
 //     [
 //         { mark: '\uE0F0', color: 'blue' }
@@ -2061,7 +2094,6 @@ function drawMultiColoredMarks(doc, baseChar, marks = [], x, y, options = {})
 
 // 2. Explicit X and Y without options parameter
 // drawMultiColoredMarks(
-//     pdfKitDoc,
 //     '\uE084',
 //     [{ mark: '\uE0F0', color: 'green' }],
 //     400,
@@ -2070,7 +2102,6 @@ function drawMultiColoredMarks(doc, baseChar, marks = [], x, y, options = {})
 // );
 
 // drawMultiColoredMarks(
-//     pdfKitDoc,
 //     '\uE000',
 //     [
 //         { mark: '\uE0F0', color: 'blue' },
@@ -2081,7 +2112,6 @@ function drawMultiColoredMarks(doc, baseChar, marks = [], x, y, options = {})
 // );
 
 // drawMultiColoredMarks(
-//     pdfKitDoc,
 //     '\uE000',
 //     [
 //         { mark: '\uE0F0', color: 'red' },
