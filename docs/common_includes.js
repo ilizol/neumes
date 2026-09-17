@@ -1,11 +1,18 @@
-(function () {
+(function ()
+{
   const scripts = [
+    //### jsPDF
     "js/jspdf.min.js",
+    //### PDFKit
+    "js/pdfkit.standalone.js",
+    "js/blob-stream.js",
     //### Alegreya
     "fonts/Alegreya-Bold-normal.js",
     "fonts/Alegreya-BoldItalic-normal.js",
     "fonts/Alegreya-Medium-normal.js",
     "fonts/Alegreya-MediumItalic-normal.js",
+    //### Almouzios
+    "fonts/Almouzios-normal.js",
     //### KA New Stathis
     "fonts/KANewStathisArchaia-Regular-normal.js",
     "fonts/KANewStathisChronos-Regular-normal.js",
@@ -31,16 +38,20 @@
   const head = document.head || document.getElementsByTagName("head")[0];
   const version = window.neumesCacheVersion;
 
-  function withVersion(src) {
-    if (!version) {
+  function withVersion(src)
+  {
+    if (!version)
+    {
       return src;
     }
     return src + (src.indexOf('?') >= 0 ? '&' : '?') + 'v=' + encodeURIComponent(version);
   }
 
-  scripts.forEach((src) => {
+  scripts.forEach((src) =>
+  {
     const resolvedSrc = withVersion(src);
-    if (document.querySelector('script[src="' + src + '"]') || document.querySelector('script[src="' + resolvedSrc + '"]')) {
+    if (document.querySelector('script[src="' + src + '"]') || document.querySelector('script[src="' + resolvedSrc + '"]'))
+    {
       return;
     }
 

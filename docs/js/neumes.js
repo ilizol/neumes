@@ -1,7 +1,127 @@
-var pageFormat = 'a4';
-var doc = new jsPDF(
-    'p', 'pt', pageFormat
-);
+var pdfEngine = window.pdfEngine !== undefined ? window.pdfEngine : "jspdf";
+// var pdfEngine = 'pdfkit';
+
+var doc;
+var pdfKitDoc;
+
+if (pdfEngine === 'jspdf')
+{
+    var pageFormat = 'a4';
+    doc = new jsPDF(
+        'p', 'pt', pageFormat
+    );
+}
+else if (pdfEngine === 'pdfkit')
+{
+    // A4 portrait dimensions in points (pt)
+    //var pdfKitPageSize = [595.28, 841.89];
+    pdfKitDoc = new PDFDocument({
+        size: 'A4',
+        //size: pdfKitPageSize,
+        layout: 'portrait',
+        margin: 0
+    });
+    const pdfKitStream = pdfKitDoc.pipe(blobStream());
+    var pdfKitFonts = {};
+    var jsPdfFontSource = new jsPDF();
+
+    function registerPdfKitFont(font)
+    {
+        if (pdfKitFonts[font])
+        {
+            return;
+        }
+        var fileName = font + '-normal.ttf';
+        if (!jsPdfFontSource.existsFileInVFS(fileName))
+        {
+            return;
+        }
+        var base64 = jsPdfFontSource.getFileFromVFS(fileName);
+        var binary = atob(base64);
+        var fontData = Uint8Array.from(binary, function (character)
+        {
+            return character.charCodeAt(0);
+        });
+        pdfKitDoc.registerFont(font, fontData);
+        pdfKitFonts[font] = true;
+    }
+
+    doc = {
+        internal: {
+            pageSize: {
+                width: pdfKitDoc.page.width,
+                height: pdfKitDoc.page.height
+            },
+            getLineHeight: function ()
+            {
+                return pdfKitDoc.currentLineHeight();
+            }
+        },
+        getTextWidth: function (text)
+        {
+            return pdfKitDoc.widthOfString(text);
+        },
+        setFont: function (font)
+        {
+            registerPdfKitFont(font);
+            pdfKitDoc.font(font);
+        },
+        setFontSize: function (size)
+        {
+            pdfKitDoc.fontSize(size);
+        },
+        setTextColor: function (red, green, blue)
+        {
+            pdfKitDoc.fillColor([red, green, blue]);
+        },
+        setDrawColor: function (red, green, blue)
+        {
+            pdfKitDoc.strokeColor([red, green, blue]);
+        },
+        text: function (text, x, y, options)
+        {
+            const scale = pdfKitDoc._fontSize / pdfKitDoc._font.font.unitsPerEm;
+
+            // Convert top-left 'y' coordinate to baseline 'y' coordinate using font ascent
+            const ascent = pdfKitDoc._font.font.ascent * scale;
+            const baselineY = y - ascent;
+            //options = { lineBreak: false };
+
+            pdfKitDoc.text(text, x, baselineY, options);
+        },
+        addPage: function ()
+        {
+            pdfKitDoc.addPage();
+        },
+        save: function (fileName)
+        {
+            pdfKitDoc.end();
+
+            pdfKitStream.on('finish', () =>
+            {
+                // const pdfUrl = pdfKitStream.toBlobURL('application/pdf');
+                // window.open(pdfUrl, '_blank');
+
+                // 1. Get the Blob directly from blob-stream
+                const blob = pdfKitStream.toBlob('application/pdf');
+                const pdfUrl = URL.createObjectURL(blob);
+
+                // 2. Create a hidden download link
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.download = fileName; // Set your filename here
+
+                // 3. Trigger download and clean up
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Free up memory after download triggers
+                setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
+            });
+        }
+    };
+}
 
 //var height = doc.internal.getLineHeight();
 //alert(height);
@@ -32,24 +152,45 @@ var dropcapsFont = "Alegreya-Bold";
 var musicFontFamily = window.musicFontFamily || "KANewStathis";
 //var musicFontFamily = "KAAlmouzios";
 //var musicFontFamily = "KAEZ";
+//var musicFontFamily = "Almouzios";
 var musicFontStroke = window.musicFontStroke !== undefined ? window.musicFontStroke : false;
 //var musicFontStroke = true;
+//### DYNAMIC FONT RESOLVER
+function getCustomFont(fontType)
+{
+    return (window.customFonts && window.customFonts[fontType]) || null;
+}
+function resolveFont(fontType, suffix)
+{
+    var customFont = getCustomFont(fontType);
+    if (customFont)
+    {
+        return customFont;
+    }
+    // Almouzios uses a single unified font file, no suffix needed
+    if (musicFontFamily === 'Almouzios')
+    {
+        return musicFontFamily;
+    }
+    // KA-prefixed fonts use separate files per character type
+    return musicFontFamily + suffix + '-Regular';
+}
 //### NEUMES
-var neumesFont = musicFontFamily + "Main-Regular";
+var neumesFont = resolveFont('neumes', 'Main');
 //### FTHORA
-var fthoraFont = musicFontFamily + "Fthora-Regular";
+var fthoraFont = resolveFont('fthora', 'Fthora');
 //### FTHORA INFO
-var fthoraInfoFont = musicFontFamily + "Fthora-Regular";
+var fthoraInfoFont = resolveFont('fthoraInfo', 'Fthora');
 //### CHRONOS
-var chronosFont = musicFontFamily + "Chronos-Regular";
+var chronosFont = resolveFont('chronos', 'Chronos');
 //### QUALITY
-var qualityFont = musicFontFamily + "Main-Regular";
+var qualityFont = resolveFont('quality', 'Main');
 //### ETERON
-var eteronFont = musicFontFamily + "Main-Regular";
+var eteronFont = resolveFont('eteron', 'Main');
 //### OLD
-var oldFont = musicFontFamily + "Archaia-Regular";
+var oldFont = resolveFont('archaia', 'Archaia');
 //### MARTYRIA
-var martyriaFont = musicFontFamily + "Martyria-Regular";
+var martyriaFont = resolveFont('martyria', 'Martyria');
 //### ISON
 //var isonFont = "Alegreya-BoldItalic";
 var isonFont = "Alegreya-Bold";
@@ -68,35 +209,26 @@ var specialFont = musicFontFamily + "Combo-Regular";
 var lyricsFont = "Alegreya-Medium";
 
 //### DEFAULT SIZES
-var hFS = 18;
-var h2FS = 18;
-//var h3FS = 40;
-//TODO change this
-var h3FS = 26;
-// var h3FS = 24;
-//var h4FS = 26;
-var h4FS = 18;
-var tFS = 16;
-var t2FS = 14;
-var dFS = 40;
-//var dFS = 26;
-var nFS = 30;
-//var nFS = 30;
-var eFS = nFS;
-//var iFS = 10;
-var iFS = 12;
+// Get font sizes from window config or use defaults
+var fontSizesConfig = window.neumesFontSizes || {};
+
+var hFS = fontSizesConfig.hFS !== undefined ? fontSizesConfig.hFS : 18;
+var h2FS = fontSizesConfig.h2FS !== undefined ? fontSizesConfig.h2FS : 18;
+var h3FS = fontSizesConfig.h3FS !== undefined ? fontSizesConfig.h3FS : 26;
+var h4FS = fontSizesConfig.h4FS !== undefined ? fontSizesConfig.h4FS : 18;
+var tFS = fontSizesConfig.tFS !== undefined ? fontSizesConfig.tFS : 16;
+var t2FS = fontSizesConfig.t2FS !== undefined ? fontSizesConfig.t2FS : 14;
+var dFS = fontSizesConfig.dFS !== undefined ? fontSizesConfig.dFS : 40;
+var nFS = fontSizesConfig.nFS !== undefined ? fontSizesConfig.nFS : 30;
+var eFS = fontSizesConfig.eFS !== undefined ? fontSizesConfig.eFS : nFS;
+var iFS = fontSizesConfig.iFS !== undefined ? fontSizesConfig.iFS : 12;
 // ISON PARENTHESIS
-var iPar = 1;
-//var iFS = 0;
-var rFS = 9;
-//var rFS = 0;
-var aFS = tFS;
-//var aFS = 0;
-var bFS = nFS;
-//var bFS = 0;
-var lFS = 16;
-//var lFS = 0;
-var sFS = 30;
+var iPar = fontSizesConfig.iPar !== undefined ? fontSizesConfig.iPar : 1;
+var rFS = fontSizesConfig.rFS !== undefined ? fontSizesConfig.rFS : 9;
+var aFS = fontSizesConfig.aFS !== undefined ? fontSizesConfig.aFS : tFS;
+var bFS = fontSizesConfig.bFS !== undefined ? fontSizesConfig.bFS : nFS;
+var lFS = fontSizesConfig.lFS !== undefined ? fontSizesConfig.lFS : 16;
+var sFS = fontSizesConfig.sFS !== undefined ? fontSizesConfig.sFS : nFS;
 var headerFontSize = hFS;
 var header2FontSize = h2FS;
 var header3FontSize = h3FS;
@@ -183,6 +315,12 @@ var lyricsDistance = 26;
 //var lyricsDistance = 10;
 var lineDistance = 60;
 //var lineDistance = 65;
+var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDistance : lyricsDistance / 3.5;
+var martyriaLowerDistance = window.martyriaLowerDistance !== undefined ? window.martyriaLowerDistance : lyricsDistance / 3;
+var martyriaFthoraDistance = window.martyriaFthoraDistance !== undefined ? window.martyriaFthoraDistance : lyricsDistance / 2.2;
+// var martyriaDistance = 0;
+// var martyriaLowerDistance = 0;
+// var martyriaFthoraDistance = 0;
 
 //### BASIC VARIABLES
 var hasPageNum = false;
@@ -196,6 +334,17 @@ var currentX = ngX;
 var ngWidth = 0;
 var texts = [];
 var textsAfter = [];
+//TODO change this
+var sequenceX = ngX;
+var sequenceY = ngY;
+var sequenceAfterX = ngX;
+var sequenceAfterY = ngY;
+var sequenceText = '';
+var sequenceAfterText = '';
+var sequences = [];
+var sequencesAfter = [];
+var sequenceMarks = [];
+var sequenceAfterMarks = [];
 var lineTexts = [];
 var lineNum = 1;
 var ngLength = neumes.length;
@@ -218,6 +367,13 @@ neumes.forEach(function (ng, i)
     ngWidth = 0;
     texts = [];
     textsAfter = [];
+    //TODO change this
+    sequenceText = '';
+    sequenceAfterText = '';
+    sequences = [];
+    sequencesAfter = [];
+    sequenceMarks = [];
+    sequenceAfterMarks = [];
 
     //### HEADER ###
     if (ng.h)
@@ -313,6 +469,13 @@ neumes.forEach(function (ng, i)
         var mu2Width = doc.getTextWidth(ng.mu2);
         ngWidth += mu2Width;
     }
+    //### MARTYRIA LOWER ###
+    if (ng.ml)
+    {
+        setFont('martyria');
+        var mlWidth = doc.getTextWidth(ng.ml);
+        ngWidth += mlWidth;
+    }
     //### ASTERISK ###
     if (ng.a && aFS)
     {
@@ -337,7 +500,9 @@ neumes.forEach(function (ng, i)
     //### WORD BREAK ###
     if (ng.br == 'wd')
     {
-        setFont('neumes');
+        //TODO check this
+        //setFont('neumes');
+        setFont('lyrics');
         var wsWidth = doc.getTextWidth(" ");
         ngWidth += wsWidth;
     }
@@ -652,7 +817,9 @@ neumes.forEach(function (ng, i)
         )
         {
             texts.push({
-                f: 'neumes',
+                //TODO check this
+                //f: 'neumes',
+                f: 'lyrics',
                 x: ngX,
                 y: ngY,
                 t: ' '
@@ -1064,22 +1231,46 @@ neumes.forEach(function (ng, i)
             });
         }
         //### NEUMES ###
-        texts.push({
-            f: 'neumes',
-            x: currentX,
-            y: ngY,
-            t: ng.n
-        });
+        if (pdfKitDoc)
+        {
+            //### SEQUENCE ###
+            //TODO change this
+            sequenceX = currentX;
+            sequenceY = ngY;
+            sequenceText += ng.n;
+        }
+        else
+        {
+            texts.push({
+                f: 'neumes',
+                x: currentX,
+                y: ngY,
+                t: ng.n
+            });
+        }
         currentX += nWidth;
         //### CHRONOS ###
         if (ng.c)
         {
-            texts.push({
-                f: 'chronos',
-                x: currentX,
-                y: ngY,
-                t: ng.c
-            });
+            if (pdfKitDoc)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequenceMarks.push({
+                    mark: ng.c,
+                    //color: chronosFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                texts.push({
+                    f: 'chronos',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.c
+                });
+            }
         }
         //### CHRONOS MIDDLE ###
         if (ng.cm)
@@ -1454,12 +1645,23 @@ neumes.forEach(function (ng, i)
                 });
             }
             //### NEUMES AFTER (2) ###
-            textsAfter.push({
-                f: 'neumes',
-                x: currentX,
-                y: ngY,
-                t: ng.n2
-            });
+            if (pdfKitDoc)
+            {
+                //### SEQUENCE AFTER (2) ###
+                //TODO change this
+                sequenceAfterX = currentX;
+                sequenceAfterY = ngY;
+                sequenceAfterText += ng.n2;
+            }
+            else
+            {
+                textsAfter.push({
+                    f: 'neumes',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.n2
+                });
+            }
             //### FTHORA AFTER AFTER (2) ###
             if (ng.f2a)
             {
@@ -1485,13 +1687,26 @@ neumes.forEach(function (ng, i)
             //### CHRONOS AFTER (2) ###
             if (ng.c2)
             {
-                var xOffset = n2Width;
-                textsAfter.push({
-                    f: 'chronos',
-                    x: currentX + xOffset,
-                    y: ngY,
-                    t: ng.c2
-                });
+                if (pdfKitDoc)
+                {
+                    //### SEQUENCE MARKS AFTER (2) ###
+                    //TODO change this
+                    sequenceAfterMarks.push({
+                        mark: ng.c2,
+                        //color: chronosFontColor
+                        color: redRGB
+                    });
+                }
+                else
+                {
+                    var xOffset = n2Width;
+                    textsAfter.push({
+                        f: 'chronos',
+                        x: currentX + xOffset,
+                        y: ngY,
+                        t: ng.c2
+                    });
+                }
             }
             //### CHRONOS MIDDLE AFTER (2) ###
             if (ng.cm2)
@@ -1552,6 +1767,33 @@ neumes.forEach(function (ng, i)
             }
             currentX += n2Width;
         }
+        if (pdfKitDoc)
+        {
+            //### SEQUENCE ###
+            //TODO change this
+            if (sequenceText.length > 0)
+            {
+                sequences.push({
+                    f: 'neumes',
+                    x: sequenceX,
+                    y: sequenceY,
+                    t: sequenceText,
+                    m: sequenceMarks
+                });
+
+                //### SEQUENCE AFTER (2) ###
+                if (sequenceAfterText.length > 0)
+                {
+                    sequencesAfter.push({
+                        f: 'neumes',
+                        x: sequenceAfterX,
+                        y: sequenceAfterY,
+                        t: sequenceAfterText,
+                        m: sequenceAfterMarks
+                    });
+                }
+            }
+        }
     }
     //### MARTYRIA ###
     if (ng.m)
@@ -1559,7 +1801,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.m
         });
         /*
@@ -1582,7 +1824,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX - xOffset,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.mn
         });
         currentX += mnWidth + xOffset / 2;
@@ -1592,7 +1834,7 @@ neumes.forEach(function (ng, i)
             texts.push({
                 f: 'martyria_diastole',
                 x: currentX,
-                y: ngY + lyricsDistance / 3.5,
+                y: ngY + martyriaDistance,
                 t: ng.mdn
             });
         }
@@ -1604,7 +1846,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.mr
         });
     }
@@ -1615,7 +1857,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria_diastole',
             x: currentX + xOffset,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.md
         });
     }
@@ -1635,8 +1877,18 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria',
             x: currentX,
-            y: ngY + lyricsDistance / 3.5,
+            y: ngY + martyriaDistance,
             t: ng.mu2
+        });
+    }
+    //### MARTYRIA LOWER ###
+    if (ng.ml)
+    {
+        texts.push({
+            f: 'martyria',
+            x: currentX,
+            y: ngY + martyriaLowerDistance,
+            t: ng.ml
         });
     }
     //### MARTYRIA FTHORA ###
@@ -1645,7 +1897,7 @@ neumes.forEach(function (ng, i)
         texts.push({
             f: 'martyria_fthora',
             x: currentX,
-            y: ngY + lyricsDistance / 2.2,
+            y: ngY + martyriaFthoraDistance,
             t: ng.mf
         });
     }
@@ -1714,6 +1966,21 @@ neumes.forEach(function (ng, i)
         ngX += ngWidth;
         ngX += charSpace;
     }
+    //TODO change this
+    if (sequences.length > 0)
+    {
+        // writeTexts(sequences);
+
+        lineTexts.push(sequences);
+        if (sequencesAfter.length > 0)
+        {
+            lineTexts.push(sequencesAfter);
+            ngX += charSpace;
+        }
+        //TODO check this
+        // ngX += ngWidth;
+        ngX += charSpace;
+    }
     if (i == ngLength - 1)
     {
         //### LINE TEXTS ###
@@ -1724,5 +1991,139 @@ neumes.forEach(function (ng, i)
     }
 });
 
+setFont('neumes');
+// doc.setFont(neumesFont);
+// doc.setFontSize(neumesFontSize);
+// doc.text("\uE084\uE0F0", 100, 100);
+// doc.text("\uE084\uE0F0", 400, 100);
+// doc.text("\uE000\uE0F0\uE0D3", 400, 100);
+
+/**
+ * Draws a base character with multiple colored combining accent marks.
+ * Supports explicit (x, y) positioning like PDFKit's doc.text(text, x, y, options).
+ *
+ * @param {string} baseChar - Base character (e.g., 'a', 'e').
+ * @param {Array<{ mark: string, color: string }>} marks - List of marks with colors.
+ * @param {number} [x] - X position for base character (defaults to doc.x).
+ * @param {number} [y] - Y position for base character (defaults to doc.y).
+ * @param {Object} [options] - Formatting options.
+ * @param {string} [options.baseColor='black'] - Color for base character.
+ */
+function drawMultiColoredMarks(baseChar, marks = [], x, y, options = {})
+{
+    if (!pdfKitDoc)
+    {
+        return;
+    }
+
+    // Support overload flexibility: drawMultiColoredMarks(char, marks, options)
+    if (typeof x === 'object')
+    {
+        options = x;
+        x = undefined;
+        y = undefined;
+    } else if (typeof y === 'object')
+    {
+        options = y;
+        y = undefined;
+    }
+
+    const startX = typeof x === 'number' ? x : pdfKitDoc.x;
+    const startY = typeof y === 'number' ? y : pdfKitDoc.y;
+    const baseColor = options.baseColor || 'black';
+    const fontkitFont = pdfKitDoc._font.font;
+    const fontSize = pdfKitDoc._fontSize;
+    const scale = fontSize / fontkitFont.unitsPerEm;
+    // Convert top-left 'y' coordinate to baseline 'y' coordinate using font ascent
+    const ascent = pdfKitDoc._font.font.ascent * scale;
+    const baselineY = startY - ascent;
+
+    if (!marks.length)
+    {
+        pdfKitDoc.fillColor(baseColor)
+            .text(baseChar, startX, baselineY, { lineBreak: false });
+        return;
+    }
+
+    // 1. Compute full GPOS layout sequence
+    const combinedStr = baseChar + marks.map(m => m.mark).join('');
+    const run = fontkitFont.layout(combinedStr);
+
+    // 2. Draw base character at explicitly provided (x, y) coordinates
+    pdfKitDoc.fillColor(baseColor)
+        .text(baseChar, startX, baselineY, { lineBreak: false });
+
+    // 3. Render each mark at calculated offset relative to start position
+    let accumulatedAdvance = run.glyphs[0].advanceWidth;
+
+    for (let i = 0; i < marks.length; i++)
+    {
+        const markIndex = i + 1;
+        const markGlyph = run.glyphs[markIndex];
+        const markPos = run.positions[markIndex];
+        const markColor = marks[i].color || 'red';
+
+        const markX = startX + (accumulatedAdvance + markPos.xOffset) * scale;
+        const markY = baselineY - (markPos.yOffset * scale); // PDF Y-axis is top-down
+
+        pdfKitDoc.fillColor(markColor)
+            .text(marks[i].mark, markX, markY, { lineBreak: false });
+
+        accumulatedAdvance += markGlyph.advanceWidth + markPos.xAdvance;
+    }
+
+    // 4. Set document cursor position to end of entire layout sequence
+    pdfKitDoc.x = startX + (run.advanceWidth * scale);
+    pdfKitDoc.y = startY;
+}
+
+// ==========================================
+// Usage Examples
+// ==========================================
+
+// 1. Explicit X and Y coordinates (matching doc.text(str, 100, 100))
+// drawMultiColoredMarks(
+//     '\uE084',
+//     [
+//         { mark: '\uE0F0', color: 'blue' }
+//     ],
+//     100,
+//     100,
+//     { baseColor: 'black' }
+// );
+
+// 2. Explicit X and Y without options parameter
+// drawMultiColoredMarks(
+//     '\uE084',
+//     [{ mark: '\uE0F0', color: 'green' }],
+//     400,
+//     100,
+//     { baseColor: 'red' }
+// );
+
+// drawMultiColoredMarks(
+//     '\uE000',
+//     [
+//         { mark: '\uE0F0', color: 'blue' },
+//         { mark: '\uE0D3', color: 'red' }
+//     ],
+//     100,
+//     100
+// );
+
+// drawMultiColoredMarks(
+//     '\uE000',
+//     [
+//         { mark: '\uE0F0', color: 'red' },
+//         { mark: '\uE0D3', color: 'red' }
+//     ],
+//     400,
+//     100,
+//     { baseColor: 'red' }
+// );
+
+// colorRGB = blackRGB;
+// doc.setTextColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+// doc.text("\uE000\uE0F0\uE0D3", 400, 100);
 
 doc.save(fileName);
