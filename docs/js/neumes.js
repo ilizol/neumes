@@ -333,6 +333,17 @@ var currentX = ngX;
 var ngWidth = 0;
 var texts = [];
 var textsAfter = [];
+//TODO change this
+var sequenceX = ngX;
+var sequenceY = ngY;
+var sequenceAfterX = ngX;
+var sequenceAfterY = ngY;
+var sequenceText = '';
+var sequenceAfterText = '';
+var sequences = [];
+var sequencesAfter = [];
+var sequenceMarks = [];
+var sequenceAfterMarks = [];
 var lineTexts = [];
 var lineNum = 1;
 var ngLength = neumes.length;
@@ -355,6 +366,13 @@ neumes.forEach(function (ng, i)
     ngWidth = 0;
     texts = [];
     textsAfter = [];
+    //TODO change this
+    sequenceText = '';
+    sequenceAfterText = '';
+    sequences = [];
+    sequencesAfter = [];
+    sequenceMarks = [];
+    sequenceAfterMarks = [];
 
     //### HEADER ###
     if (ng.h)
@@ -1218,6 +1236,11 @@ neumes.forEach(function (ng, i)
             y: ngY,
             t: ng.n
         });
+        //### SEQUENCE ###
+        //TODO change this
+        sequenceX = currentX;
+        sequenceY = ngY;
+        sequenceText += ng.n;
         currentX += nWidth;
         //### CHRONOS ###
         if (ng.c)
@@ -1226,6 +1249,12 @@ neumes.forEach(function (ng, i)
                 f: 'chronos',
                 x: currentX,
                 y: ngY,
+                t: ng.c
+            });
+            //### SEQUENCE MARKS ###
+            //TODO change this
+            sequenceMarks.push({
+                f: 'chronos',
                 t: ng.c
             });
         }
@@ -1608,6 +1637,11 @@ neumes.forEach(function (ng, i)
                 y: ngY,
                 t: ng.n2
             });
+            //### SEQUENCE AFTER (2) ###
+            //TODO change this
+            sequenceAfterX = currentX;
+            sequenceAfterY = ngY;
+            sequenceAfterText += ng.n2;
             //### FTHORA AFTER AFTER (2) ###
             if (ng.f2a)
             {
@@ -1638,6 +1672,12 @@ neumes.forEach(function (ng, i)
                     f: 'chronos',
                     x: currentX + xOffset,
                     y: ngY,
+                    t: ng.c2
+                });
+                //### SEQUENCE MARKS AFTER (2) ###
+                //TODO change this
+                sequenceAfterMarks.push({
+                    f: 'chronos',
                     t: ng.c2
                 });
             }
@@ -1699,6 +1739,30 @@ neumes.forEach(function (ng, i)
                 });
             }
             currentX += n2Width;
+        }
+        //### SEQUENCE ###
+        //TODO change this
+        if (sequenceText.length > 0)
+        {
+            sequences.push({
+                f: 'neumes',
+                x: sequenceX,
+                y: sequenceY,
+                t: sequenceText,
+                m: sequenceMarks
+            });
+
+            //### SEQUENCE AFTER (2) ###
+            if (sequenceAfterText.length > 0)
+            {
+                sequencesAfter.push({
+                    f: 'neumes',
+                    x: sequenceAfterX,
+                    y: sequenceAfterY,
+                    t: sequenceAfterText,
+                    m: sequenceAfterMarks
+                });
+            }
         }
     }
     //### MARTYRIA ###
@@ -1872,6 +1936,20 @@ neumes.forEach(function (ng, i)
         ngX += ngWidth;
         ngX += charSpace;
     }
+    //TODO change this
+    // if (sequences.length > 0)
+    // {
+    //     // writeTexts(sequences);
+
+    //     lineTexts.push(sequences);
+    //     if (sequencesAfter.length > 0)
+    //     {
+    //         lineTexts.push(sequencesAfter);
+    //         ngX += charSpace;
+    //     }
+    //     ngX += ngWidth;
+    //     ngX += charSpace;
+    // }
     if (i == ngLength - 1)
     {
         //### LINE TEXTS ###

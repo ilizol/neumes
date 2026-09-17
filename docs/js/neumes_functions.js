@@ -205,6 +205,11 @@ function writeText(text, offsetX)
     var textX = text.x + offsetX;
     var textY = text.y;
     var textT = text.t;
+    if (text.m)
+    {
+        var textM = text.m;
+        textT += textM.map(m => m.t).join('');
+    }
     var stroke = setFont(textF);
     if (stroke)
     {
