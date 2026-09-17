@@ -336,10 +336,10 @@ var ngWidth = 0;
 var texts = [];
 var textsAfter = [];
 //TODO change this
-var sequenceX = ngX;
-var sequenceY = ngY;
-var sequenceAfterX = ngX;
-var sequenceAfterY = ngY;
+var sequenceX = 0;
+var sequenceY = 0;
+var sequenceAfterX = 0;
+var sequenceAfterY = 0;
 var sequenceText = '';
 var sequenceAfterText = '';
 var sequences = [];
@@ -369,6 +369,10 @@ neumes.forEach(function (ng, i)
     texts = [];
     textsAfter = [];
     //TODO change this
+    sequenceX = 0;
+    sequenceY = 0;
+    sequenceAfterX = 0;
+    sequenceAfterY = 0;
     sequenceText = '';
     sequenceAfterText = '';
     sequences = [];
@@ -902,12 +906,29 @@ neumes.forEach(function (ng, i)
         //### NEUMES BEFORE ###
         if (ng.nb)
         {
-            texts.push({
-                f: 'neumes',
-                x: currentX,
-                y: ngY,
-                t: ng.nb
-            });
+            if (pdfKitDoc)
+            {
+                //### SEQUENCE ###
+                //TODO change this
+                if (!sequenceX)
+                {
+                    sequenceX = currentX;
+                }
+                if (!sequenceY)
+                {
+                    sequenceY = ngY;
+                }
+                sequenceText += ng.nb;
+            }
+            else
+            {
+                texts.push({
+                    f: 'neumes',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.nb
+                });
+            }
             lxOffset += nbWidth;
             currentX += nbWidth;
         }
@@ -915,12 +936,29 @@ neumes.forEach(function (ng, i)
         if (ng.v)
         {
             setFont('quality');
-            texts.push({
-                f: 'quality',
-                x: currentX,
-                y: ngY,
-                t: ng.v
-            });
+            if (pdfKitDoc)
+            {
+                //### SEQUENCE ###
+                //TODO change this
+                if (!sequenceX)
+                {
+                    sequenceX = currentX;
+                }
+                if (!sequenceY)
+                {
+                    sequenceY = ngY;
+                }
+                sequenceText += ng.v;
+            }
+            else
+            {
+                texts.push({
+                    f: 'quality',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.v
+                });
+            }
             lxOffset += vWidth;
             currentX += vWidth;
         }
@@ -1242,8 +1280,14 @@ neumes.forEach(function (ng, i)
         {
             //### SEQUENCE ###
             //TODO change this
-            sequenceX = currentX;
-            sequenceY = ngY;
+            if (!sequenceX)
+            {
+                sequenceX = currentX;
+            }
+            if (!sequenceY)
+            {
+                sequenceY = ngY;
+            }
             sequenceText += ng.n;
         }
         else
@@ -1960,16 +2004,6 @@ neumes.forEach(function (ng, i)
         });
     }
 
-    if (texts.length > 0)
-    {
-        //writeTexts(texts);
-
-        lineTexts.push(texts);
-        if (textsAfter.length > 0)
-        {
-            lineTexts.push(textsAfter);
-        }
-    }
     //TODO change this
     if (sequences.length > 0)
     {
@@ -1979,6 +2013,16 @@ neumes.forEach(function (ng, i)
         if (sequencesAfter.length > 0)
         {
             lineTexts.push(sequencesAfter);
+        }
+    }
+    if (texts.length > 0)
+    {
+        //writeTexts(texts);
+
+        lineTexts.push(texts);
+        if (textsAfter.length > 0)
+        {
+            lineTexts.push(textsAfter);
         }
     }
     ngX += ngWidth;
