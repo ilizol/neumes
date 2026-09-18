@@ -24,6 +24,7 @@ else if (pdfEngine === 'pdfkit')
     const pdfKitStream = pdfKitDoc.pipe(blobStream());
     var pdfKitFonts = {};
     var jsPdfFontSource = new jsPDF();
+    var pdfLineHeightFactor = jsPdfFontSource.getLineHeightFactor();
 
     function registerPdfKitFont(font)
     {
@@ -54,7 +55,7 @@ else if (pdfEngine === 'pdfkit')
             },
             getLineHeight: function ()
             {
-                return pdfKitDoc.currentLineHeight();
+                return pdfKitDoc._fontSize * pdfLineHeightFactor;
             }
         },
         getTextWidth: function (text)
