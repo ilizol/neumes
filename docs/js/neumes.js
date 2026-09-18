@@ -692,12 +692,16 @@ neumes.forEach(function (ng, i)
                     lineTexts,
                     availSpace
                 );
-                lineNum++;
-                //### LINE NUMBER ###
-                writeLineNum(
-                    ngY,
-                    lineNum
-                );
+                //TODO check this
+                if (endY < pageHeight - startY)
+                {
+                    lineNum++;
+                    //### LINE NUMBER ###
+                    writeLineNum(
+                        ngY,
+                        lineNum
+                    );
+                }
             }
             lineTexts = [];
         }
