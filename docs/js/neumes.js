@@ -505,8 +505,6 @@ neumes.forEach(function (ng, i)
     //### WORD BREAK ###
     if (ng.br == 'wd')
     {
-        //TODO check this
-        //setFont('neumes');
         setFont('lyrics');
         var wsWidth = doc.getTextWidth(" ");
         ngWidth += wsWidth;
@@ -828,8 +826,6 @@ neumes.forEach(function (ng, i)
         )
         {
             texts.push({
-                //TODO check this
-                //f: 'neumes',
                 f: 'lyrics',
                 x: ngX,
                 y: ngY,
