@@ -349,3 +349,23 @@ function writeAvailSpace(availSpaceY, availSpace)
         t: availSpace.toString()
     });
 }
+
+function drawPageMarginRulers()
+{
+    if (window.debugPageMargins !== true)
+    {
+        return;
+    }
+    var pageWidth = doc.internal.pageSize.width;
+    var pageHeight = doc.internal.pageSize.height;
+    var left = startX;
+    var right = pageWidth - startX;
+    var top = startY;
+    var bottom = pageHeight - startY;
+
+    doc.setDrawColor(220, 0, 0);
+    doc.line(left, 0, left, pageHeight);
+    doc.line(right, 0, right, pageHeight);
+    doc.line(0, top, pageWidth, top);
+    doc.line(0, bottom, pageWidth, bottom);
+}

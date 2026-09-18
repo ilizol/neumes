@@ -78,6 +78,10 @@ else if (pdfEngine === 'pdfkit')
         {
             pdfKitDoc.strokeColor([red, green, blue]);
         },
+        line: function (x1, y1, x2, y2)
+        {
+            pdfKitDoc.lineWidth(0.2).moveTo(x1, y1).lineTo(x2, y2).stroke();
+        },
         text: function (text, x, y, options)
         {
             const scale = pdfKitDoc._fontSize / pdfKitDoc._font.font.unitsPerEm;
@@ -362,6 +366,8 @@ if (hasPageNum && pageNum > 0)
         pageNum
     );
 }
+//### PAGE MARGIN RULERS ###
+drawPageMarginRulers();
 
 neumes.forEach(function (ng, i)
 {
@@ -705,6 +711,8 @@ neumes.forEach(function (ng, i)
     )
     {
         doc.addPage();
+        //### PAGE MARGIN RULERS ###
+        drawPageMarginRulers();
         pageNum++;
         ngX = startX;
         ngY = startY;
