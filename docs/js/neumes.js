@@ -355,10 +355,10 @@ var lineTexts = [];
 var lineNum = 1;
 var ngLength = neumes.length;
 //### LINE NUMBER ###
-// writeLineNum(
-//     ngY,
-//     lineNum
-// );
+writeLineNum(
+    ngY,
+    lineNum
+);
 if (hasPageNum && pageNum > 0)
 {
     //### PAGE NUMBER ###
@@ -642,7 +642,7 @@ neumes.forEach(function (ng, i)
         }
         var availSpace = pageWidth - startX - ngX;
         //### AVAIL SPACE ###
-        //writeAvailSpace(ngY, availSpace);
+        writeAvailSpace(ngY, availSpace);
         if (availSpace > 0)
         {
             //### LINE TEXTS ###
@@ -682,7 +682,7 @@ neumes.forEach(function (ng, i)
         {
             var availSpace = pageWidth - startX - ngX;
             //### AVAIL SPACE ###
-            //writeAvailSpace(ngY, availSpace);
+            writeAvailSpace(ngY, availSpace);
             if (availSpace > 0)
             {
                 //### LINE TEXTS ###
@@ -694,10 +694,10 @@ neumes.forEach(function (ng, i)
             lineTexts = [];
             lineNum++;
             //### LINE NUMBER ###
-            // writeLineNum(
-            //     ngY,
-            //     lineNum
-            // );
+            writeLineNum(
+                ngY,
+                lineNum
+            );
         }
         ngX = startX;
         endX = ngX + ngWidth;
@@ -736,10 +736,10 @@ neumes.forEach(function (ng, i)
     {
         lineNum++;
         //### LINE NUMBER ###
-        // writeLineNum(
-        //     ngY,
-        //     lineNum
-        // );
+        writeLineNum(
+            ngY,
+            lineNum
+        );
         lineTexts = [];
     }
     currentX = ngX;

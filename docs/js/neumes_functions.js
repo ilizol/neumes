@@ -309,6 +309,10 @@ function writeLineTexts(lineTexts, availSpace, alignment)
 
 function writeLineNum(lineNumY, lineNum)
 {
+    if (window.showLineNum !== true)
+    {
+        return;
+    }
     var lineNumX = 2;
     writeText({
         f: 'lyrics',
@@ -330,8 +334,7 @@ function writePageNum(pageNumY, pageNum)
     // var pageNumY = pageHeight - 15;
     // var pageNumY = pageHeight - 5;
     writeText({
-        //f: 'lyrics',
-        f: 'ison',
+        f: 'lyrics',
         x: pageNumX,
         y: pageNumY,
         t: pageNum.toString()
@@ -340,19 +343,24 @@ function writePageNum(pageNumY, pageNum)
 
 function writeAvailSpace(availSpaceY, availSpace)
 {
+    if (window.showAvailSpace !== true)
+    {
+        return;
+    }
     var pageWidth = doc.internal.pageSize.width;
-    var availSpaceX = pageWidth - 20;
+    var right = pageWidth - startX;
+    var availSpaceX = right + 2;
     writeText({
         f: 'lyrics',
         x: availSpaceX,
         y: availSpaceY,
-        t: availSpace.toString()
+        t: availSpace.toFixed(2)
     });
 }
 
 function drawPageMarginRulers()
 {
-    if (window.debugPageMargins !== true)
+    if (window.showPageMarginRulers !== true)
     {
         return;
     }
