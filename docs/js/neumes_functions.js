@@ -326,13 +326,17 @@ function writePageNum(pageNumY, pageNum)
 {
     var pageWidth = doc.internal.pageSize.width;
     var pageHeight = doc.internal.pageSize.height;
+    var right = pageWidth - startX;
+    var bottom = pageHeight - topY;
     //TODO change this
-    var pageNumX = pageWidth - 35;
+    // var pageNumX = pageWidth - 35;
     // var pageNumX = pageWidth - 25;
     // var pageNumX = pageWidth - 15;
-    var pageNumY = pageHeight - 25;
+    // var pageNumY = pageHeight - 25;
     // var pageNumY = pageHeight - 15;
     // var pageNumY = pageHeight - 5;
+    var pageNumX = right + 5;
+    var pageNumY = bottom + 15;
     writeText({
         f: 'lyrics',
         x: pageNumX,
@@ -368,8 +372,8 @@ function drawPageMarginRulers()
     var pageHeight = doc.internal.pageSize.height;
     var left = startX;
     var right = pageWidth - startX;
-    var top = startY;
-    var bottom = pageHeight - startY;
+    var top = topY;
+    var bottom = pageHeight - topY;
 
     doc.setDrawColor(220, 0, 0);
     doc.line(left, 0, left, pageHeight);

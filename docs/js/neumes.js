@@ -313,6 +313,7 @@ var startX = 46;
 var startY = 46;
 //var startY = 25;
 //var startY = 64;
+var topY = 29;
 var charSpace = 0;
 //var isonDistance = 20;
 var isonDistance = 16;
@@ -329,9 +330,10 @@ var martyriaFthoraDistance = window.martyriaFthoraDistance !== undefined ? windo
 // var martyriaFthoraDistance = 0;
 
 //### BASIC VARIABLES
+// var hasPageNum = true;
 var hasPageNum = false;
-// var pageNum = 1;
-var pageNum = -1; // ignore first 2 pages
+var pageNum = 1;
+// var pageNum = -1; // ignore first 2 pages
 var pageWidth = doc.internal.pageSize.width;
 var pageHeight = doc.internal.pageSize.height;
 var ngX = startX;
@@ -690,14 +692,14 @@ neumes.forEach(function (ng, i)
                     lineTexts,
                     availSpace
                 );
+                lineNum++;
+                //### LINE NUMBER ###
+                writeLineNum(
+                    ngY,
+                    lineNum
+                );
             }
             lineTexts = [];
-            lineNum++;
-            //### LINE NUMBER ###
-            writeLineNum(
-                ngY,
-                lineNum
-            );
         }
         ngX = startX;
         endX = ngX + ngWidth;
@@ -712,11 +714,15 @@ neumes.forEach(function (ng, i)
     )
     {
         doc.addPage();
-        //### PAGE MARGIN RULERS ###
-        drawPageMarginRulers();
         pageNum++;
         ngX = startX;
         ngY = startY;
+        //### LINE NUMBER ###
+        lineNum = 1;
+        writeLineNum(
+            ngY,
+            lineNum
+        );
         if (hasPageNum && pageNum > 0)
         {
             //### PAGE NUMBER ###
@@ -725,6 +731,8 @@ neumes.forEach(function (ng, i)
                 pageNum
             );
         }
+        //### PAGE MARGIN RULERS ###
+        drawPageMarginRulers();
     }
     if (
         ng.br == 'ln' ||
