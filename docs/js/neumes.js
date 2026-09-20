@@ -723,18 +723,21 @@ neumes.forEach(function (ng, i)
         }
         lineNum++;
         lineTexts = [];
-        if (hasLineNum && lineNum > 0)
+        if (ngY < pageHeight - topY)
         {
-            //### LINE NUMBER ###
-            writeLineNum(
-                ngY,
-                lineNum
-            );
-        }
-        if (hasBaselineRuler && ngY > 0)
-        {
-            //### BASELINE RULER ###
-            drawBaselineRuler(ngY);
+            if (hasLineNum && lineNum > 0)
+            {
+                //### LINE NUMBER ###
+                writeLineNum(
+                    ngY,
+                    lineNum
+                );
+            }
+            if (hasBaselineRuler && ngY > 0)
+            {
+                //### BASELINE RULER ###
+                drawBaselineRuler(ngY);
+            }
         }
         endX = ngX + ngWidth;
         endY = ngY + lyricsDistance;
