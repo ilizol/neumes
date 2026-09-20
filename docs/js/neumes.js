@@ -95,6 +95,49 @@ else if (pdfEngine === 'pdfkit')
 
             pdfKitDoc.text(text, x, baselineY);
         },
+        textWithOpenTypeMarks(baseChar, marks = [], x, y, options)
+        {
+            const startX = x;
+            const startY = y;
+            const fontkitFont = pdfKitDoc._font.font;
+            const fontSize = pdfKitDoc._fontSize;
+            const scale = fontSize / fontkitFont.unitsPerEm;
+            // Convert top-left 'y' coordinate to baseline 'y' coordinate using font ascent
+            const ascent = pdfKitDoc._font.font.ascent * scale;
+            const baselineY = startY - ascent;
+
+            if (!marks.length)
+            {
+                pdfKitDoc.text(baseChar, startX, baselineY);
+                return;
+            }
+
+            // 1. Compute full GPOS layout sequence
+            const combinedStr = baseChar + marks.map(m => m.mark).join('');
+            const run = fontkitFont.layout(combinedStr);
+
+            // 2. Draw base character at explicitly provided (x, y) coordinates
+            pdfKitDoc.text(baseChar, startX, baselineY);
+
+            // 3. Render each mark at calculated offset relative to start position
+            let accumulatedAdvance = run.glyphs[0].advanceWidth;
+
+            for (let i = 0; i < marks.length; i++)
+            {
+                const markIndex = i + 1;
+                const markGlyph = run.glyphs[markIndex];
+                const markPos = run.positions[markIndex];
+                const markColor = marks[i].color || 'red';
+
+                const markX = startX + (accumulatedAdvance + markPos.xOffset) * scale;
+                const markY = baselineY - (markPos.yOffset * scale); // PDF Y-axis is top-down
+
+                pdfKitDoc.fillColor(markColor)
+                    .text(marks[i].mark, markX, markY);
+
+                accumulatedAdvance += markGlyph.advanceWidth + markPos.xAdvance;
+            }
+        },
         addPage: function ()
         {
             pdfKitDoc.addPage();
@@ -2051,114 +2094,6 @@ setFont('neumes');
 // doc.text("\uE084\uE0F0", 100, 100);
 // doc.text("\uE084\uE0F0", 400, 100);
 // doc.text("\uE000\uE0F0\uE0D3", 400, 100);
-
-/**
- * Draws a base character with multiple colored combining accent marks.
- * Supports explicit (x, y) positioning like PDFKit's doc.text(text, x, y, options).
- *
- * @param {string} baseChar - Base character (e.g., 'a', 'e').
- * @param {Array<{ mark: string, color: string }>} marks - List of marks with colors.
- * @param {number} [x] - X position for base character.
- * @param {number} [y] - Y position for base character.
- * @param {Object} [options] - Formatting options.
- * @param {string} [options.baseColor='black'] - Color for base character.
- */
-function drawMultiColoredMarks(baseChar, marks = [], x, y, options = {})
-{
-    if (!pdfKitDoc)
-    {
-        return;
-    }
-
-    const startX = x;
-    const startY = y;
-    const baseColor = options.baseColor || 'black';
-    const fontkitFont = pdfKitDoc._font.font;
-    const fontSize = pdfKitDoc._fontSize;
-    const scale = fontSize / fontkitFont.unitsPerEm;
-    // Convert top-left 'y' coordinate to baseline 'y' coordinate using font ascent
-    const ascent = pdfKitDoc._font.font.ascent * scale;
-    const baselineY = startY - ascent;
-
-    if (!marks.length)
-    {
-        pdfKitDoc.fillColor(baseColor)
-            .text(baseChar, startX, baselineY);
-        return;
-    }
-
-    // 1. Compute full GPOS layout sequence
-    const combinedStr = baseChar + marks.map(m => m.mark).join('');
-    const run = fontkitFont.layout(combinedStr);
-
-    // 2. Draw base character at explicitly provided (x, y) coordinates
-    pdfKitDoc.fillColor(baseColor)
-        .text(baseChar, startX, baselineY);
-
-    // 3. Render each mark at calculated offset relative to start position
-    let accumulatedAdvance = run.glyphs[0].advanceWidth;
-
-    for (let i = 0; i < marks.length; i++)
-    {
-        const markIndex = i + 1;
-        const markGlyph = run.glyphs[markIndex];
-        const markPos = run.positions[markIndex];
-        const markColor = marks[i].color || 'red';
-
-        const markX = startX + (accumulatedAdvance + markPos.xOffset) * scale;
-        const markY = baselineY - (markPos.yOffset * scale); // PDF Y-axis is top-down
-
-        pdfKitDoc.fillColor(markColor)
-            .text(marks[i].mark, markX, markY);
-
-        accumulatedAdvance += markGlyph.advanceWidth + markPos.xAdvance;
-    }
-}
-
-// ==========================================
-// Usage Examples
-// ==========================================
-
-// 1. Explicit X and Y coordinates (matching doc.text(str, 100, 100))
-// drawMultiColoredMarks(
-//     '\uE084',
-//     [
-//         { mark: '\uE0F0', color: 'blue' }
-//     ],
-//     100,
-//     100,
-//     { baseColor: 'black' }
-// );
-
-// 2. Explicit X and Y without options parameter
-// drawMultiColoredMarks(
-//     '\uE084',
-//     [{ mark: '\uE0F0', color: 'green' }],
-//     400,
-//     100,
-//     { baseColor: 'red' }
-// );
-
-// drawMultiColoredMarks(
-//     '\uE000',
-//     [
-//         { mark: '\uE0F0', color: 'blue' },
-//         { mark: '\uE0D3', color: 'red' }
-//     ],
-//     100,
-//     100
-// );
-
-// drawMultiColoredMarks(
-//     '\uE000',
-//     [
-//         { mark: '\uE0F0', color: 'red' },
-//         { mark: '\uE0D3', color: 'red' }
-//     ],
-//     400,
-//     100,
-//     { baseColor: 'red' }
-// );
 
 // doc.textWithOpenTypeMarks
 //     (
