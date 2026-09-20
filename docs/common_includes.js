@@ -50,17 +50,23 @@
     return src + (src.indexOf('?') >= 0 ? '&' : '?') + 'v=' + encodeURIComponent(version);
   }
 
-  scripts.forEach((src) =>
+  window.neumesIncludesReady = Promise.all(scripts.map((src) =>
   {
     const resolvedSrc = withVersion(src);
-    if (document.querySelector('script[src="' + src + '"]') || document.querySelector('script[src="' + resolvedSrc + '"]'))
+    const existingScript = document.querySelector('script[src="' + src + '"]') || document.querySelector('script[src="' + resolvedSrc + '"]');
+    if (existingScript)
     {
-      return;
+      return Promise.resolve();
     }
 
-    const script = document.createElement("script");
-    script.src = resolvedSrc;
-    script.async = false;
-    head.appendChild(script);
-  });
+    return new Promise((resolve) =>
+    {
+      const script = document.createElement("script");
+      script.src = resolvedSrc;
+      script.async = false;
+      script.addEventListener("load", resolve, { once: true });
+      script.addEventListener("error", resolve, { once: true });
+      head.appendChild(script);
+    });
+  }));
 })();

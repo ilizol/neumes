@@ -46,12 +46,24 @@
         addScript("js/neumes.js");
     }
 
-    if (window.neumesHarfBuzzReady)
+    function waitForHarfBuzz()
     {
-        window.neumesHarfBuzzReady.then(loadNeumes, loadNeumes);
+        if (window.neumesHarfBuzzReady)
+        {
+            window.neumesHarfBuzzReady.then(loadNeumes, loadNeumes);
+        }
+        else
+        {
+            loadNeumes();
+        }
+    }
+
+    if (window.neumesIncludesReady)
+    {
+        window.neumesIncludesReady.then(waitForHarfBuzz, waitForHarfBuzz);
     }
     else
     {
-        loadNeumes();
+        waitForHarfBuzz();
     }
 })();
