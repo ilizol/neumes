@@ -740,7 +740,7 @@ neumes.forEach(function (ng, i)
             }
         }
         endX = ngX + ngWidth;
-        endY = ngY + lyricsDistance;
+        endY = ngY;
     }
     // page break
     if (
