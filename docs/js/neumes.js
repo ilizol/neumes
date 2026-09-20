@@ -1378,6 +1378,29 @@ neumes.forEach(function (ng, i)
                 });
             }
         }
+        //### CHRONOS NEUMES ###
+        if (ng.cn)
+        {
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequenceMarks.push({
+                    mark: ng.cn,
+                    //color: neumesFontColor
+                    color: blackRGB
+                });
+            }
+            else
+            {
+                texts.push({
+                    f: 'chronos_neumes',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.cn
+                });
+            }
+        }
         //### CHRONOS MIDDLE ###
         if (ng.cm)
         {

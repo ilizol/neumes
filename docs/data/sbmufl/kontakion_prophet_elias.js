@@ -311,7 +311,8 @@ neumes.push(
         "n2": "\uE210" // DIASTOLE, U+E210 = barlineSingle
     },
     {
-        "n": "\uE000\uE0D3", // U+E000 = ison, U+E0D3 = dipli
+        "n": "\uE000", // U+E000 = ison
+        "cn": "\uE0D3", // U+E0D3 = dipli
         "l": "πον"
     }
 

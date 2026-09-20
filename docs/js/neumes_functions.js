@@ -160,6 +160,14 @@ function setFont(type)
         doc.setFontSize(chronosFontSize);
         color = chronosFontColor;
     }
+    //### CHRONOS NEUMES ###
+    else if (type == 'chronos_neumes')
+    {
+        stroke = musicFontStroke;
+        doc.setFont(chronosFont);
+        doc.setFontSize(chronosFontSize);
+        color = neumesFontColor;
+    }
     //### QUALITY ###
     else if (type == 'quality')
     {
