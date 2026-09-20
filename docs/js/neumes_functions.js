@@ -309,10 +309,6 @@ function writeLineTexts(lineTexts, availSpace, alignment)
 
 function writeLineNum(lineNumY, lineNum)
 {
-    if (window.showLineNum !== true)
-    {
-        return;
-    }
     var lineNumX = 2;
     writeText({
         f: 'lyrics',
@@ -347,10 +343,6 @@ function writePageNum(pageNumY, pageNum)
 
 function writeAvailSpace(availSpaceY, availSpace)
 {
-    if (window.showAvailSpace !== true)
-    {
-        return;
-    }
     var pageWidth = doc.internal.pageSize.width;
     var right = pageWidth - startX;
     var availSpaceX = right + 2;
@@ -364,10 +356,6 @@ function writeAvailSpace(availSpaceY, availSpace)
 
 function drawPageMarginRulers()
 {
-    if (window.showPageMarginRulers !== true)
-    {
-        return;
-    }
     var pageWidth = doc.internal.pageSize.width;
     var pageHeight = doc.internal.pageSize.height;
     var left = startX;
@@ -375,9 +363,21 @@ function drawPageMarginRulers()
     var top = topY;
     var bottom = pageHeight - topY;
 
-    doc.setDrawColor(220, 0, 0);
+    // colorRGB = redRGB;
+    colorRGB = blackRGB;
+    doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
     doc.line(left, 0, left, pageHeight);
     doc.line(right, 0, right, pageHeight);
     doc.line(0, top, pageWidth, top);
     doc.line(0, bottom, pageWidth, bottom);
+}
+
+function drawBaselineRuler(baselineY)
+{
+    var pageWidth = doc.internal.pageSize.width;
+
+    colorRGB = redRGB;
+    // colorRGB = blackRGB;
+    doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+    doc.line(0, baselineY, pageWidth, baselineY);
 }
