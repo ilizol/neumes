@@ -15,7 +15,10 @@ neumes.push(
     { "ml": "\uE2A8" }, // U+E2A8 = modeSecond
     // { "t": " " }, // SPACE
     // { "tl": "Δι" },
-    { "ml": "\uE2E4\uE19A" }, // U+E2E4 = modeDi, U+E19A = fthoraSoftChromaticDiAbove
+    {
+        "ml": "\uE2E4", // U+E2E4 = modeDi
+        "mlp": "\uE19A" // U+E19A = fthoraSoftChromaticDiAbove
+    },
     { "br": "ln2" }, // LINE BREAK
     { "br": "ln2" }, // LINE BREAK
     //{"br":"ln"}, // LINE BREAK

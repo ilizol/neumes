@@ -1,9 +1,10 @@
 var pdfEngine = window.pdfEngine !== undefined ? window.pdfEngine : "jspdf";
 // var pdfEngine = 'pdfkit';
+var hasOpenTypeMarks = window.hasOpenTypeMarks !== undefined ? window.hasOpenTypeMarks : false;
+// var hasOpenTypeMarks = true;
 
 var doc;
 var pdfKitDoc;
-var hasOpenTypeMarks = false;
 
 if (pdfEngine === 'jspdf')
 {
@@ -219,7 +220,6 @@ function resolveFont(fontType, suffix)
     // Almouzios uses a single unified font file, no suffix needed
     if (musicFontFamily === 'Almouzios')
     {
-        hasOpenTypeMarks = true;
         return musicFontFamily;
     }
     // KA-prefixed fonts use separate files per character type
@@ -397,6 +397,8 @@ var ngWidth = 0;
 var texts = [];
 var textsAfter = [];
 //TODO change this
+var sequenceFont = 'neumes';
+var sequenceAfterFont = 'neumes';
 var sequenceX = 0;
 var sequenceY = 0;
 var sequenceAfterX = 0;
@@ -442,6 +444,8 @@ neumes.forEach(function (ng, i)
     texts = [];
     textsAfter = [];
     //TODO change this
+    sequenceFont = 'neumes';
+    sequenceAfterFont = 'neumes';
     sequenceX = 0;
     sequenceY = 0;
     sequenceAfterX = 0;
@@ -1340,6 +1344,7 @@ neumes.forEach(function (ng, i)
         {
             //### SEQUENCE ###
             //TODO change this
+            sequenceFont = 'neumes';
             sequenceX = currentX;
             sequenceY = ngY;
             sequenceText += ng.n;
@@ -1369,9 +1374,10 @@ neumes.forEach(function (ng, i)
             }
             else
             {
+                var xOffset = nWidth;
                 texts.push({
                     f: 'neumes',
-                    x: currentX,
+                    x: currentX + xOffset,
                     y: ngY,
                     t: ng.np
                 });
@@ -1777,6 +1783,7 @@ neumes.forEach(function (ng, i)
             {
                 //### SEQUENCE AFTER (2) ###
                 //TODO change this
+                sequenceAfterFont = 'neumes';
                 sequenceAfterX = currentX;
                 sequenceAfterY = ngY;
                 sequenceAfterText += ng.n2;
@@ -1895,33 +1902,6 @@ neumes.forEach(function (ng, i)
             }
             currentX += n2Width;
         }
-        if (hasOpenTypeMarks)
-        {
-            //### SEQUENCE ###
-            //TODO change this
-            if (sequenceText.length > 0)
-            {
-                sequences.push({
-                    f: 'neumes',
-                    x: sequenceX,
-                    y: sequenceY,
-                    t: sequenceText,
-                    m: sequenceMarks
-                });
-
-                //### SEQUENCE AFTER (2) ###
-                if (sequenceAfterText.length > 0)
-                {
-                    sequencesAfter.push({
-                        f: 'neumes',
-                        x: sequenceAfterX,
-                        y: sequenceAfterY,
-                        t: sequenceAfterText,
-                        m: sequenceAfterMarks
-                    });
-                }
-            }
-        }
     }
     //### MARTYRIA ###
     if (ng.m)
@@ -1957,29 +1937,29 @@ neumes.forEach(function (ng, i)
             }
             */
         }
-    }
-    //### MARTYRIA PARTIAL ###
-    if (ng.mp)
-    {
-        if (hasOpenTypeMarks)
+        //### MARTYRIA PARTIAL ###
+        if (ng.mp)
         {
-            //### SEQUENCE MARKS ###
-            //TODO change this
-            sequenceMarks.push({
-                mark: ng.mp,
-                //color: martyriaFontColor
-                color: redRGB
-            });
-        }
-        else
-        {
-            var xOffset = mWidth;
-            texts.push({
-                f: 'martyria',
-                x: currentX + xOffset,
-                y: ngY + martyriaDistance,
-                t: ng.mp
-            });
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequenceMarks.push({
+                    mark: ng.mp,
+                    //color: martyriaFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                var xOffset = mWidth;
+                texts.push({
+                    f: 'martyria',
+                    x: currentX + xOffset,
+                    y: ngY + martyriaDistance,
+                    t: ng.mp
+                });
+            }
         }
     }
     //### MARTYRIA NARROW ###
@@ -2049,12 +2029,48 @@ neumes.forEach(function (ng, i)
     //### MARTYRIA LOWER ###
     if (ng.ml)
     {
-        texts.push({
-            f: 'martyria',
-            x: currentX,
-            y: ngY + martyriaLowerDistance,
-            t: ng.ml
-        });
+        if (hasOpenTypeMarks)
+        {
+            //### SEQUENCE ###
+            //TODO change this
+            sequenceFont = 'martyria';
+            sequenceX = currentX;
+            sequenceY = ngY + martyriaLowerDistance;
+            sequenceText += ng.ml;
+        }
+        else
+        {
+            texts.push({
+                f: 'martyria',
+                x: currentX,
+                y: ngY + martyriaLowerDistance,
+                t: ng.ml
+            });
+        }
+        //### MARTYRIA LOWER PARTIAL ###
+        if (ng.mlp)
+        {
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequenceMarks.push({
+                    mark: ng.mlp,
+                    //color: martyriaFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                var xOffset = mlWidth;
+                texts.push({
+                    f: 'martyria',
+                    x: currentX + xOffset,
+                    y: ngY + martyriaLowerDistance,
+                    t: ng.mlp
+                });
+            }
+        }
     }
     //### MARTYRIA FTHORA ###
     if (ng.mf)
@@ -2119,12 +2135,39 @@ neumes.forEach(function (ng, i)
     }
 
     //### SEQUENCES ###
-    if (sequences.length > 0)
+    if (hasOpenTypeMarks)
     {
-        texts = sequences.concat(texts);
-        if (sequencesAfter.length > 0)
+        //### SEQUENCE ###
+        //TODO change this
+        if (sequenceText.length > 0)
         {
-            textsAfter = sequencesAfter.concat(textsAfter);
+            sequences.push({
+                f: sequenceFont,
+                x: sequenceX,
+                y: sequenceY,
+                t: sequenceText,
+                m: sequenceMarks
+            });
+
+            //### SEQUENCE AFTER (2) ###
+            if (sequenceAfterText.length > 0)
+            {
+                sequencesAfter.push({
+                    f: sequenceAfterFont,
+                    x: sequenceAfterX,
+                    y: sequenceAfterY,
+                    t: sequenceAfterText,
+                    m: sequenceAfterMarks
+                });
+            }
+        }
+        if (sequences.length > 0)
+        {
+            texts = sequences.concat(texts);
+            if (sequencesAfter.length > 0)
+            {
+                textsAfter = sequencesAfter.concat(textsAfter);
+            }
         }
     }
     if (texts.length > 0)
