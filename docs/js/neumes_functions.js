@@ -205,14 +205,16 @@ function writeText(text, offsetX)
     var textX = text.x + offsetX;
     var textY = text.y;
     var textT = text.t;
+    if (text.m)
+    {
+        var textM = text.m;
+        var markStroke = setFont(textF);
+        doc.textWithOpenTypeMarks(textT, textM, textX, textY, markStroke ? {
+            renderingMode: 'fillThenStroke'
+        } : undefined);
+        return;
+    }
     var stroke = setFont(textF);
-    /*
-    doc.text(
-        textX,
-        textY,
-        textT
-    );
-    */
     if (stroke)
     {
         doc.text(
@@ -227,9 +229,9 @@ function writeText(text, offsetX)
     else
     {
         doc.text(
+            textT,
             textX,
-            textY,
-            textT
+            textY
         );
     }
     /* TODO
@@ -265,10 +267,11 @@ function writeLineTexts(lineTexts, availSpace, alignment)
     {
         lineElements--;
         lineTexts.pop();
-        setFont('neumes');
+        setFont('lyrics');
         var wsWidth = doc.getTextWidth(" ");
         availSpace += wsWidth;
         //alert(lineElements);
+        //alert(availSpace);
     }
     if (availSpace > 0)
     {
@@ -317,16 +320,19 @@ function writePageNum(pageNumY, pageNum)
 {
     var pageWidth = doc.internal.pageSize.width;
     var pageHeight = doc.internal.pageSize.height;
+    var right = pageWidth - startX;
+    var bottom = pageHeight - topY;
     //TODO change this
-    var pageNumX = pageWidth - 35;
+    // var pageNumX = pageWidth - 35;
     // var pageNumX = pageWidth - 25;
     // var pageNumX = pageWidth - 15;
-    var pageNumY = pageHeight - 25;
+    // var pageNumY = pageHeight - 25;
     // var pageNumY = pageHeight - 15;
     // var pageNumY = pageHeight - 5;
+    var pageNumX = right + 5;
+    var pageNumY = bottom + 15;
     writeText({
-        //f: 'lyrics',
-        f: 'ison',
+        f: 'lyrics',
         x: pageNumX,
         y: pageNumY,
         t: pageNum.toString()
@@ -336,11 +342,40 @@ function writePageNum(pageNumY, pageNum)
 function writeAvailSpace(availSpaceY, availSpace)
 {
     var pageWidth = doc.internal.pageSize.width;
-    var availSpaceX = pageWidth - 20;
+    var right = pageWidth - startX;
+    var availSpaceX = right + 2;
     writeText({
         f: 'lyrics',
         x: availSpaceX,
         y: availSpaceY,
-        t: availSpace.toString()
+        t: availSpace.toFixed(2)
     });
+}
+
+function drawPageMarginRulers()
+{
+    var pageWidth = doc.internal.pageSize.width;
+    var pageHeight = doc.internal.pageSize.height;
+    var left = startX;
+    var right = pageWidth - startX;
+    var top = topY;
+    var bottom = pageHeight - topY;
+
+    // colorRGB = redRGB;
+    colorRGB = blackRGB;
+    doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+    doc.line(left, 0, left, pageHeight);
+    doc.line(right, 0, right, pageHeight);
+    doc.line(0, top, pageWidth, top);
+    doc.line(0, bottom, pageWidth, bottom);
+}
+
+function drawBaselineRuler(baselineY)
+{
+    var pageWidth = doc.internal.pageSize.width;
+
+    colorRGB = redRGB;
+    // colorRGB = blackRGB;
+    doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+    doc.line(0, baselineY, pageWidth, baselineY);
 }
