@@ -3,6 +3,7 @@ var pdfEngine = window.pdfEngine !== undefined ? window.pdfEngine : "jspdf";
 
 var doc;
 var pdfKitDoc;
+var hasOpenTypeMarks = false;
 
 if (pdfEngine === 'jspdf')
 {
@@ -219,6 +220,7 @@ function resolveFont(fontType, suffix)
     // Almouzios uses a single unified font file, no suffix needed
     if (musicFontFamily === 'Almouzios')
     {
+        hasOpenTypeMarks = true;
         return musicFontFamily;
     }
     // KA-prefixed fonts use separate files per character type
@@ -1335,7 +1337,7 @@ neumes.forEach(function (ng, i)
             });
         }
         //### NEUMES ###
-        if (musicFontFamily === 'Almouzios')
+        if (hasOpenTypeMarks)
         {
             //### SEQUENCE ###
             //TODO change this
@@ -1356,7 +1358,7 @@ neumes.forEach(function (ng, i)
         //### CHRONOS ###
         if (ng.c)
         {
-            if (musicFontFamily === 'Almouzios')
+            if (hasOpenTypeMarks)
             {
                 //### SEQUENCE MARKS ###
                 //TODO change this
@@ -1749,7 +1751,7 @@ neumes.forEach(function (ng, i)
                 });
             }
             //### NEUMES AFTER (2) ###
-            if (pdfKitDoc)
+            if (hasOpenTypeMarks)
             {
                 //### SEQUENCE AFTER (2) ###
                 //TODO change this
@@ -1791,7 +1793,7 @@ neumes.forEach(function (ng, i)
             //### CHRONOS AFTER (2) ###
             if (ng.c2)
             {
-                if (musicFontFamily === 'Almouzios')
+                if (hasOpenTypeMarks)
                 {
                     //### SEQUENCE MARKS AFTER (2) ###
                     //TODO change this
@@ -1871,7 +1873,7 @@ neumes.forEach(function (ng, i)
             }
             currentX += n2Width;
         }
-        if (musicFontFamily === 'Almouzios')
+        if (hasOpenTypeMarks)
         {
             //### SEQUENCE ###
             //TODO change this
