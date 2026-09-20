@@ -312,7 +312,7 @@ neumes.push(
     },
     {
         "n": "\uE000", // U+E000 = ison
-        "cn": "\uE0D3", // U+E0D3 = dipli
+        "np": "\uE0D3", // U+E0D3 = dipli
         "l": "πον"
     }
 

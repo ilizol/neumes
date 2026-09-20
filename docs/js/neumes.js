@@ -1355,6 +1355,29 @@ neumes.forEach(function (ng, i)
             });
         }
         currentX += nWidth;
+        //### NEUMES PARTIAL ###
+        if (ng.np)
+        {
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequenceMarks.push({
+                    mark: ng.np,
+                    //color: neumesFontColor
+                    color: blackRGB
+                });
+            }
+            else
+            {
+                texts.push({
+                    f: 'neumes_partial',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.np
+                });
+            }
+        }
         //### CHRONOS ###
         if (ng.c)
         {
@@ -1375,29 +1398,6 @@ neumes.forEach(function (ng, i)
                     x: currentX,
                     y: ngY,
                     t: ng.c
-                });
-            }
-        }
-        //### CHRONOS NEUMES ###
-        if (ng.cn)
-        {
-            if (hasOpenTypeMarks)
-            {
-                //### SEQUENCE MARKS ###
-                //TODO change this
-                sequenceMarks.push({
-                    mark: ng.cn,
-                    //color: neumesFontColor
-                    color: blackRGB
-                });
-            }
-            else
-            {
-                texts.push({
-                    f: 'chronos_neumes',
-                    x: currentX,
-                    y: ngY,
-                    t: ng.cn
                 });
             }
         }

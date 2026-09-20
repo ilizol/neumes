@@ -59,6 +59,14 @@ function setFont(type)
         doc.setFontSize(neumesFontSize);
         color = neumesFontColor;
     }
+    //### NEUMES PARTIAL ###
+    else if (type == 'neumes_partial')
+    {
+        stroke = musicFontStroke;
+        doc.setFont(neumesFont);
+        doc.setFontSize(neumesFontSize);
+        color = neumesFontColor;
+    }
     //### NEUMES TITLE ###
     else if (type == 'neumes_title')
     {
@@ -159,14 +167,6 @@ function setFont(type)
         doc.setFont(chronosFont);
         doc.setFontSize(chronosFontSize);
         color = chronosFontColor;
-    }
-    //### CHRONOS NEUMES ###
-    else if (type == 'chronos_neumes')
-    {
-        stroke = musicFontStroke;
-        doc.setFont(chronosFont);
-        doc.setFontSize(chronosFontSize);
-        color = neumesFontColor;
     }
     //### QUALITY ###
     else if (type == 'quality')
