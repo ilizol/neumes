@@ -742,9 +742,7 @@ neumes.forEach(function (ng, i)
     // page break
     if (
         ng.br == 'pg' ||
-        //endY > pageHeight - startY
-        endY > pageHeight - startY / 2
-        //endY > pageHeight
+        endY > pageHeight - topY
     )
     {
         doc.addPage();
