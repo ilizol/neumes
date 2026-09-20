@@ -687,6 +687,24 @@ neumes.forEach(function (ng, i)
         endX > pageWidth - startX
     )
     {
+        if (endX > pageWidth - startX)
+        {
+            availSpace = pageWidth - startX - ngX;
+            if (availSpace > 0)
+            {
+                if (hasAvailSpace)
+                {
+                    //### AVAILABLE SPACE ###
+                    writeAvailSpace(ngY, availSpace);
+                }
+                //### LINE TEXTS ###
+                writeLineTexts(
+                    lineTexts,
+                    availSpace
+                );
+            }
+        }
+        ngX = startX;
         if (ng.br == 'ln2')
         {
             ngY += tFS * 1.3;
@@ -703,44 +721,21 @@ neumes.forEach(function (ng, i)
         {
             ngY += lineDistance;
         }
-        if (endX > pageWidth - startX)
+        lineNum++;
+        lineTexts = [];
+        if (hasLineNum && lineNum > 0)
         {
-            availSpace = pageWidth - startX - ngX;
-            if (availSpace > 0)
-            {
-                //TODO check this
-                if (hasAvailSpace)
-                {
-                    //### AVAILABLE SPACE ###
-                    writeAvailSpace(ngY, availSpace);
-                }
-                //### LINE TEXTS ###
-                writeLineTexts(
-                    lineTexts,
-                    availSpace
-                );
-                //TODO check this
-                if (endY < pageHeight - startY)
-                {
-                    lineNum++;
-                    if (hasLineNum && lineNum > 0)
-                    {
-                        //### LINE NUMBER ###
-                        writeLineNum(
-                            ngY,
-                            lineNum
-                        );
-                    }
-                    if (hasBaselineRuler && ngY > 0)
-                    {
-                        //### BASELINE RULER ###
-                        drawBaselineRuler(ngY);
-                    }
-                }
-            }
-            lineTexts = [];
+            //### LINE NUMBER ###
+            writeLineNum(
+                ngY,
+                lineNum
+            );
         }
-        ngX = startX;
+        if (hasBaselineRuler && ngY > 0)
+        {
+            //### BASELINE RULER ###
+            drawBaselineRuler(ngY);
+        }
         endX = ngX + ngWidth;
         endY = ngY + lyricsDistance;
     }
@@ -754,7 +749,9 @@ neumes.forEach(function (ng, i)
     {
         doc.addPage();
         lineNum = 1;
+        lineTexts = [];
         pageNum++;
+        availSpace = 0;
         ngX = startX;
         ngY = startY;
         if (hasLineNum && lineNum > 0)
@@ -788,30 +785,6 @@ neumes.forEach(function (ng, i)
             //### BASELINE RULER ###
             drawBaselineRuler(ngY);
         }
-    }
-    if (
-        ng.br == 'ln' ||
-        ng.br == 'ln2' ||
-        ng.br == 'ln3' ||
-        ng.br == 'ln4' ||
-        ng.br == 'pg'
-    )
-    {
-        lineNum++;
-        if (hasLineNum && lineNum > 0)
-        {
-            //### LINE NUMBER ###
-            writeLineNum(
-                ngY,
-                lineNum
-            );
-        }
-        if (hasBaselineRuler && ngY > 0)
-        {
-            //### BASELINE RULER ###
-            drawBaselineRuler(ngY);
-        }
-        lineTexts = [];
     }
     currentX = ngX;
     //### HEADER ###
