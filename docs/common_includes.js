@@ -1,14 +1,21 @@
 (function ()
 {
+  const pdfEngine = window.pdfEngine || "jspdf";
+  const hasOpenTypeMarks = window.hasOpenTypeMarks || false;
   const scripts = [
     //### jsPDF
     "js/jspdf.min.js",
-    "js/harfbuzz_offline_classic.js",
-    "js/harfbuzz_loader.js",
-    "js/jspdf-harfbuzz.js",
+    ...(pdfEngine === "jspdf" && hasOpenTypeMarks ? [
+
+      "js/harfbuzz_offline_classic.js",
+      "js/harfbuzz_loader.js",
+      "js/jspdf-harfbuzz.js",
+    ] : []),
     //### PDFKit
-    "js/pdfkit.standalone.js",
-    "js/blob-stream.js",
+    ...(pdfEngine === "pdfkit" ? [
+      "js/pdfkit.standalone.js",
+      "js/blob-stream.js",
+    ] : []),
     //### Alegreya
     "fonts/Alegreya-Bold-normal.js",
     "fonts/Alegreya-BoldItalic-normal.js",
