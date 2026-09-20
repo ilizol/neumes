@@ -1292,7 +1292,7 @@ neumes.forEach(function (ng, i)
             });
         }
         //### NEUMES ###
-        if (pdfKitDoc)
+        if (musicFontFamily === 'Almouzios')
         {
             //### SEQUENCE ###
             //TODO change this
@@ -1313,7 +1313,7 @@ neumes.forEach(function (ng, i)
         //### CHRONOS ###
         if (ng.c)
         {
-            if (pdfKitDoc)
+            if (musicFontFamily === 'Almouzios')
             {
                 //### SEQUENCE MARKS ###
                 //TODO change this
@@ -1748,7 +1748,7 @@ neumes.forEach(function (ng, i)
             //### CHRONOS AFTER (2) ###
             if (ng.c2)
             {
-                if (pdfKitDoc)
+                if (musicFontFamily === 'Almouzios')
                 {
                     //### SEQUENCE MARKS AFTER (2) ###
                     //TODO change this
@@ -1828,7 +1828,7 @@ neumes.forEach(function (ng, i)
             }
             currentX += n2Width;
         }
-        if (pdfKitDoc)
+        if (musicFontFamily === 'Almouzios')
         {
             //### SEQUENCE ###
             //TODO change this
@@ -2159,6 +2159,17 @@ function drawMultiColoredMarks(baseChar, marks = [], x, y, options = {})
 //     100,
 //     { baseColor: 'red' }
 // );
+
+// doc.textWithOpenTypeMarks
+//     (
+//         '\uE000',
+//         [
+//             { mark: '\uE0F0', color: 'red' },
+//             { mark: '\uE0D3', color: 'red' }
+//         ],
+//         400,
+//         100
+//     );
 
 // colorRGB = blackRGB;
 // doc.setTextColor(colorRGB[0], colorRGB[1], colorRGB[2]);

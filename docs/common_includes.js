@@ -3,6 +3,9 @@
   const scripts = [
     //### jsPDF
     "js/jspdf.min.js",
+    "js/harfbuzz_offline_classic.js",
+    "js/harfbuzz_loader.js",
+    "js/jspdf-harfbuzz.js",
     //### PDFKit
     "js/pdfkit.standalone.js",
     "js/blob-stream.js",

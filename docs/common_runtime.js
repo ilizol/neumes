@@ -40,6 +40,18 @@
 
     sources.forEach(addScript);
 
-    addScript("js/neumes_functions.js");
-    addScript("js/neumes.js");
+    function loadNeumes()
+    {
+        addScript("js/neumes_functions.js");
+        addScript("js/neumes.js");
+    }
+
+    if (window.neumesHarfBuzzReady)
+    {
+        window.neumesHarfBuzzReady.then(loadNeumes, loadNeumes);
+    }
+    else
+    {
+        loadNeumes();
+    }
 })();
