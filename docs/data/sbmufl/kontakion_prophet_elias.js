@@ -128,7 +128,8 @@ neumes.push(
     },
     {
         "nb": "\uE210", // DIASTOLE, U+E210 = barlineSingle
-        "n": "\uE003\uE0A1", // U+E003 = oligonKentimaBelow, U+E0A1 = psifiston
+        "n": "\uE003", // U+E003 = oligonKentimaBelow
+        "np": "\uE0A1", // U+E0A1 = psifiston
         "r": "3",
         "l": "λω"
     },
@@ -142,10 +143,12 @@ neumes.push(
         "n2": "\uE210" // DIASTOLE, U+E210 = barlineSingle
     },
     {
-        "n": "\uE021\uE0D0", // U+E021 = apostrofos, U+E0D0 = klasmaAbove
+        "n": "\uE021", // U+E021 = apostrofos
+        "np": "\uE0D0", // U+E0D0 = klasmaAbove
         "l": "με",
         //###### MARTYRIA ######
-        "m": "\uE13C\uE159" // U+E13C = martyriaNoteDi, U+E159 = martyriaSoftChromaticDiBelow
+        "m": "\uE13C", // U+E13C = martyriaNoteDi
+        "mp": "\uE159" // U+E159 = martyriaSoftChromaticDiBelow
     },
     {
         "n": "\uE024", // U+E024 = elafron
@@ -242,13 +245,16 @@ neumes.push(
         "l2": "ε"
     },
     {
-        "n": "\uE000\uE0D0", // U+E000 = ison, U+E0D0 = klasmaAbove
+        "n": "\uE000", // U+E000 = ison
+        "np": "\uE0D0", // U+E0D0 = klasmaAbove
         "l": "φη",
         //###### MARTYRIA ######
-        "m": "\uE13A\uE159" // U+E13A = martyriaNoteVou, U+E159 = martyriaSoftChromaticDiBelow
+        "m": "\uE13A", // U+E13A = martyriaNoteVou
+        "mp": "\uE159" // U+E159 = martyriaSoftChromaticDiBelow
     },
     {
-        "n": "\uE003\uE0A1", // U+E003 = oligonKentimaBelow, U+E0A1 = psifiston
+        "n": "\uE003", // U+E003 = oligonKentimaBelow
+        "np": "\uE0A1", // U+E0A1 = psifiston
         "i": "Μ",
         "l": "πρε"
     },

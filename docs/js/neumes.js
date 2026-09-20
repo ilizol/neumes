@@ -126,7 +126,6 @@ else if (pdfEngine === 'pdfkit')
             for (let i = 0; i < marks.length; i++)
             {
                 const markIndex = i + 1;
-                const markGlyph = run.glyphs[markIndex];
                 const markPos = run.positions[markIndex];
                 const markColor = marks[i].color || 'red';
 
@@ -136,7 +135,7 @@ else if (pdfEngine === 'pdfkit')
                 pdfKitDoc.fillColor(markColor)
                     .text(marks[i].mark, markX, markY);
 
-                accumulatedAdvance += markGlyph.advanceWidth + markPos.xAdvance;
+                accumulatedAdvance += markPos.xAdvance;
             }
         },
         addPage: function ()
@@ -1371,7 +1370,7 @@ neumes.forEach(function (ng, i)
             else
             {
                 texts.push({
-                    f: 'neumes_partial',
+                    f: 'neumes',
                     x: currentX,
                     y: ngY,
                     t: ng.np
@@ -1927,24 +1926,61 @@ neumes.forEach(function (ng, i)
     //### MARTYRIA ###
     if (ng.m)
     {
-        texts.push({
-            f: 'martyria',
-            x: currentX,
-            y: ngY + martyriaDistance,
-            t: ng.m
-        });
-        /*
-        if (ng.l && lFS)
+        if (hasOpenTypeMarks)
         {
-            var xOffset = (mWidth / 2) - (lWidth / 2);
-            texts.push({
-                f: 'lyrics',
-                x: currentX + xOffset,
-                y: ngY + lyricsDistance,
-                t: ng.l
+            //### SEQUENCE MARKS ###
+            //TODO change this
+            sequenceMarks.push({
+                mark: ng.m,
+                //color: martyriaFontColor
+                color: redRGB
             });
         }
-        */
+        else
+        {
+            texts.push({
+                f: 'martyria',
+                x: currentX,
+                y: ngY + martyriaDistance,
+                t: ng.m
+            });
+            /*
+            if (ng.l && lFS)
+            {
+                var xOffset = (mWidth / 2) - (lWidth / 2);
+                texts.push({
+                    f: 'lyrics',
+                    x: currentX + xOffset,
+                    y: ngY + lyricsDistance,
+                    t: ng.l
+                });
+            }
+            */
+        }
+    }
+    //### MARTYRIA PARTIAL ###
+    if (ng.mp)
+    {
+        if (hasOpenTypeMarks)
+        {
+            //### SEQUENCE MARKS ###
+            //TODO change this
+            sequenceMarks.push({
+                mark: ng.mp,
+                //color: martyriaFontColor
+                color: redRGB
+            });
+        }
+        else
+        {
+            var xOffset = mWidth;
+            texts.push({
+                f: 'martyria',
+                x: currentX + xOffset,
+                y: ngY + martyriaDistance,
+                t: ng.mp
+            });
+        }
     }
     //### MARTYRIA NARROW ###
     if (ng.mn)

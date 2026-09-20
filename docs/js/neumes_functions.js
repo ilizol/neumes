@@ -59,14 +59,6 @@ function setFont(type)
         doc.setFontSize(neumesFontSize);
         color = neumesFontColor;
     }
-    //### NEUMES PARTIAL ###
-    else if (type == 'neumes_partial')
-    {
-        stroke = musicFontStroke;
-        doc.setFont(neumesFont);
-        doc.setFontSize(neumesFontSize);
-        color = neumesFontColor;
-    }
     //### NEUMES TITLE ###
     else if (type == 'neumes_title')
     {
