@@ -99,14 +99,6 @@ function setFont(type)
         doc.setFontSize(martyriaFontSize);
         color = neumesFontColor;
     }
-    //### MARTYRIA FTHORA ###
-    else if (type == 'martyria_fthora')
-    {
-        stroke = musicFontStroke;
-        doc.setFont(fthoraFont);
-        doc.setFontSize(martyriaFontSize);
-        color = martyriaFontColor;
-    }
     //### FTHORA ###
     else if (type == 'fthora')
     {

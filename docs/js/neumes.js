@@ -507,14 +507,6 @@ neumes.forEach(function (ng, i)
         var t2Height = doc.internal.getLineHeight();
         ngWidth += t2Width;
     }
-    //### TITLE LOWER ###
-    if (ng.tl)
-    {
-        setFont('title');
-        var tlWidth = doc.getTextWidth(ng.tl);
-        var tlHeight = doc.internal.getLineHeight();
-        ngWidth += tlWidth;
-    }
     //### DROPCAPS ###
     if (ng.d)
     {
@@ -549,13 +541,6 @@ neumes.forEach(function (ng, i)
         setFont('martyria');
         var muWidth = doc.getTextWidth(ng.mu);
         ngWidth += muWidth;
-    }
-    //### MARTYRIA UPPER 2 ###
-    if (ng.mu2)
-    {
-        setFont('martyria');
-        var mu2Width = doc.getTextWidth(ng.mu2);
-        ngWidth += mu2Width;
     }
     //### MARTYRIA TITLE ###
     if (ng.mt)
@@ -915,18 +900,6 @@ neumes.forEach(function (ng, i)
             x: ngX,
             y: ngY,
             t: ng.t2
-        });
-    }
-    //### TITLE LOWER ###
-    if (ng.tl)
-    {
-        //ngY + lyricsDistance / 2.2
-        //ngY + tlHeight / 4
-        texts.push({
-            f: 'title',
-            x: ngX,
-            y: ngY + lyricsDistance / 3,
-            t: ng.tl
         });
     }
     //### MARTYRIA TITLE ###
@@ -2146,26 +2119,6 @@ neumes.forEach(function (ng, i)
             x: currentX,
             y: ngY,
             t: ng.mu
-        });
-    }
-    //### MARTYRIA UPPER 2 ###
-    if (ng.mu2)
-    {
-        texts.push({
-            f: 'martyria',
-            x: currentX,
-            y: ngY + martyriaDistance,
-            t: ng.mu2
-        });
-    }
-    //### MARTYRIA FTHORA ###
-    if (ng.mf)
-    {
-        texts.push({
-            f: 'martyria_fthora',
-            x: currentX,
-            y: ngY + martyriaFthoraDistance,
-            t: ng.mf
         });
     }
     //### ASTERISK ###
