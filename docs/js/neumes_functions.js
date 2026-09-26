@@ -75,6 +75,22 @@ function setFont(type)
         doc.setFontSize(martyriaFontSize);
         color = martyriaFontColor;
     }
+    //### MARTYRIA TITLE ###
+    else if (type == 'martyria_title')
+    {
+        stroke = musicFontStroke;
+        doc.setFont(martyriaFont);
+        doc.setFontSize(martyriaFontSize);
+        color = titleFontColor;
+    }
+    //### MARTYRIA TITLE FTHORA ###
+    else if (type == 'martyria_title_fthora')
+    {
+        stroke = musicFontStroke;
+        doc.setFont(fthoraFont);
+        doc.setFontSize(martyriaFontSize);
+        color = titleFontColor;
+    }
     //### MARTYRIA DIASTOLE ###
     else if (type == 'martyria_diastole')
     {
@@ -361,6 +377,7 @@ function drawPageMarginRulers()
     var top = topY;
     var bottom = pageHeight - topY;
 
+    // colorRGB = grayRGB;
     // colorRGB = redRGB;
     colorRGB = blackRGB;
     doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
@@ -374,7 +391,19 @@ function drawBaselineRuler(baselineY)
 {
     var pageWidth = doc.internal.pageSize.width;
 
+    // colorRGB = grayRGB;
     colorRGB = redRGB;
+    // colorRGB = blackRGB;
+    doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+    doc.line(0, baselineY, pageWidth, baselineY);
+}
+
+function drawLyricsBaselineRuler(baselineY)
+{
+    var pageWidth = doc.internal.pageSize.width;
+
+    colorRGB = grayRGB;
+    // colorRGB = redRGB;
     // colorRGB = blackRGB;
     doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
     doc.line(0, baselineY, pageWidth, baselineY);

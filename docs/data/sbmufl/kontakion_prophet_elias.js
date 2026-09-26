@@ -6,22 +6,24 @@ neumes.push(
     { "h": "ΚΟΝΤΑΚΙΟΝ ΠΡΟΦΗΤΗ ΗΛΙΑ" },
     { "br": "ln2" }, // LINE BREAK
     { "t": "Χουρμουζίου Χαρτοφύλακος (†1840)" },
-    { "br": "ln2" }, // LINE BREAK
-    //{"t":"Ἦχος β' Δι"},
-    // { "tl": "Ἦχος" },
-    { "ml": "\uE2F1" }, // U+E2F1 = modeWordEchos
-    // { "t": " " }, // SPACE
+    { "br": "ln4" }, // LINE BREAK
+    // { "t": "Ἦχος β' Δι" },
+    { "t": "Ἦχος" },
+    { "t": " " }, // SPACE
     //###### MARTYRIA ######
-    { "ml": "\uE2A8" }, // U+E2A8 = modeSecond
-    // { "t": " " }, // SPACE
-    // { "tl": "Δι" },
+    // { "mt": "\uE2F1" }, // U+E2F1 = modeWordEchos
+    { "mt": "\uE2A8" }, // U+E2A8 = modeSecond
+    { "t": " " }, // SPACE
     {
-        "ml": "\uE2E4", // U+E2E4 = modeDi
-        "mlp": "\uE19A" // U+E19A = fthoraSoftChromaticDiAbove
+        "t": "Δι",
+        "mtf": "\uE19A" // U+E19A = fthoraSoftChromaticDiAbove
     },
-    { "br": "ln2" }, // LINE BREAK
-    { "br": "ln2" }, // LINE BREAK
-    //{"br":"ln"}, // LINE BREAK
+    { "t": "  " }, // SPACE
+    // {
+    //     "mt": "\uE2E4", // U+E2E4 = modeDi
+    //     "mtp": "\uE19A" // U+E19A = fthoraSoftChromaticDiAbove
+    // },
+    { "br": "ln5" }, // LINE BREAK
     //###### DROPCAP ######
     { "d": "Π" },
     {

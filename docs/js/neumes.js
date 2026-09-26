@@ -307,6 +307,9 @@ var blackRGB = [0, 0, 0]; // #000000
 //### RED
 //var redRGB = [187, 0, 14]; // #bb000e
 var redRGB = [128, 0, 0]; // #800000
+//### GRAY
+//var grayRGB = [187, 187, 187]; // rgb(187, 187, 187)
+var grayRGB = [128, 128, 128]; // rgb(128, 128, 128)
 
 var hFC = "black";
 var h2FC = "black";
@@ -388,6 +391,9 @@ var hasAvailSpace = false;
 var hasPageMarginRulers = false;
 // var hasBaselineRuler = true;
 var hasBaselineRuler = false;
+var lyricsBaselineRuler = 0;
+// var hasLyricsBaselineRuler = true;
+var hasLyricsBaselineRuler = false;
 var pageWidth = doc.internal.pageSize.width;
 var pageHeight = doc.internal.pageSize.height;
 var ngX = startX;
@@ -551,12 +557,19 @@ neumes.forEach(function (ng, i)
         var mu2Width = doc.getTextWidth(ng.mu2);
         ngWidth += mu2Width;
     }
-    //### MARTYRIA LOWER ###
-    if (ng.ml)
+    //### MARTYRIA TITLE ###
+    if (ng.mt)
     {
-        setFont('martyria');
-        var mlWidth = doc.getTextWidth(ng.ml);
-        ngWidth += mlWidth;
+        setFont('martyria_title');
+        var mtWidth = doc.getTextWidth(ng.mt);
+        ngWidth += mtWidth;
+    }
+    //### MARTYRIA TITLE UPPER ###
+    if (ng.mtu)
+    {
+        setFont('martyria_title');
+        var mtuWidth = doc.getTextWidth(ng.mtu);
+        ngWidth += mtuWidth;
     }
     //### ASTERISK ###
     if (ng.a && aFS)
@@ -702,7 +715,8 @@ neumes.forEach(function (ng, i)
     if (
         ng.br == 'ln2' ||
         ng.br == 'ln3' ||
-        ng.br == 'ln4'
+        ng.br == 'ln4' ||
+        ng.br == 'ln5'
     )
     {
         var alignment = 'center';
@@ -732,6 +746,7 @@ neumes.forEach(function (ng, i)
         ng.br == 'ln2' ||
         ng.br == 'ln3' ||
         ng.br == 'ln4' ||
+        ng.br == 'ln5' ||
         endX > pageWidth - startX
     )
     {
@@ -763,7 +778,11 @@ neumes.forEach(function (ng, i)
         }
         else if (ng.br == 'ln4')
         {
-            ngY += tFS * 2;
+            ngY += tFS * 1.85;
+        }
+        else if (ng.br == 'ln5')
+        {
+            ngY += tFS * 2.05;
         }
         else
         {
@@ -789,6 +808,7 @@ neumes.forEach(function (ng, i)
         }
         endX = ngX + ngWidth;
         endY = ngY;
+        lyricsBaselineRuler = 0;
     }
     // page break
     if (
@@ -801,6 +821,7 @@ neumes.forEach(function (ng, i)
         lineTexts = [];
         pageNum++;
         availSpace = 0;
+        lyricsBaselineRuler = 0;
         ngX = startX;
         ngY = startY;
         if (hasLineNum && lineNum > 0)
@@ -906,6 +927,111 @@ neumes.forEach(function (ng, i)
             x: ngX,
             y: ngY + lyricsDistance / 3,
             t: ng.tl
+        });
+    }
+    //### MARTYRIA TITLE ###
+    if (ng.mt)
+    {
+        if (hasOpenTypeMarks)
+        {
+            //### SEQUENCE ###
+            //TODO change this
+            sequenceFont = 'martyria_title';
+            sequenceX = currentX;
+            sequenceY = ngY;
+            sequenceText += ng.mt;
+        }
+        else
+        {
+            var xOffset = 0;
+            var yOffset = 0;
+            //TODO change this
+            if (ng.t)
+            {
+                xOffset = tWidth / 2;
+                yOffset = tHeight / 2;
+            }
+            texts.push({
+                f: 'martyria_title',
+                x: currentX + xOffset,
+                y: ngY - yOffset,
+                t: ng.mt
+            });
+        }
+        //### MARTYRIA TITLE PARTIAL ###
+        if (ng.mtp)
+        {
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequenceMarks.push({
+                    mark: ng.mtp,
+                    //color: martyriaFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                var xOffset = mtWidth;
+                texts.push({
+                    f: 'martyria_title',
+                    x: currentX + xOffset,
+                    y: ngY,
+                    t: ng.mtp
+                });
+            }
+        }
+    }
+    //### MARTYRIA TITLE UPPER ###
+    if (ng.mtu)
+    {
+        // setFont('martyria_title');
+        // var mtuHeight = doc.internal.getLineHeight();
+        // var yOffset = mtuHeight / 2;
+        // var yOffset = 0;
+        var yOffset = martyriaDistance / 6.5;
+        texts.push({
+            f: 'martyria_title',
+            x: currentX,
+            y: ngY - yOffset,
+            t: ng.mtu
+        });
+    }
+    //### MARTYRIA TITLE FTHORA ###
+    if (ng.mtf)
+    {
+        var xOffset = 0;
+        var yOffset = 0;
+        //TODO change this
+        if (ng.t)
+        {
+            xOffset = tWidth / 1.7;
+            yOffset = tHeight / 1.5;
+        }
+        texts.push({
+            f: 'martyria_title_fthora',
+            x: currentX + xOffset,
+            y: ngY - yOffset,
+            t: ng.mtf
+        });
+    }
+    //### MARTYRIA TITLE FTHORA UPPER ###
+    if (ng.mtfu)
+    {
+        var xOffset = 0;
+        var yOffset = 0;
+        //TODO change this
+        if (ng.t)
+        {
+            xOffset = tWidth + tWidth / 3.85;
+            yOffset = tHeight / 16;
+        }
+        texts.push({
+            f: 'martyria_title_fthora',
+            x: currentX + xOffset,
+            y: ngY + yOffset,
+            t: ng.mtfu
         });
     }
     //### DROPCAPS ###
@@ -1739,6 +1865,12 @@ neumes.forEach(function (ng, i)
                 y: ngY + lyricsDistance,
                 t: ng.l
             });
+            if (hasLyricsBaselineRuler && !lyricsBaselineRuler)
+            {
+                lyricsBaselineRuler = 1;
+                //### LYRICS BASELINE RULER ###
+                drawLyricsBaselineRuler(ngY + lyricsDistance);
+            }
         }
         //### NEUMES AFTER (2) ###
         if (ng.n2)
@@ -2025,52 +2157,6 @@ neumes.forEach(function (ng, i)
             y: ngY + martyriaDistance,
             t: ng.mu2
         });
-    }
-    //### MARTYRIA LOWER ###
-    if (ng.ml)
-    {
-        if (hasOpenTypeMarks)
-        {
-            //### SEQUENCE ###
-            //TODO change this
-            sequenceFont = 'martyria';
-            sequenceX = currentX;
-            sequenceY = ngY + martyriaLowerDistance;
-            sequenceText += ng.ml;
-        }
-        else
-        {
-            texts.push({
-                f: 'martyria',
-                x: currentX,
-                y: ngY + martyriaLowerDistance,
-                t: ng.ml
-            });
-        }
-        //### MARTYRIA LOWER PARTIAL ###
-        if (ng.mlp)
-        {
-            if (hasOpenTypeMarks)
-            {
-                //### SEQUENCE MARKS ###
-                //TODO change this
-                sequenceMarks.push({
-                    mark: ng.mlp,
-                    //color: martyriaFontColor
-                    color: redRGB
-                });
-            }
-            else
-            {
-                var xOffset = mlWidth;
-                texts.push({
-                    f: 'martyria',
-                    x: currentX + xOffset,
-                    y: ngY + martyriaLowerDistance,
-                    t: ng.mlp
-                });
-            }
-        }
     }
     //### MARTYRIA FTHORA ###
     if (ng.mf)
