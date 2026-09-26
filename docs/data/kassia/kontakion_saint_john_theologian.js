@@ -6,20 +6,19 @@ neumes.push(
     { "h": "ΚΟΝΤΑΚΙΟΝ ΑΓΙΟΥ ΙΩΑΝΝΟΥ ΤΟΥ ΘΕΟΛΟΓΟΥ" },
     { "br": "ln2" }, // LINE BREAK
     { "t": "Χουρμουζίου Χαρτοφύλακος (†1840)" },
-    { "br": "ln2" }, // LINE BREAK
-    //{"t":"Ἦχος β' Δι"},
-    { "tl": "Ἦχος" },
+    { "br": "ln4" }, // LINE BREAK
+    // { "t": "Ἦχος β' Δι" },
+    { "t": "Ἦχος" },
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
-    { "mu2": "o" },
+    { "mtu": "o" },
     { "t": " " }, // SPACE
-    { "tl": "Δι" },
+    {
+        "t": "Δι",
+        "mtfu": "∂"
+    },
     { "t": "  " }, // SPACE
-    //###### MARTYRIA ######
-    { "mf": "∂" },
-    { "br": "ln2" }, // LINE BREAK
-    { "br": "ln2" }, // LINE BREAK
-    //{"br":"ln"}, // LINE BREAK
+    { "br": "ln5" }, // LINE BREAK
     //###### DROPCAP ######
     { "d": "Τ" },
     {
