@@ -1024,8 +1024,8 @@ neumes.forEach(function (ng, i)
         //TODO change this
         if (ng.t)
         {
-            xOffset = tWidth + tWidth / 3.85;
-            yOffset = tHeight / 16;
+            xOffset = tWidth + tWidth / 2;
+            yOffset = tHeight / 8;
         }
         texts.push({
             f: 'martyria_title_fthora',
