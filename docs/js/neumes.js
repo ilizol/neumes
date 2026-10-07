@@ -385,6 +385,8 @@ var availSpace = 0;
 var hasAvailSpace = false;
 // var hasPageMarginRulers = true;
 var hasPageMarginRulers = false;
+// var hasPageVerticalRulers = true;
+var hasPageVerticalRulers = false;
 // var hasBaselineRuler = true;
 var hasBaselineRuler = false;
 var lyricsBaselineRuler = 0;
@@ -433,6 +435,11 @@ if (hasPageMarginRulers)
 {
     //### PAGE MARGIN RULERS ###
     drawPageMarginRulers();
+}
+if (hasPageVerticalRulers)
+{
+    //### PAGE VERTICAL RULERS ###
+    drawPageVerticalRulers();
 }
 if (hasBaselineRuler && startY > 0)
 {
