@@ -386,13 +386,23 @@ function drawPageVerticalRulers()
     // var parts = 32;
     var parts = 64;
 
-    colorRGB = grayRGB;
+    // colorRGB = grayRGB;
     // colorRGB = redRGB;
     // colorRGB = blackRGB;
-    doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+    // doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
     for (var i = 1; i < parts; i++)
     {
-        doc.line(i * pageWidth / parts, 0, i * pageWidth / parts, pageHeight);
+        var x = i * pageWidth / parts;
+        if (x == pageWidth / 2)
+        {
+            colorRGB = blackRGB;
+        }
+        else
+        {
+            colorRGB = grayRGB;
+        }
+        doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+        doc.line(x, 0, x, pageHeight);
     }
 }
 
