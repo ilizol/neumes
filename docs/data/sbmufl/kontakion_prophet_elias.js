@@ -12,7 +12,9 @@ neumes.push(
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
     // { "mt": "\uE2F1" }, // U+E2F1 = modeWordEchos
+    { "mt": "  " }, // SPACE
     { "mt": "\uE2A8" }, // U+E2A8 = modeSecond
+    { "mt": "  " }, // SPACE
     { "t": " " }, // SPACE
     {
         "t": "Δι",
@@ -324,7 +326,10 @@ neumes.push(
     {
         "n": "\uE000", // U+E000 = ison
         "np": "\uE0D3", // U+E0D3 = dipli
-        "l": "πον"
+        "l": "πον",
+        //###### MARTYRIA ######
+        "mn": "\uE13C", // U+E13C = martyriaNoteDi
+        "mpn": "\uE159" // U+E159 = martyriaSoftChromaticDiBelow
     }
 
 );

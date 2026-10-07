@@ -955,11 +955,9 @@ neumes.forEach(function (ng, i)
     //### MARTYRIA TITLE UPPER ###
     if (ng.mtu)
     {
-        // setFont('martyria_title');
-        // var mtuHeight = doc.internal.getLineHeight();
-        // var yOffset = mtuHeight / 2;
-        // var yOffset = 0;
-        var yOffset = martyriaDistance / 6.5;
+        setFont('martyria_title');
+        var mtuHeight = doc.internal.getLineHeight();
+        var yOffset = mtuHeight / 23;
         texts.push({
             f: 'martyria_title',
             x: currentX,
@@ -972,10 +970,9 @@ neumes.forEach(function (ng, i)
     {
         var xOffset = 0;
         var yOffset = 0;
-        //TODO change this
         if (ng.t)
         {
-            xOffset = tWidth / 1.7;
+            xOffset = tWidth / 1.65;
             yOffset = tHeight / 1.5;
         }
         texts.push({
@@ -990,11 +987,10 @@ neumes.forEach(function (ng, i)
     {
         var xOffset = 0;
         var yOffset = 0;
-        //TODO change this
         if (ng.t)
         {
-            xOffset = tWidth + tWidth / 2;
-            yOffset = tHeight / 8;
+            xOffset = tWidth * 1.3;
+            yOffset = tHeight / 14;
         }
         texts.push({
             f: 'martyria_title_fthora',
@@ -2066,13 +2062,50 @@ neumes.forEach(function (ng, i)
     //### MARTYRIA NARROW ###
     if (ng.mn)
     {
-        var xOffset = mnWidth - mnWidth / 1.5;
-        texts.push({
-            f: 'martyria',
-            x: currentX - xOffset,
-            y: ngY + martyriaDistance,
-            t: ng.mn
-        });
+        if (hasOpenTypeMarks)
+        {
+            //### SEQUENCE MARKS ###
+            //TODO change this
+            sequenceMarks.push({
+                mark: ng.mn,
+                //color: martyriaFontColor
+                color: redRGB
+            });
+        }
+        else
+        {
+            var xOffset = mnWidth - mnWidth / 1.5;
+            texts.push({
+                f: 'martyria',
+                x: currentX - xOffset,
+                y: ngY + martyriaDistance,
+                t: ng.mn
+            });
+        }
+        //### MARTYRIA PARTIAL NARROW ###
+        if (ng.mpn)
+        {
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequenceMarks.push({
+                    mark: ng.mpn,
+                    //color: martyriaFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                // var xOffset = mnWidth;
+                texts.push({
+                    f: 'martyria',
+                    x: currentX + xOffset,
+                    y: ngY + martyriaDistance,
+                    t: ng.mpn
+                });
+            }
+        }
         currentX += mnWidth + xOffset / 2;
         //### MARTYRIA DIASTOLE NARROW ###
         if (ng.mdn)
