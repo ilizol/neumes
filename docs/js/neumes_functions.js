@@ -213,25 +213,18 @@ function writeText(text, offsetX)
     var textX = text.x + offsetX;
     var textY = text.y;
     var textT = text.t;
+    var stroke = setFont(textF);
     if (text.m)
     {
         var textM = text.m;
-        var markStroke = setFont(textF);
-        doc.textWithOpenTypeMarks(textT, textM, textX, textY, markStroke ? {
-            renderingMode: 'fillThenStroke'
-        } : undefined);
-        return;
-    }
-    var stroke = setFont(textF);
-    if (stroke)
-    {
-        doc.text(
+        doc.textWithOpenTypeMarks(
             textT,
+            textM,
             textX,
             textY,
-            {
+            stroke ? {
                 renderingMode: 'fillThenStroke'
-            }
+            } : undefined
         );
     }
     else
@@ -239,7 +232,10 @@ function writeText(text, offsetX)
         doc.text(
             textT,
             textX,
-            textY
+            textY,
+            stroke ? {
+                renderingMode: 'fillThenStroke'
+            } : undefined
         );
     }
     /* TODO
