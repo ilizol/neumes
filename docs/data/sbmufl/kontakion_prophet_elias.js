@@ -9,6 +9,7 @@ neumes.push(
     { "br": "ln4" }, // LINE BREAK
     // { "t": "Ἦχος β' Δι" },
     { "t": "Ἦχος" },
+    // { "t": "Ηχος" },
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
     // { "mt": "\uE2F1" }, // U+E2F1 = modeWordEchos
@@ -20,7 +21,6 @@ neumes.push(
         "t": "Δι",
         "mtf": "\uE19A" // U+E19A = fthoraSoftChromaticDiAbove
     },
-    { "t": "  " }, // SPACE
     // {
     //     "mt": "\uE2E4", // U+E2E4 = modeDi
     //     "mtp": "\uE19A" // U+E19A = fthoraSoftChromaticDiAbove

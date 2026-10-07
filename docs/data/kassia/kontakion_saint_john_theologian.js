@@ -9,6 +9,7 @@ neumes.push(
     { "br": "ln4" }, // LINE BREAK
     // { "t": "Ἦχος β' Δι" },
     { "t": "Ἦχος" },
+    // { "t": "Ηχος" },
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
     { "mtu": "o" },
@@ -17,7 +18,6 @@ neumes.push(
         "t": "Δι",
         "mtfu": "∂"
     },
-    { "t": "  " }, // SPACE
     { "br": "ln5" }, // LINE BREAK
     //###### DROPCAP ######
     { "d": "Τ" },

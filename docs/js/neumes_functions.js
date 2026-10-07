@@ -206,6 +206,12 @@ function setFont(type)
     return stroke;
 }
 
+function getTextWidthIgnoringMarks(text)
+{
+    const unmarkedText = text.normalize("NFD").replace(/\p{M}/gu, "");
+    return doc.getTextWidth(unmarkedText);
+}
+
 function writeText(text, offsetX)
 {
     (typeof offsetX == 'undefined') ? offsetX = 0 : null;

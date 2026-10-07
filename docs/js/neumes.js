@@ -499,8 +499,13 @@ neumes.forEach(function (ng, i)
     {
         setFont('title');
         var tWidth = doc.getTextWidth(ng.t);
+        var tWidthIgnoringMarks = getTextWidthIgnoringMarks(ng.t);
         var tHeight = doc.internal.getLineHeight();
         ngWidth += tWidth;
+        if (tWidthIgnoringMarks < tWidth)
+        {
+            ngX -= tWidth - tWidthIgnoringMarks;
+        }
     }
     //### TITLE 2 ###
     if (ng.t2)
