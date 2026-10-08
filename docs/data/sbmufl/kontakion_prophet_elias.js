@@ -13,9 +13,7 @@ neumes.push(
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
     // { "mt": "\uE2F1" }, // U+E2F1 = modeWordEchos
-    { "mt": "  " }, // SPACE
     { "mt": "\uE2A8" }, // U+E2A8 = modeSecond
-    { "mt": "  " }, // SPACE
     { "t": " " }, // SPACE
     {
         "t": "Δι",
