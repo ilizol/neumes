@@ -1,0 +1,2 @@
+https://github.com/foliojs/pdfkit/releases/download/v0.19.1/pdfkit.standalone.js
+https://github.com/devongovett/blob-stream/releases/download/v0.1.3/blob-stream.js
