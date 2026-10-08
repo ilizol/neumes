@@ -843,6 +843,11 @@ neumes.forEach(function (ng, i)
             //### PAGE MARGIN RULERS ###
             drawPageMarginRulers();
         }
+        if (hasPageVerticalRulers)
+        {
+            //### PAGE VERTICAL RULERS ###
+            drawPageVerticalRulers();
+        }
         if (hasBaselineRuler && ngY > 0)
         {
             //### BASELINE RULER ###
