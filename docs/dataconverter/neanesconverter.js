@@ -80,6 +80,7 @@
       Squiggle: '\uE157'
     },
     modeSign: {
+      WordEchos: '\uE2F1',
       SoftChromatic2: '\uE2A8',
       Nana: '\uE2B1',
       Ga: '\uE2E3',
@@ -191,6 +192,8 @@
           {
             //TODO change this
             entries.push({ br: 'ln4' });
+            entries.push({ mt: getGlyph('modeSign', 'modeWordEchos') });
+            // entries.push({ t: ' ' });
             entries.push({ mt: getGlyph('modeSign', element.martyria) });
           }
           if (element.note || element.fthoraAboveNote)
