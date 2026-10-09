@@ -205,7 +205,7 @@
             }
             if (element.fthoraAboveNote)
             {
-              modeNote.mtf = getGlyph('fthora', element.fthoraAboveNote);
+              modeNote.mtp = getGlyph('fthora', element.fthoraAboveNote);
             }
             entries.push(modeNote);
             //TODO change this
