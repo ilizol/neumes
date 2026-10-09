@@ -6,9 +6,7 @@
     //### jsPDF
     "js/jspdf.min.js",
     ...(pdfEngine === "jspdf" && hasOpenTypeMarks ? [
-
       "js/harfbuzz_offline_classic.js",
-      "js/harfbuzz_loader.js",
       "js/jspdf-harfbuzz.js",
     ] : []),
     //### PDFKit

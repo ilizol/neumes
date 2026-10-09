@@ -1,2 +1,19 @@
+jsPDF
+https://github.com/parallax/jsPDF/releases/tag/v1.5.3
+https://raw.githubusercontent.com/parallax/jsPDF/refs/tags/v1.5.3/dist/jspdf.min.js
+
+HarfBuzz.js
+https://github.com/harfbuzz/harfbuzzjs/releases/tag/v1.6.3
+https://github.com/harfbuzz/harfbuzzjs/releases/download/v1.6.3/harfbuzz.js
+https://github.com/harfbuzz/harfbuzzjs/releases/download/v1.6.3/harfbuzz.wasm
+https://www.npmjs.com/package/harfbuzzjs/v/1.6.3
+https://github.com/harfbuzz/harfbuzzjs/commit/79860e8f1343093469dace1546aad148e08b47de
+Offline bundle: node docs/js/harfbuzzjs/build-classic.mjs
+
+PDFKit
+https://github.com/foliojs/pdfkit/releases/tag/v0.19.1
 https://github.com/foliojs/pdfkit/releases/download/v0.19.1/pdfkit.standalone.js
+
+blob-stream
+https://github.com/devongovett/blob-stream/releases/tag/v0.1.3
 https://github.com/devongovett/blob-stream/releases/download/v0.1.3/blob-stream.js
