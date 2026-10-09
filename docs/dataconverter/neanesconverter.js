@@ -189,6 +189,8 @@
         case 'ModeKey':
           if (element.martyria)
           {
+            //TODO change this
+            entries.push({ br: 'ln4' });
             entries.push({ mt: getGlyph('modeSign', element.martyria) });
           }
           if (element.note || element.fthoraAboveNote)
@@ -202,8 +204,6 @@
             {
               modeNote.mtf = getGlyph('fthora', element.fthoraAboveNote);
             }
-            //TODO change this
-            entries.push({ br: 'ln4' });
             entries.push(modeNote);
             //TODO change this
             entries.push({ br: 'ln5' });
