@@ -9,17 +9,17 @@ var pdfKitDoc;
 if (pdfEngine === 'jspdf')
 {
     var pageFormat = 'a4';
-    doc = new jsPDF(
-        'p', 'pt', pageFormat
-    );
+    doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'pt',
+        format: pageFormat,
+        // putOnlyUsedFonts: true
+    });
 }
 else if (pdfEngine === 'pdfkit')
 {
-    // A4 portrait dimensions in points (pt)
-    //var pdfKitPageSize = [595.28, 841.89];
     pdfKitDoc = new PDFDocument({
         size: 'A4',
-        //size: pdfKitPageSize,
         layout: 'portrait',
         margin: 0
     });

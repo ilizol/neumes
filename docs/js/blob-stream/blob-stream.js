@@ -3372,7 +3372,8 @@ function writeAfterEnd(stream, state, cb) {
 // how many bytes or characters.
 function validChunk(stream, state, chunk, cb) {
   var valid = true;
-  if (!Buffer.isBuffer(chunk) &&
+    if (!Buffer.isBuffer(chunk) &&
+      !(chunk instanceof Uint8Array) &&
       'string' !== typeof chunk &&
       chunk !== null &&
       chunk !== undefined &&

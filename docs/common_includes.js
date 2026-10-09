@@ -4,15 +4,15 @@
   const hasOpenTypeMarks = window.hasOpenTypeMarks || false;
   const scripts = [
     //### jsPDF
-    "js/jspdf.min.js",
+    "js/jspdf/jspdf.min.js",
     ...(pdfEngine === "jspdf" && hasOpenTypeMarks ? [
-      "js/harfbuzz_offline_classic.js",
-      "js/jspdf-harfbuzz.js",
+      "js/harfbuzzjs/harfbuzz_offline_classic.js",
+      "js/jspdf/jspdf-harfbuzz.js",
     ] : []),
     //### PDFKit
     ...(pdfEngine === "pdfkit" ? [
-      "js/pdfkit.standalone.js",
-      "js/blob-stream.js",
+      "js/pdfkit/pdfkit.standalone.js",
+      "js/blob-stream/blob-stream.js",
     ] : []),
     //### Alegreya
     "fonts/Alegreya-Bold-normal.js",

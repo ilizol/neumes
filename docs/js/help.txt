@@ -1,6 +1,8 @@
 jsPDF
 https://github.com/parallax/jsPDF/releases/tag/v1.5.3
+https://github.com/parallax/jsPDF/blob/v1.5.3/dist/jspdf.min.js
 https://raw.githubusercontent.com/parallax/jsPDF/refs/tags/v1.5.3/dist/jspdf.min.js
+https://github.com/parallax/jsPDF/tree/v1.5.3/fontconverter
 
 HarfBuzz.js
 https://github.com/harfbuzz/harfbuzzjs/releases/tag/v1.6.3
@@ -11,8 +13,8 @@ https://github.com/harfbuzz/harfbuzzjs/commit/79860e8f1343093469dace1546aad148e0
 Offline bundle: node docs/js/harfbuzzjs/build-classic.mjs
 
 PDFKit
-https://github.com/foliojs/pdfkit/releases/tag/v0.19.1
-https://github.com/foliojs/pdfkit/releases/download/v0.19.1/pdfkit.standalone.js
+https://github.com/foliojs/pdfkit/releases/tag/v0.20.2
+https://github.com/foliojs/pdfkit/releases/download/v0.20.2/pdfkit.standalone.js
 
 blob-stream
 https://github.com/devongovett/blob-stream/releases/tag/v0.1.3
