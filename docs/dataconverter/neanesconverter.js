@@ -213,6 +213,10 @@
           }
           break;
         case 'Note':
+          if (element.measureBarLeft)
+          {
+            entry.nb = getGlyph('measureBar', element.measureBarLeft);
+          }
           if (element.vareia)
           {
             entry.v = glyphs.vocalExpressionNeume.Vareia;
@@ -221,10 +225,6 @@
           if (element.vocalExpressionNeume)
           {
             entry.np = getGlyph('vocalExpressionNeume', element.vocalExpressionNeume);
-          }
-          if (element.measureBarLeft)
-          {
-            entry.nb = getGlyph('measureBar', element.measureBarLeft);
           }
           if (element.timeNeume)
           {
