@@ -286,7 +286,7 @@ function writeLineTexts(lineTexts, availSpace, alignment)
     if (availSpace > 0)
     {
         // justify
-        if (alignment == 'justify')
+        if (alignment == 'justify' && lineElements > 1)
         {
             offsetX = availSpace / (lineElements - 1);
         }

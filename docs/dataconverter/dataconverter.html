@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <script type='text/javascript' src='FileSaver.js'></script>
+  <link rel="stylesheet" href="pure-min.css">
+</head>
+
+<body>
+  <form id="file-form" class="pure-form pure-form-aligned">
+    <fieldset>
+      <div class="pure-control-group">
+        <label for="fileName">Output file name</label>
+        <input type="text" name="fileName" id="fileName" placeholder="neumes" />
+      </div>
+      <div class="pure-control-group">
+        <label for="file-input">Neanes score files</label>
+        <input type="file" id="file-input" name="file-input" accept=".byzx,application/json" multiple required />
+      </div>
+      <div class="pure-controls">
+        <button type="submit" id="createFile" class="pure-button pure-button-primary">Create JS file</button>
+        <span id="status" role="status" aria-live="polite"></span>
+      </div>
+    </fieldset>
+  </form>
+  <script type="text/javascript" src="sbmufl-glyphs.js"></script>
+  <script type="text/javascript" src="neanesconverter.js"></script>
+</body>

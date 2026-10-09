@@ -26240,6 +26240,7 @@ class $79ea6270f0a90256$export$2e2bcd8739ae039 extends (0, $7b226e6bbeadedeb$exp
         }
     }
     applyAnchor(markRecord, baseAnchor, baseGlyphIndex) {
+        if (!baseAnchor || !markRecord.markAnchor) return false;
         let baseCoords = this.getAnchor(baseAnchor);
         let markCoords = this.getAnchor(markRecord.markAnchor);
         let basePos = this.positions[baseGlyphIndex];
