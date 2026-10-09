@@ -23,9 +23,9 @@
       OligonPlusIsonPlusKentemata: '\uE084'
     },
     ison: {
-      Unison: '\uE260',
-      Thi: '\uE268',
-      Vou: '\uE266'
+      Unison: 'Μ',
+      Thi: 'Δ',
+      Vou: 'Β'
     },
     measureBar: {
       MeasureBarRight: '\uE210'
@@ -210,14 +210,14 @@
           }
           break;
         case 'Note':
-          entry.n = getGlyph('quantitativeNeume', element.quantitativeNeume);
-          if (element.lyrics)
+          if (element.vareia)
           {
-            entry.l = element.lyrics;
+            entry.v = glyphs.vocalExpressionNeume.Vareia;
           }
-          if (element.ison)
+          entry.n = getGlyph('quantitativeNeume', element.quantitativeNeume);
+          if (element.vocalExpressionNeume)
           {
-            entry.i = getGlyph('ison', element.ison);
+            entry.np = getGlyph('vocalExpressionNeume', element.vocalExpressionNeume);
           }
           if (element.measureBarLeft)
           {
@@ -226,10 +226,6 @@
           if (element.measureBarRight)
           {
             entry.n2 = getGlyph('measureBar', element.measureBarRight);
-          }
-          if (element.vocalExpressionNeume)
-          {
-            entry.np = getGlyph('vocalExpressionNeume', element.vocalExpressionNeume);
           }
           if (element.timeNeume)
           {
@@ -252,9 +248,13 @@
               throw new Error('Unsupported measure number: ' + element.measureNumber);
             }
           }
-          if (element.vareia)
+          if (element.ison)
           {
-            entry.v = glyphs.vocalExpressionNeume.Vareia;
+            entry.i = getGlyph('ison', element.ison);
+          }
+          if (element.lyrics)
+          {
+            entry.l = element.lyrics;
           }
           break;
         case 'Martyria':
