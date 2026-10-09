@@ -226,17 +226,13 @@
           {
             entry.nb = getGlyph('measureBar', element.measureBarLeft);
           }
-          if (element.measureBarRight)
-          {
-            entry.n2 = getGlyph('measureBar', element.measureBarRight);
-          }
           if (element.timeNeume)
           {
-            entry.c = getGlyph('timeNeume', element.timeNeume);
+            entry.np = getGlyph('timeNeume', element.timeNeume);
           }
           if (element.gorgonNeume)
           {
-            entry.cr = getGlyph('gorgonNeume', element.gorgonNeume);
+            entry.c = getGlyph('gorgonNeume', element.gorgonNeume);
           }
           if (element.fthora)
           {
@@ -258,6 +254,10 @@
           if (element.lyrics)
           {
             entry.l = element.lyrics;
+          }
+          if (element.measureBarRight)
+          {
+            entry.n2 = getGlyph('measureBar', element.measureBarRight);
           }
           break;
         case 'Martyria':
