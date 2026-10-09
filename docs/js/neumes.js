@@ -401,18 +401,10 @@ var ngWidth = 0;
 var texts = [];
 var textsAfter = [];
 //TODO change this
-var sequenceFont = 'neumes';
-var sequenceAfterFont = 'neumes';
-var sequenceX = 0;
-var sequenceY = 0;
-var sequenceAfterX = 0;
-var sequenceAfterY = 0;
-var sequenceText = '';
-var sequenceAfterText = '';
+var sequenceIndex = -1;
+var sequenceAfterIndex = -1;
 var sequences = [];
 var sequencesAfter = [];
-var sequenceMarks = [];
-var sequenceAfterMarks = [];
 var lineTexts = [];
 var ngLength = neumes.length;
 if (hasLineNum && lineNum > 0)
@@ -453,18 +445,10 @@ neumes.forEach(function (ng, i)
     texts = [];
     textsAfter = [];
     //TODO change this
-    sequenceFont = 'neumes';
-    sequenceAfterFont = 'neumes';
-    sequenceX = 0;
-    sequenceY = 0;
-    sequenceAfterX = 0;
-    sequenceAfterY = 0;
-    sequenceText = '';
-    sequenceAfterText = '';
+    sequenceIndex = -1;
+    sequenceAfterIndex = -1;
     sequences = [];
     sequencesAfter = [];
-    sequenceMarks = [];
-    sequenceAfterMarks = [];
 
     //### HEADER ###
     if (ng.h)
@@ -922,10 +906,14 @@ neumes.forEach(function (ng, i)
         {
             //### SEQUENCE ###
             //TODO change this
-            sequenceFont = 'martyria_title';
-            sequenceX = currentX;
-            sequenceY = ngY;
-            sequenceText += ng.mt;
+            sequenceIndex++;
+            sequences.push({
+                f: 'martyria_title',
+                x: currentX,
+                y: ngY,
+                t: ng.mt,
+                m: []
+            });
         }
         else
         {
@@ -951,7 +939,7 @@ neumes.forEach(function (ng, i)
             {
                 //### SEQUENCE MARKS ###
                 //TODO change this
-                sequenceMarks.push({
+                sequences[sequenceIndex].m.push({
                     mark: ng.mtp,
                     //color: martyriaFontColor
                     color: redRGB
@@ -1452,10 +1440,14 @@ neumes.forEach(function (ng, i)
         {
             //### SEQUENCE ###
             //TODO change this
-            sequenceFont = 'neumes';
-            sequenceX = currentX;
-            sequenceY = ngY;
-            sequenceText += ng.n;
+            sequenceIndex++;
+            sequences.push({
+                f: 'neumes',
+                x: currentX,
+                y: ngY,
+                t: ng.n,
+                m: []
+            });
         }
         else
         {
@@ -1474,7 +1466,7 @@ neumes.forEach(function (ng, i)
             {
                 //### SEQUENCE MARKS ###
                 //TODO change this
-                sequenceMarks.push({
+                sequences[sequenceIndex].m.push({
                     mark: ng.np,
                     //color: neumesFontColor
                     color: blackRGB
@@ -1498,7 +1490,7 @@ neumes.forEach(function (ng, i)
             {
                 //### SEQUENCE MARKS ###
                 //TODO change this
-                sequenceMarks.push({
+                sequences[sequenceIndex].m.push({
                     mark: ng.c,
                     //color: chronosFontColor
                     color: redRGB
@@ -1897,10 +1889,14 @@ neumes.forEach(function (ng, i)
             {
                 //### SEQUENCE AFTER (2) ###
                 //TODO change this
-                sequenceAfterFont = 'neumes';
-                sequenceAfterX = currentX;
-                sequenceAfterY = ngY;
-                sequenceAfterText += ng.n2;
+                sequenceAfterIndex++;
+                sequencesAfter.push({
+                    f: 'neumes',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.n2,
+                    m: []
+                });
             }
             else
             {
@@ -1940,7 +1936,7 @@ neumes.forEach(function (ng, i)
                 {
                     //### SEQUENCE MARKS AFTER (2) ###
                     //TODO change this
-                    sequenceAfterMarks.push({
+                    sequencesAfter[sequenceAfterIndex].m.push({
                         mark: ng.c2,
                         //color: chronosFontColor
                         color: redRGB
@@ -2022,12 +2018,15 @@ neumes.forEach(function (ng, i)
     {
         if (hasOpenTypeMarks)
         {
-            //### SEQUENCE MARKS ###
+            //### SEQUENCE ###
             //TODO change this
-            sequenceMarks.push({
-                mark: ng.m,
-                //color: martyriaFontColor
-                color: redRGB
+            sequenceIndex++;
+            sequences.push({
+                f: 'martyria',
+                x: currentX,
+                y: ngY + martyriaDistance,
+                t: ng.m,
+                m: []
             });
         }
         else
@@ -2058,7 +2057,7 @@ neumes.forEach(function (ng, i)
             {
                 //### SEQUENCE MARKS ###
                 //TODO change this
-                sequenceMarks.push({
+                sequences[sequenceIndex].m.push({
                     mark: ng.mp,
                     //color: martyriaFontColor
                     color: redRGB
@@ -2081,12 +2080,15 @@ neumes.forEach(function (ng, i)
     {
         if (hasOpenTypeMarks)
         {
-            //### SEQUENCE MARKS ###
+            //### SEQUENCE ###
             //TODO change this
-            sequenceMarks.push({
-                mark: ng.mn,
-                //color: martyriaFontColor
-                color: redRGB
+            sequenceIndex++;
+            sequences.push({
+                f: 'martyria',
+                x: currentX,
+                y: ngY + martyriaDistance,
+                t: ng.mn,
+                m: []
             });
         }
         else
@@ -2106,7 +2108,7 @@ neumes.forEach(function (ng, i)
             {
                 //### SEQUENCE MARKS ###
                 //TODO change this
-                sequenceMarks.push({
+                sequences[sequenceIndex].m.push({
                     mark: ng.mpn,
                     //color: martyriaFontColor
                     color: redRGB
@@ -2224,28 +2226,6 @@ neumes.forEach(function (ng, i)
     {
         //### SEQUENCE ###
         //TODO change this
-        if (sequenceText.length > 0)
-        {
-            sequences.push({
-                f: sequenceFont,
-                x: sequenceX,
-                y: sequenceY,
-                t: sequenceText,
-                m: sequenceMarks
-            });
-
-            //### SEQUENCE AFTER (2) ###
-            if (sequenceAfterText.length > 0)
-            {
-                sequencesAfter.push({
-                    f: sequenceAfterFont,
-                    x: sequenceAfterX,
-                    y: sequenceAfterY,
-                    t: sequenceAfterText,
-                    m: sequenceAfterMarks
-                });
-            }
-        }
         if (sequences.length > 0)
         {
             texts = sequences.concat(texts);
