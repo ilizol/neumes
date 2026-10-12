@@ -1196,6 +1196,20 @@ neumes.forEach(function (ng, i)
                 t: ng.iu
             });
         }
+        //### NEUMES ###
+        if (hasOpenTypeMarks)
+        {
+            //### SEQUENCE ###
+            //TODO change this
+            sequenceIndex++;
+            sequences.push({
+                f: 'neumes',
+                x: currentX,
+                y: ngY,
+                t: ng.n,
+                m: []
+            });
+        }
         //### FTHORA INFO ###
         if (ng.fi)
         {
@@ -1209,12 +1223,25 @@ neumes.forEach(function (ng, i)
         //### FTHORA ###
         if (ng.f)
         {
-            texts.push({
-                f: 'fthora',
-                x: currentX,
-                y: ngY,
-                t: ng.f
-            });
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequences[sequenceIndex].m.push({
+                    mark: ng.f,
+                    //color: fthoraFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                texts.push({
+                    f: 'fthora',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.f
+                });
+            }
         }
         //### NEUMES MIDDLE ###
         if (ng.nm)
@@ -1313,12 +1340,26 @@ neumes.forEach(function (ng, i)
         //### QUALITY ###
         if (ng.q)
         {
-            texts.push({
-                f: 'quality',
-                x: currentX,
-                y: ngY,
-                t: ng.q
-            });
+            //TODO change this
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequences[sequenceIndex].m.push({
+                    mark: ng.q,
+                    //color: qualityFontColor
+                    color: blackRGB
+                });
+            }
+            else
+            {
+                texts.push({
+                    f: 'quality',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.q
+                });
+            }
         }
         //### QUALITY RIGHTER ##
         if (ng.qr)
@@ -1440,14 +1481,14 @@ neumes.forEach(function (ng, i)
         {
             //### SEQUENCE ###
             //TODO change this
-            sequenceIndex++;
-            sequences.push({
-                f: 'neumes',
-                x: currentX,
-                y: ngY,
-                t: ng.n,
-                m: []
-            });
+            // sequenceIndex++;
+            // sequences.push({
+            //     f: 'neumes',
+            //     x: currentX,
+            //     y: ngY,
+            //     t: ng.n,
+            //     m: []
+            // });
         }
         else
         {
@@ -1561,12 +1602,25 @@ neumes.forEach(function (ng, i)
         //### ETERON ###
         if (ng.e)
         {
-            texts.push({
-                f: 'eteron',
-                x: currentX,
-                y: ngY,
-                t: ng.e
-            });
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequences[sequenceIndex].m.push({
+                    mark: ng.e,
+                    //color: eteronFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                texts.push({
+                    f: 'eteron',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.e
+                });
+            }
         }
         //### ETERON RIGHTER ###
         if (ng.er)
