@@ -192,10 +192,10 @@
                     entry.d = element.content;
                     break;
                 case 'ModeKey':
+                    //TODO change this
+                    entries.push({ br: 'ln4' });
                     if (element.martyria)
                     {
-                        //TODO change this
-                        entries.push({ br: 'ln4' });
                         entries.push({ mt: getGlyph('modeSign', 'modeWordEchos') });
                         // entries.push({ t: ' ' });
                         entries.push({ mt: getGlyph('modeSign', element.martyria) });
@@ -212,9 +212,13 @@
                             modeNote.mtp = getGlyph('fthora', element.fthoraAboveNote);
                         }
                         entries.push(modeNote);
-                        //TODO change this
-                        entries.push({ br: 'ln5' });
                     }
+                    if (element.quantitativeNeumeRight)
+                    {
+                        entries.push({ n: getGlyph('quantitativeNeume', element.quantitativeNeumeRight) });
+                    }
+                    //TODO change this
+                    entries.push({ br: 'ln5' });
                     break;
                 case 'Note':
                     if (element.measureBarLeft)
