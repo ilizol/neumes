@@ -134,7 +134,7 @@ neumes.push(
     {
         "nb": "\uE210", // DIASTOLE, U+E210 = barlineSingle
         "n": "\uE003", // U+E003 = oligonKentimaBelow
-        "np": "\uE0A1", // U+E0A1 = psifiston
+        "q": "\uE0A1", // U+E0A1 = psifiston
         "r": "3",
         "l": "λω"
     },
@@ -259,7 +259,7 @@ neumes.push(
     },
     {
         "n": "\uE003", // U+E003 = oligonKentimaBelow
-        "np": "\uE0A1", // U+E0A1 = psifiston
+        "q": "\uE0A1", // U+E0A1 = psifiston
         "i": "Μ",
         "l": "πρε"
     },
