@@ -222,10 +222,6 @@
             entry.v = glyphs.vocalExpressionNeume.Vareia;
           }
           entry.n = getGlyph('quantitativeNeume', element.quantitativeNeume);
-          if (element.vocalExpressionNeume)
-          {
-            entry.np = getGlyph('vocalExpressionNeume', element.vocalExpressionNeume);
-          }
           if (element.timeNeume)
           {
             entry.np = getGlyph('timeNeume', element.timeNeume);
@@ -233,6 +229,20 @@
           if (element.gorgonNeume)
           {
             entry.c = getGlyph('gorgonNeume', element.gorgonNeume);
+          }
+          if (element.vocalExpressionNeume)
+          {
+            if (
+              element.vocalExpressionNeume === 'Heteron' ||
+              element.vocalExpressionNeume === 'HeteronConnecting'
+            )
+            {
+              entry.e = getGlyph('vocalExpressionNeume', element.vocalExpressionNeume);
+            }
+            else
+            {
+              entry.q = getGlyph('vocalExpressionNeume', element.vocalExpressionNeume);
+            }
           }
           if (element.fthora)
           {
