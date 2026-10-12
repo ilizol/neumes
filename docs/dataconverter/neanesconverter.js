@@ -59,6 +59,10 @@
             Argon: '\uE0FC',
             Hemiolion: '\uE0FD'
         },
+        accidental: {
+            Sharp_2_Left: '\uE1F0',
+            Sharp_2_LeftSecondary: '\uE1F6'
+        },
         fthora: {
             GeneralFlat_Top: '\uE204',
             SoftChromaticThi_Top: '\uE19A',
