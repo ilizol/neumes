@@ -12,19 +12,19 @@ neumes.push(
     // { "t": "Ηχος" },
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
-    { "mt": "\uE2A8" }, // U+E2A8 = modeSecond
+    { "mt": "\uE2A8" }, // modeSecond
     { "t": " " }, // SPACE
     {
         "t": "Δι",
-        "mtf": "\uE19A" // U+E19A = fthoraSoftChromaticDiAbove
+        "mtf": "\uE19A" // fthoraSoftChromaticDiAbove
     },
     { "br": "ln5" }, // LINE BREAK
     //###### MARTYRIA ######
-    { "mt": "\uE2F1" }, // U+E2F1 = modeWordEchos
-    { "mt": "\uE2A8" }, // U+E2A8 = modeSecond
+    { "mt": "\uE2F1" }, // modeWordEchos
+    { "mt": "\uE2A8" }, // modeSecond
     {
-        "mt": "\uE2E4", // U+E2E4 = modeDi
-        "mtp": "\uE19A" // U+E19A = fthoraSoftChromaticDiAbove
+        "mt": "\uE2E4", // modeDi
+        "mtp": "\uE19A" // fthoraSoftChromaticDiAbove
     },
     { "br": "ln5" }, // LINE BREAK
 
