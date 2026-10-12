@@ -601,6 +601,13 @@ neumes.forEach(function (ng, i)
     {
         ng.i2 = '(' + ng.i2 + ')';
     }
+    //### NEUMES TITLE ###
+    if (ng.nt)
+    {
+        setFont('neumes_title');
+        var ntWidth = doc.getTextWidth(ng.nt);
+        ngWidth += ntWidth;
+    }
     //### NEUMES LOWER ###
     if (ng.nl)
     {
@@ -1034,6 +1041,32 @@ neumes.forEach(function (ng, i)
         else
         {
             ngWidth -= wsWidth;
+        }
+    }
+    //### NEUMES TITLE ###
+    if (ng.nt)
+    {
+        if (hasOpenTypeMarks)
+        {
+            //### SEQUENCE ###
+            //TODO change this
+            sequenceIndex++;
+            sequences.push({
+                f: 'neumes_title',
+                x: currentX,
+                y: ngY,
+                t: ng.nt,
+                m: []
+            });
+        }
+        else
+        {
+            texts.push({
+                f: 'neumes_title',
+                x: currentX,
+                y: ngY,
+                t: ng.nt
+            });
         }
     }
     //### NEUMES LOWER ###

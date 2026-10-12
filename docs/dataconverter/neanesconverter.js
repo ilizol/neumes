@@ -215,7 +215,7 @@
                     }
                     if (element.quantitativeNeumeRight)
                     {
-                        entries.push({ n: getGlyph('quantitativeNeume', element.quantitativeNeumeRight) });
+                        entries.push({ nt: getGlyph('quantitativeNeume', element.quantitativeNeumeRight) });
                     }
                     //TODO change this
                     entries.push({ br: 'ln5' });
