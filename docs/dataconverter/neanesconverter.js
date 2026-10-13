@@ -77,13 +77,45 @@
             Enharmonic_Bottom: '\uE1CC'
         },
         martyriaNote: {
+            ZoLow: '\uE130',
+            NiLow: '\uE131',
+            PaLow: '\uE132',
+            VouLow: '\uE133',
+            GaLow: '\uE134',
+            DiLow: '\uE135',
+            ThiLow: '\uE135',
+            KeLow: '\uE136',
+            Zo: '\uE137',
             Ni: '\uE138',
+            Pa: '\uE139',
+            Vou: '\uE13A',
+            Ga: '\uE13B',
+            Di: '\uE13C',
             Thi: '\uE13C',
-            Vou: '\uE13A'
+            Ke: '\uE13D',
+            ZoHigh: '\uE13E',
+            NiHigh: '\uE13F',
+            PaHigh: '\uE140',
+            VouHigh: '\uE141',
+            GaHigh: '\uE142',
+            DiHigh: '\uE143',
+            ThiHigh: '\uE143',
+            KeHigh: '\uE144'
         },
         rootSign: {
             SoftChromaticSquiggle: '\uE159',
-            Squiggle: '\uE157'
+            Squiggle: '\uE157',
+            NanaLow: '\uE154',
+            DeltaLow: '\uE151',
+            AlphaLow: '\uE152',
+            LegetosLow: '\uE153',
+            Nana: '\uE154',
+            Delta: '\uE151',
+            Alpha: '\uE152',
+            Legetos: '\uE153',
+            DeltaDotted: '\uE155',
+            AlphaDotted: '\uE156',
+            Varys: '\uE15B'
         },
         modeSign: {
             WordEchos: '\uE2F1',
@@ -161,9 +193,9 @@
             }
             if (category === 'rootSign')
             {
-                var rootSignName = adjustedName.replace(/Low$/, '');
-                var rootSignAliases = { Varys: 'Zygos' };
-                candidates.push('martyria' + (rootSignAliases[rootSignName] || rootSignName) + 'Below');
+                // var rootSignName = adjustedName.replace(/Low$/, '');
+                // var rootSignAliases = { Varys: 'Zygos' };
+                // candidates.push('martyria' + (rootSignAliases[rootSignName] || rootSignName) + 'Below');
             }
             if (category === 'quantitativeNeume' && /Kentima$/.test(adjustedName))
             {
