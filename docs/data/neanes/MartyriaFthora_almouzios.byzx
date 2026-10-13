@@ -1,0 +1,2326 @@
+{
+  "version": "1.1",
+  "appVersion": "0.5.45",
+  "pageSetup": {
+    "pageSize": "A4",
+    "pageSizeUnit": "pt",
+    "pageWidth": 793.7007874015749,
+    "pageHeight": 1122.5196850393702,
+    "topMargin": 96,
+    "bottomMargin": 96,
+    "leftMargin": 96,
+    "rightMargin": 96,
+    "headerMargin": 48,
+    "footerMargin": 48,
+    "firstPageNumber": 1,
+    "lineHeight": 80,
+    "lyricsVerticalOffset": 0,
+    "lyricsMinimumSpacing": 0,
+    "lyricsMelismaCutoffWidth": 6.666666666666667,
+    "neumeDefaultFontFamily": "Almouzios",
+    "neumeDefaultFontSize": 26.666666666666668,
+    "neumeDefaultColor": "#000000",
+    "neumeDefaultSpacing": 0,
+    "neumeDefaultStrokeWidth": 0,
+    "alternateLineDefaultFontSize": 16,
+    "alternateLineDefaultColor": "#ED0000",
+    "modeKeyDefaultColor": "#ED0000",
+    "modeKeyDefaultStrokeWidth": 0,
+    "modeKeyDefaultFontSize": 26.666666666666668,
+    "modeKeyDefaultHeightAdjustment": 0,
+    "accidentalDefaultColor": "#ED0000",
+    "accidentalDefaultStrokeWidth": 0,
+    "fthoraDefaultColor": "#ED0000",
+    "fthoraDefaultStrokeWidth": 0,
+    "heteronDefaultColor": "#ED0000",
+    "heteronDefaultStrokeWidth": 0,
+    "gorgonDefaultColor": "#ED0000",
+    "gorgonDefaultStrokeWidth": 0,
+    "measureBarDefaultColor": "#ED0000",
+    "measureBarDefaultStrokeWidth": 0,
+    "measureNumberDefaultColor": "#000000",
+    "measureNumberDefaultStrokeWidth": 0,
+    "noteIndicatorDefaultColor": "#ED0000",
+    "noteIndicatorDefaultStrokeWidth": 0,
+    "isonDefaultColor": "#ED0000",
+    "isonDefaultStrokeWidth": 0,
+    "breathDefaultColor": "#000000",
+    "breathDefaultStrokeWidth": 0,
+    "crossDefaultColor": "#000000",
+    "crossDefaultStrokeWidth": 0,
+    "koronisDefaultColor": "#ED0000",
+    "koronisDefaultStrokeWidth": 0,
+    "martyriaDefaultColor": "#ED0000",
+    "martyriaDefaultStrokeWidth": 0,
+    "tempoDefaultColor": "#ED0000",
+    "tempoDefaultStrokeWidth": 0,
+    "dropCapDefaultLineSpan": 1,
+    "hyphenSpacing": 0,
+    "minimumSyllableToHyphenClearance": 0,
+    "martyriaVerticalOffset": 0,
+    "chrysanthineAccidentals": true,
+    "alignIsonIndicators": true,
+    "ignorePunctuationWhenPositioningLyrics": true
+  },
+  "paragraphStyles": [
+    {
+      "id": "default-text",
+      "displayName": "Default Text"
+    },
+    {
+      "id": "annotation",
+      "displayName": "Annotation",
+      "parentStyleId": "default-text"
+    },
+    {
+      "id": "title",
+      "displayName": "Title",
+      "parentStyleId": "default-text",
+      "alignment": "center",
+      "fontSize": 37.333333333333336
+    },
+    {
+      "id": "subtitle",
+      "displayName": "Subtitle",
+      "parentStyleId": "default-text",
+      "alignment": "center",
+      "fontSize": 29.333333333333332
+    },
+    {
+      "id": "chapter",
+      "displayName": "Chapter",
+      "parentStyleId": "default-text",
+      "alignment": "center",
+      "fontSize": 32
+    },
+    {
+      "id": "section",
+      "displayName": "Section",
+      "parentStyleId": "default-text",
+      "fontSize": 26.666666666666668
+    },
+    {
+      "id": "header",
+      "displayName": "Header",
+      "parentStyleId": "default-text",
+      "alignment": "center"
+    },
+    {
+      "id": "footer",
+      "displayName": "Footer",
+      "parentStyleId": "default-text",
+      "alignment": "center"
+    },
+    {
+      "id": "lyrics",
+      "displayName": "Lyrics",
+      "parentStyleId": "default-text"
+    },
+    {
+      "id": "drop-cap",
+      "displayName": "Drop Cap",
+      "parentStyleId": "default-text",
+      "fontSize": 80
+    }
+  ],
+  "headers": {
+    "default": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "odd": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "even": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "firstPage": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "chapterOpening": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    }
+  },
+  "footers": {
+    "default": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "odd": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "even": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "firstPage": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "chapterOpening": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "paragraphStyleId": "default-text",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    }
+  },
+  "staff": {
+    "elements": [
+      {
+        "id": 1,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 2,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 3,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 4,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 5,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 6,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 7,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 8,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 9,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 10,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 11,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 12,
+        "elementType": "Martyria",
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 13,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 14,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 15,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 16,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 17,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 18,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 19,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 20,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 21,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 22,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 23,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 24,
+        "elementType": "Martyria",
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 25,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 26,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 27,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 28,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 29,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 30,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 31,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 32,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 33,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 34,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 35,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 36,
+        "elementType": "Martyria",
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 37,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 38,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 39,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 40,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 41,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 42,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 43,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 44,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 45,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 46,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 47,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 48,
+        "elementType": "Martyria",
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 49,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 50,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 51,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 52,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 53,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 54,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 55,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 56,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 57,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 58,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 59,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 60,
+        "elementType": "Martyria",
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 61,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 62,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 63,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 64,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 65,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 66,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 67,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 68,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 69,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 70,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 71,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 72,
+        "elementType": "Martyria",
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 73,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 74,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 75,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 76,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 77,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 78,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 79,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 80,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 81,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 82,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 83,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 84,
+        "elementType": "Martyria",
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 85,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 86,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 87,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 88,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 89,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 90,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 91,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 92,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 93,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 94,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 95,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 96,
+        "elementType": "Martyria",
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 97,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 98,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 99,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 100,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 101,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 102,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 103,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 104,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 105,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 106,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 107,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 108,
+        "elementType": "Martyria",
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 109,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 110,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 111,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 112,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 113,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 114,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 115,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 116,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 117,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 118,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 119,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 120,
+        "elementType": "Martyria",
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 121,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 122,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 123,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 124,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 125,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 126,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 127,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 128,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 129,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 130,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 131,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 132,
+        "elementType": "Martyria",
+        "note": "Vou",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 133,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 134,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 135,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 136,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 137,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 138,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 139,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 140,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 141,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 142,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 143,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 144,
+        "elementType": "Martyria",
+        "note": "Ga",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 145,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 146,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 147,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 148,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 149,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 150,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 151,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 152,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 153,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 154,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 155,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 156,
+        "elementType": "Martyria",
+        "note": "Thi",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 157,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 158,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 159,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 160,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 161,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 162,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 163,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 164,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 165,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 166,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 167,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 168,
+        "elementType": "Martyria",
+        "note": "Ke",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 169,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 170,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 171,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 172,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 173,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 174,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 175,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 176,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 177,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 178,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 179,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 180,
+        "elementType": "Martyria",
+        "note": "ZoHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 181,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 182,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 183,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 184,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 185,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 186,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 187,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 188,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 189,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 190,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 191,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 192,
+        "elementType": "Martyria",
+        "note": "NiHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 193,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 194,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 195,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 196,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 197,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 198,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 199,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 200,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 201,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 202,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 203,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 204,
+        "elementType": "Martyria",
+        "note": "PaHigh",
+        "rootSign": "Alpha",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 205,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 206,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 207,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 208,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 209,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 210,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 211,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 212,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 213,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 214,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 215,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 216,
+        "elementType": "Martyria",
+        "note": "VouHigh",
+        "rootSign": "Legetos",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 217,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 218,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 219,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 220,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 221,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 222,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 223,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 224,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 225,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 226,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 227,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 228,
+        "elementType": "Martyria",
+        "note": "GaHigh",
+        "rootSign": "Nana",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 229,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 230,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 231,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 232,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 233,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 234,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 235,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 236,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 237,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 238,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 239,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 240,
+        "elementType": "Martyria",
+        "note": "ThiHigh",
+        "rootSign": "DeltaDotted",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "id": 241,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiLow_Top"
+      },
+      {
+        "id": 242,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicPa_Top"
+      },
+      {
+        "id": 243,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicVou_Top"
+      },
+      {
+        "id": 244,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicGa_Top"
+      },
+      {
+        "id": 245,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicThi_Top"
+      },
+      {
+        "id": 246,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicKe_Top"
+      },
+      {
+        "id": 247,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicZo_Top"
+      },
+      {
+        "id": 248,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "DiatonicNiHigh_Top"
+      },
+      {
+        "id": 249,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticPa_Top"
+      },
+      {
+        "id": 250,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "HardChromaticThi_Top"
+      },
+      {
+        "id": 251,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticPa_Top"
+      },
+      {
+        "id": 252,
+        "elementType": "Martyria",
+        "note": "KeHigh",
+        "rootSign": "AlphaDotted",
+        "scale": "Diatonic",
+        "fthora": "SoftChromaticThi_Top"
+      },
+      {
+        "elementType": "Empty"
+      }
+    ],
+    "lyrics": {
+      "text": ""
+    }
+  }
+}
