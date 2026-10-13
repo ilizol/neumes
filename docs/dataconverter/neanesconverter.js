@@ -67,11 +67,20 @@
         fthora: {
             Kliton_Top: '\uE19E',
             GeneralFlat_Top: '\uE204',
-            SoftChromaticThi_Top: '\uE19A',
-            SoftChromaticThi_Bottom: '\uE1CA',
-            HardChromaticThi_Top: '\uE199',
-            HardChromaticThi_Bottom: '\uE1C9',
+            DiatonicNiLow_Top: '\uE190',
+            DiatonicPa_Top: '\uE191',
+            DiatonicVou_Top: '\uE192',
+            DiatonicGa_Top: '\uE193',
             DiatonicThi_Top: '\uE194',
+            DiatonicKe_Top: '\uE195',
+            DiatonicZo_Top: '\uE196',
+            DiatonicNiHigh_Top: '\uE197',
+            HardChromaticPa_Top: '\uE198',
+            HardChromaticThi_Top: '\uE199',
+            SoftChromaticThi_Top: '\uE19A',
+            SoftChromaticPa_Top: '\uE19B',
+            SoftChromaticThi_Bottom: '\uE1CA',
+            HardChromaticThi_Bottom: '\uE1C9',
             DiatonicThi_Bottom: '\uE1C4',
             Enharmonic_Top: '\uE19C',
             Enharmonic_Bottom: '\uE1CC'
@@ -355,6 +364,10 @@
                     if (element.rootSign)
                     {
                         entry.mp = getGlyph('rootSign', element.rootSign);
+                    }
+                    if (element.fthora)
+                    {
+                        entry.mf = getGlyph('fthora', element.fthora);
                     }
                     break;
                 case 'Empty':

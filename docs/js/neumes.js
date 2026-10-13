@@ -2185,6 +2185,30 @@ neumes.forEach(function (ng, i)
                 });
             }
         }
+        //### MARTYRIA FTHORA ###
+        if (ng.mf)
+        {
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequences[sequenceIndex].m.push({
+                    mark: ng.mf,
+                    //color: martyriaFontColor
+                    //color: fthoraFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                texts.push({
+                    f: 'fthora',
+                    x: currentX,
+                    y: ngY + martyriaDistance,
+                    t: ng.mf
+                });
+            }
+        }
     }
     //### MARTYRIA NARROW ###
     if (ng.mn)
