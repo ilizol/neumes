@@ -948,7 +948,7 @@ neumes.forEach(function (ng, i)
                 //TODO change this
                 sequences[sequenceIndex].m.push({
                     mark: ng.mtp,
-                    //color: martyriaFontColor
+                    //color: titleFontColor
                     color: redRGB
                 });
             }
@@ -1067,6 +1067,30 @@ neumes.forEach(function (ng, i)
                 y: ngY,
                 t: ng.nt
             });
+        }
+        //### NEUMES TITLE PARTIAL ###
+        if (ng.ntp)
+        {
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequences[sequenceIndex].m.push({
+                    mark: ng.ntp,
+                    //color: titleFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                var xOffset = mtWidth;
+                texts.push({
+                    f: 'neumes_title',
+                    x: currentX + xOffset,
+                    y: ngY,
+                    t: ng.ntp
+                });
+            }
         }
     }
     //### NEUMES LOWER ###

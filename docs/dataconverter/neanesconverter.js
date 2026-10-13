@@ -11,6 +11,7 @@
             OligonPlusKentimaAbove: '\uE004',
             OligonPlusHypsiliRight: '\uE005',
             OligonPlusHypsiliLeft: '\uE006',
+            OligonPlusHypsiliPlusKentimaVertical: '\uE008',
             Apostrophos: '\uE021',
             DoubleApostrophos: '\uE022',
             Elaphron: '\uE024',
@@ -64,6 +65,7 @@
             Sharp_2_LeftSecondary: '\uE1F6'
         },
         fthora: {
+            Kliton_Top: '\uE19E',
             GeneralFlat_Top: '\uE204',
             SoftChromaticThi_Top: '\uE19A',
             SoftChromaticThi_Bottom: '\uE1CA',
@@ -85,10 +87,26 @@
         },
         modeSign: {
             WordEchos: '\uE2F1',
-            SoftChromatic2: '\uE2A8',
-            Nana: '\uE2B1',
+            Alpha: '\uE2C0',
+            AlphaWithDeltaHat: '\uF003',
+            Delta: '\uE2D8',
+            DeltaWithDeltaHat: '\uF004',
+            FourthCapital: '\uE2FA',
             Ga: '\uE2E3',
-            Thi: '\uE2E4'
+            Ke: '\uE2E5',
+            Legetos: '\uE2BA',
+            Nana: '\uE2B1',
+            NanaOld: '\uE2B0',
+            Ni: '\uE2E0',
+            OligonPlusHypsili: '\uE2E8',
+            OligonPlusKentima: '\uE2E7',
+            Pa: '\uE2E1',
+            SoftChromatic2: '\uE2A8',
+            SoftChromatic6: '\uE2C8',
+            Thi: '\uE2E4',
+            VarysZo: '\uE2D0',
+            Vou: '\uE2E2',
+            Zo: '\uE2E6'
         },
         measureNumber: {
             Two: '2',
@@ -133,9 +151,19 @@
             {
                 candidates.push(prefixes[category] + adjustedName);
             }
+            if (category === 'martyriaNote' && /^Thi/.test(adjustedName))
+            {
+                candidates.push('martyriaNoteDi' + adjustedName.slice(3));
+            }
+            if (category === 'fthora')
+            {
+                candidates.push('chroa' + adjustedName);
+            }
             if (category === 'rootSign')
             {
-                candidates.push('martyria' + adjustedName + 'Below');
+                var rootSignName = adjustedName.replace(/Low$/, '');
+                var rootSignAliases = { Varys: 'Zygos' };
+                candidates.push('martyria' + (rootSignAliases[rootSignName] || rootSignName) + 'Below');
             }
             if (category === 'quantitativeNeume' && /Kentima$/.test(adjustedName))
             {
@@ -173,14 +201,16 @@
                     {
                         if (!hasTitle)
                         {
-                            entry.h = element.content;
                             hasTitle = true;
+                            entries.push({ h: element.content });
+                            //TODO change this
+                            entries.push({ br: 'ln2' });
                         }
                         else
                         {
-                            entry.t = element.content;
+                            entries.push({ t: element.content });
                             //TODO change this
-                            entries.push({ br: 'ln2' });
+                            entries.push({ br: 'ln4' });
                         }
                     }
                     else if (element.inline)
@@ -192,8 +222,6 @@
                     entry.d = element.content;
                     break;
                 case 'ModeKey':
-                    //TODO change this
-                    entries.push({ br: 'ln4' });
                     if (element.martyria)
                     {
                         entries.push({ mt: getGlyph('modeSign', 'modeWordEchos') });
@@ -216,6 +244,10 @@
                     if (element.quantitativeNeumeRight)
                     {
                         entries.push({ nt: getGlyph('quantitativeNeume', element.quantitativeNeumeRight) });
+                        if (element.fthoraAboveQuantitativeNeumeRight)
+                        {
+                            entries.push({ ntp: getGlyph('fthora', element.fthoraAboveQuantitativeNeumeRight) });
+                        }
                     }
                     //TODO change this
                     entries.push({ br: 'ln5' });

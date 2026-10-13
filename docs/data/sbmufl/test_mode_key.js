@@ -1,9 +1,9 @@
 neumes.push(
 
-    //######### TEST MODE KEYS ########
+    //######### TEST MODE KEY ########
     // { "br": "pg" }, // PAGE BREAK
     //###### TITLE ######
-    { "h": "TEST MODE KEYS" },
+    { "h": "TEST MODE KEY" },
     { "br": "ln2" }, // LINE BREAK
     { "t": "Δεύτερος ήχος" },
     { "br": "ln4" }, // LINE BREAK
