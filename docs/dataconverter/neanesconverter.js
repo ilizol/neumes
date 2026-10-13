@@ -103,19 +103,19 @@
             KeHigh: '\uE144'
         },
         rootSign: {
-            SoftChromaticSquiggle: '\uE159',
-            Squiggle: '\uE157',
-            NanaLow: '\uE154',
-            DeltaLow: '\uE151',
-            AlphaLow: '\uE152',
-            LegetosLow: '\uE153',
-            Nana: '\uE154',
             Delta: '\uE151',
             Alpha: '\uE152',
             Legetos: '\uE153',
+            Nana: '\uE154',
             DeltaDotted: '\uE155',
             AlphaDotted: '\uE156',
-            Varys: '\uE15B'
+            Squiggle: '\uE157',
+            SoftChromaticSquiggle: '\uE159',
+            Varys: '\uE15B',
+            DeltaLow: '\uE171',
+            AlphaLow: '\uE172',
+            LegetosLow: '\uE173',
+            NanaLow: '\uE174'
         },
         modeSign: {
             WordEchos: '\uE2F1',
