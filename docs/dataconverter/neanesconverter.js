@@ -127,7 +127,9 @@
             NanaLow: '\uE174'
         },
         modeSign: {
+            Plagal: '\uE2F0',
             WordEchos: '\uE2F1',
+            WordVarys: '\uE2F2',
             Alpha: '\uE2C0',
             AlphaWithDeltaHat: '\uF003',
             Delta: '\uE2D8',
@@ -267,6 +269,14 @@
                     {
                         entries.push({ mt: getGlyph('modeSign', 'modeWordEchos') });
                         // entries.push({ t: ' ' });
+                        if (element.mode == 7)
+                        {
+                            entries.push({ mt: getGlyph('modeSign', 'modeWordVarys') });
+                        }
+                        else if (element.mode >= 5)
+                        {
+                            entries.push({ mt: getGlyph('modeSign', 'modePlagal') });
+                        }
                         entries.push({ mt: getGlyph('modeSign', element.martyria) });
                     }
                     if (element.note || element.fthoraAboveNote)
