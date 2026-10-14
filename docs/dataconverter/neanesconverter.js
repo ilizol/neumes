@@ -415,14 +415,25 @@
                     }
                     break;
                 case 'Martyria':
-                    entry.m = getGlyph('martyriaNote', element.note);
-                    if (element.rootSign)
+                    if (element.alignRight)
                     {
-                        entry.mp = getGlyph('rootSign', element.rootSign);
+                        entry.mr = getGlyph('martyriaNote', element.note);
+                        if (element.rootSign)
+                        {
+                            entry.mpr = getGlyph('rootSign', element.rootSign);
+                        }
                     }
-                    if (element.fthora)
+                    else
                     {
-                        entry.mf = getGlyph('fthora', element.fthora);
+                        entry.m = getGlyph('martyriaNote', element.note);
+                        if (element.rootSign)
+                        {
+                            entry.mp = getGlyph('rootSign', element.rootSign);
+                        }
+                        if (element.fthora)
+                        {
+                            entry.mf = getGlyph('fthora', element.fthora);
+                        }
                     }
                     break;
                 case 'Empty':

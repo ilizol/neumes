@@ -685,11 +685,9 @@ neumes.forEach(function (ng, i)
     }
     var endX = ngX + ngWidth;
     var endY = ngY + lyricsDistance;
-    if (
-        ng.br == 'ln' ||
-        ng.br == 'pg'
-    )
+    if (ng.br == 'ln')
     {
+        //TODO check this
         //### LINE TEXTS ###
         writeLineTexts(
             lineTexts,
@@ -703,15 +701,16 @@ neumes.forEach(function (ng, i)
         ng.br == 'ln5'
     )
     {
+        //TODO check this
         var alignment = 'center';
         if (ng.al)
         {
             alignment = ng.al;
         }
         availSpace = pageWidth - startX - ngX;
-        if (availSpace > 0)
+        if (availSpace >= 0)
         {
-            if (hasAvailSpace)
+            if (hasAvailSpace && availSpace > 0)
             {
                 //### AVAILABLE SPACE ###
                 writeAvailSpace(ngY, availSpace);
@@ -731,15 +730,16 @@ neumes.forEach(function (ng, i)
         ng.br == 'ln3' ||
         ng.br == 'ln4' ||
         ng.br == 'ln5' ||
-        endX > pageWidth - startX
+        endX >= pageWidth - startX
     )
     {
-        if (endX > pageWidth - startX)
+        //TODO check this
+        if (endX >= pageWidth - startX)
         {
             availSpace = pageWidth - startX - ngX;
-            if (availSpace > 0)
+            if (availSpace >= 0)
             {
-                if (hasAvailSpace)
+                if (hasAvailSpace && availSpace > 0)
                 {
                     //### AVAILABLE SPACE ###
                     writeAvailSpace(ngY, availSpace);
@@ -2300,12 +2300,53 @@ neumes.forEach(function (ng, i)
     if (ng.mr)
     {
         currentX = pageWidth - startX - mrWidth;
-        texts.push({
-            f: 'martyria',
-            x: currentX,
-            y: ngY + martyriaDistance,
-            t: ng.mr
-        });
+        ngX = currentX;
+        if (hasOpenTypeMarks)
+        {
+            //### SEQUENCE ###
+            //TODO change this
+            sequenceIndex++;
+            sequences.push({
+                f: 'martyria',
+                x: currentX,
+                y: ngY + martyriaDistance,
+                t: ng.mr,
+                m: []
+            });
+        }
+        else
+        {
+            texts.push({
+                f: 'martyria',
+                x: currentX,
+                y: ngY + martyriaDistance,
+                t: ng.mr
+            });
+        }
+        //### MARTYRIA PARTIAL RIGHT ###
+        if (ng.mpr)
+        {
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequences[sequenceIndex].m.push({
+                    mark: ng.mpr,
+                    //color: martyriaFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                var xOffset = mrWidth;
+                texts.push({
+                    f: 'martyria',
+                    x: currentX + xOffset,
+                    y: ngY + martyriaDistance,
+                    t: ng.mpr
+                });
+            }
+        }
     }
     //### MARTYRIA DIASTOLE ###
     if (ng.md)
@@ -2406,6 +2447,7 @@ neumes.forEach(function (ng, i)
     }
     ngX += ngWidth;
     ngX += charSpace;
+    //TODO check this
     if (i == ngLength - 1)
     {
         //### LINE TEXTS ###
