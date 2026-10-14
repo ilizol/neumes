@@ -685,7 +685,10 @@ neumes.forEach(function (ng, i)
     }
     var endX = ngX + ngWidth;
     var endY = ngY + lyricsDistance;
-    if (ng.br == 'ln')
+    if (
+        ng.br == 'ln' ||
+        ng.br == 'pg'
+    )
     {
         //TODO check this
         //### LINE TEXTS ###
