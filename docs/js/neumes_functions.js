@@ -67,6 +67,14 @@ function setFont(type)
         doc.setFontSize(neumesFontSize);
         color = titleFontColor;
     }
+    //### NEUMES TITLE FTHORA ###
+    else if (type == 'neumes_title_fthora')
+    {
+        stroke = musicFontStroke;
+        doc.setFont(neumesFont);
+        doc.setFontSize(neumesFontSize);
+        color = titleFontColor;
+    }
     //### MARTYRIA ###
     else if (type == 'martyria')
     {

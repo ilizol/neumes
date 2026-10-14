@@ -1092,6 +1092,30 @@ neumes.forEach(function (ng, i)
                 });
             }
         }
+        //### FTHORA ###
+        if (ng.ntf)
+        {
+            if (hasOpenTypeMarks)
+            {
+                //### SEQUENCE MARKS ###
+                //TODO change this
+                sequences[sequenceIndex].m.push({
+                    mark: ng.ntf,
+                    //color: titleFontColor
+                    //color: fthoraFontColor
+                    color: redRGB
+                });
+            }
+            else
+            {
+                texts.push({
+                    f: 'neumes_title_fthora',
+                    x: currentX,
+                    y: ngY,
+                    t: ng.ntf
+                });
+            }
+        }
     }
     //### NEUMES LOWER ###
     if (ng.nl)

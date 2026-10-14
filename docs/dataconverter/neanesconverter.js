@@ -294,11 +294,13 @@
                     }
                     if (element.quantitativeNeumeRight)
                     {
-                        entries.push({ nt: getGlyph('quantitativeNeume', element.quantitativeNeumeRight) });
+                        var modeQuantitativeNeumeRight = {};
+                        modeQuantitativeNeumeRight.nt = getGlyph('quantitativeNeume', element.quantitativeNeumeRight);
                         if (element.fthoraAboveQuantitativeNeumeRight)
                         {
-                            entries.push({ ntp: getGlyph('fthora', element.fthoraAboveQuantitativeNeumeRight) });
+                            modeQuantitativeNeumeRight.ntf = getGlyph('fthora', element.fthoraAboveQuantitativeNeumeRight);
                         }
+                        entries.push(modeQuantitativeNeumeRight);
                     }
                     //TODO change this
                     entries.push({ br: 'ln5' });
