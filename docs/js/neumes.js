@@ -693,6 +693,8 @@ neumes.forEach(function (ng, i)
             lineTexts,
             0
         );
+        //TODO check this
+        lineTexts = [];
     }
     if (
         ng.br == 'ln2' ||
@@ -721,6 +723,8 @@ neumes.forEach(function (ng, i)
                 availSpace,
                 alignment
             );
+            //TODO check this
+            lineTexts = [];
         }
     }
     // line break
@@ -749,6 +753,8 @@ neumes.forEach(function (ng, i)
                     lineTexts,
                     availSpace
                 );
+                //TODO check this
+                lineTexts = [];
             }
         }
         ngX = startX;
@@ -773,7 +779,8 @@ neumes.forEach(function (ng, i)
             ngY += lineDistance;
         }
         lineNum++;
-        lineTexts = [];
+        //TODO check this
+        // lineTexts = [];
         if (ngY < pageHeight - topY)
         {
             if (hasLineNum && lineNum > 0)
@@ -802,7 +809,8 @@ neumes.forEach(function (ng, i)
     {
         doc.addPage();
         lineNum = 1;
-        lineTexts = [];
+        //TODO check this
+        //lineTexts = [];
         pageNum++;
         availSpace = 0;
         lyricsBaselineRuler = 0;
@@ -2455,6 +2463,8 @@ neumes.forEach(function (ng, i)
             lineTexts,
             0
         );
+        //TODO check this
+        lineTexts = [];
     }
 });
 
