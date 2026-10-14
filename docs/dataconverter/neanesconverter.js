@@ -12,21 +12,28 @@
             OligonPlusHypsiliRight: '\uE005',
             OligonPlusHypsiliLeft: '\uE006',
             OligonPlusHypsiliPlusKentimaVertical: '\uE008',
+            OligonPlusKentemataPlusHypsiliRight: '\uE086',
             Apostrophos: '\uE021',
             DoubleApostrophos: '\uE022',
             Elaphron: '\uE024',
             PetastiWithIson: '\uE040',
             Petasti: '\uE041',
             PetastiPlusKentimaAbove: '\uE043',
+            PetastiPlusHypsiliPlusKentimaHorizontal: '\uE046',
             Kentemata: '\uE081',
             KentemataPlusOligon: '\uE082',
             OligonPlusKentemata: '\uE083',
-            OligonPlusIsonPlusKentemata: '\uE084'
+            OligonPlusIsonPlusKentemata: '\uE084',
+            VareiaDotted: '\uE0A0',
+            Cross: '\uE0C0'
         },
         ison: {
             Unison: 'Μ',
+            Vou: 'Β',
+            Ga: 'Γ',
             Thi: 'Δ',
-            Vou: 'Β'
+            Ke: 'Κ',
+            KeLow: 'κ'
         },
         measureBar: {
             MeasureBarRight: '\uE210',
@@ -35,11 +42,14 @@
         vocalExpressionNeume: {
             Vareia: '\uE0A0',
             Psifiston: '\uE0A1',
+            //TODO change this
+            PsifistonSlanted: '\uE0A1',
             Antikenoma: '\uE0A2',
             Homalon: '\uE0A3',
             HomalonConnecting: '\uE0A4',
             Heteron: '\uE0A5',
             HeteronConnecting: '\uE0A6',
+            HeteronConnectingLong: '\uE0A6',
             Cross_Top: '\uE0C8'
         },
         timeNeume: {
@@ -63,7 +73,8 @@
         },
         accidental: {
             Sharp_2_Left: '\uE1F0',
-            Sharp_2_LeftSecondary: '\uE1F6'
+            Sharp_2_LeftSecondary: '\uE1F6',
+            Flat_2_Right: '\uE200'
         },
         fthora: {
             Kliton_Top: '\uE19E',
@@ -121,7 +132,9 @@
             DeltaDotted: '\uE155',
             AlphaDotted: '\uE156',
             Squiggle: '\uE157',
+            Tilt: '\uE158',
             SoftChromaticSquiggle: '\uE159',
+            SoftChromaticPaRootSign: '\uE15A',
             DeltaLow: '\uE171',
             AlphaLow: '\uE172',
             LegetosLow: '\uE173',
@@ -226,6 +239,13 @@
         return result;
     }
 
+    function getRichTextContent(content)
+    {
+        var html = content.replace(/<\/p\s*>/gi, ' ');
+        var text = new DOMParser().parseFromString(html, 'text/html').body.textContent;
+        return text.replace(/\s+/g, ' ').trim();
+    }
+
     function convertScore(score, sourceName)
     {
         if (!score || !score.staff || !Array.isArray(score.staff.elements))
@@ -238,21 +258,27 @@
         score.staff.elements.forEach(function (element)
         {
             var entry = {};
+            var content = element.content;
             switch (element.elementType)
             {
                 case 'TextBox':
-                    if (element.content)
+                case 'RichTextBox':
+                    if (element.elementType === 'RichTextBox' && content)
+                    {
+                        content = getRichTextContent(content);
+                    }
+                    if (content)
                     {
                         if (!hasTitle)
                         {
                             hasTitle = true;
-                            entries.push({ h: element.content });
+                            entries.push({ h: content });
                         }
                         else
                         {
                             //TODO change this
                             entries.push({ br: 'ln2' });
-                            entries.push({ t: element.content });
+                            entries.push({ t: content });
                         }
                     }
                     else if (element.inline)
@@ -343,7 +369,8 @@
                     {
                         if (
                             element.vocalExpressionNeume === 'Heteron' ||
-                            element.vocalExpressionNeume === 'HeteronConnecting'
+                            element.vocalExpressionNeume === 'HeteronConnecting' ||
+                            element.vocalExpressionNeume === 'HeteronConnectingLong'
                         )
                         {
                             entry.e = getGlyph('vocalExpressionNeume', element.vocalExpressionNeume);
