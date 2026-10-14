@@ -29,7 +29,8 @@
             Vou: 'Β'
         },
         measureBar: {
-            MeasureBarRight: '\uE210'
+            MeasureBarRight: '\uE210',
+            MeasureBarTopAbove: '\uE216'
         },
         vocalExpressionNeume: {
             Vareia: '\uE0A0',
