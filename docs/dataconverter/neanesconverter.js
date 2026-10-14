@@ -112,6 +112,7 @@
             KeHigh: '\uE144'
         },
         rootSign: {
+            Varys: '\uE150',
             Delta: '\uE151',
             Alpha: '\uE152',
             Legetos: '\uE153',
@@ -120,7 +121,6 @@
             AlphaDotted: '\uE156',
             Squiggle: '\uE157',
             SoftChromaticSquiggle: '\uE159',
-            Varys: '\uE15B',
             DeltaLow: '\uE171',
             AlphaLow: '\uE172',
             LegetosLow: '\uE173',
@@ -246,14 +246,12 @@
                         {
                             hasTitle = true;
                             entries.push({ h: element.content });
-                            //TODO change this
-                            entries.push({ br: 'ln2' });
                         }
                         else
                         {
-                            entries.push({ t: element.content });
                             //TODO change this
-                            entries.push({ br: 'ln4' });
+                            entries.push({ br: 'ln2' });
+                            entries.push({ t: element.content });
                         }
                     }
                     else if (element.inline)
@@ -265,6 +263,11 @@
                     entry.d = element.content;
                     break;
                 case 'ModeKey':
+                    if (hasTitle)
+                    {
+                        //TODO change this
+                        entries.push({ br: 'ln4' });
+                    }
                     if (element.martyria)
                     {
                         entries.push({ mt: getGlyph('modeSign', 'modeWordEchos') });
