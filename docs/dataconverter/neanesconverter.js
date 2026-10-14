@@ -312,13 +312,25 @@
                 case 'Note':
                     if (element.measureBarLeft)
                     {
-                        entry.nb = getGlyph('measureBar', element.measureBarLeft);
+                        //TODO change this
+                        if (element.measureBarLeft !== 'MeasureBarTopAbove')
+                        {
+                            entry.nb = getGlyph('measureBar', element.measureBarLeft);
+                        }
                     }
                     if (element.vareia)
                     {
                         entry.v = glyphs.vocalExpressionNeume.Vareia;
                     }
                     entry.n = getGlyph('quantitativeNeume', element.quantitativeNeume);
+                    if (element.measureBarLeft)
+                    {
+                        //TODO change this
+                        if (element.measureBarLeft === 'MeasureBarTopAbove')
+                        {
+                            entry.np = getGlyph('measureBar', element.measureBarLeft);
+                        }
+                    }
                     if (element.timeNeume)
                     {
                         entry.np = getGlyph('timeNeume', element.timeNeume);
