@@ -358,7 +358,8 @@ var lyricsFontColor = lFC;
 var startX = 46;
 //var startX = 5;
 //TODO check this
-var startY = 46;
+//var startY = 46;
+var startY = 44;
 //var startY = 25;
 //var startY = 64;
 var topY = 30;
@@ -779,7 +780,7 @@ neumes.forEach(function (ng, i)
         //TODO check this
         if (ng.br == 'ln2')
         {
-            ngY += 18; // 16 * 1.3 = 20.8
+            ngY += 20; // 16 * 1.3 = 20.8
         }
         else if (ng.br == 'ln3')
         {
