@@ -357,10 +357,11 @@ var lyricsFontColor = lFC;
 //### DEFAULT LAYOUT
 var startX = 46;
 //var startX = 5;
+//TODO check this
 var startY = 46;
 //var startY = 25;
 //var startY = 64;
-var topY = 28;
+var topY = 30;
 var charSpace = 0;
 //var isonDistance = 20;
 var isonDistance = 16;
@@ -371,6 +372,8 @@ var lineDistance = 60;
 //var lineDistance = 65;
 var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDistance : lyricsDistance / 3.5;
 // var martyriaDistance = 0;
+//TODO check this
+var neumesStartY = topY + lineDistance - lyricsDistance;
 
 //### BASIC VARIABLES
 // var hasLineNum = true;
@@ -405,39 +408,9 @@ var sequenceIndex = -1;
 var sequenceAfterIndex = -1;
 var sequences = [];
 var sequencesAfter = [];
+var lineTextIndex = 0;
 var lineTexts = [];
 var ngLength = neumes.length;
-if (hasLineNum && lineNum > 0)
-{
-    //### LINE NUMBER ###
-    writeLineNum(
-        ngY,
-        lineNum
-    );
-}
-if (hasPageNum && pageNum > 0)
-{
-    //### PAGE NUMBER ###
-    writePageNum(
-        ngY,
-        pageNum
-    );
-}
-if (hasPageMarginRulers)
-{
-    //### PAGE MARGIN RULERS ###
-    drawPageMarginRulers();
-}
-if (hasPageVerticalRulers)
-{
-    //### PAGE VERTICAL RULERS ###
-    drawPageVerticalRulers();
-}
-if (hasBaselineRuler && startY > 0)
-{
-    //### BASELINE RULER ###
-    drawBaselineRuler(startY);
-}
 
 neumes.forEach(function (ng, i)
 {
@@ -490,6 +463,11 @@ neumes.forEach(function (ng, i)
         {
             ngX -= tWidth - tWidthIgnoringMarks;
         }
+        //TODO check this
+        if (lineNum == 1 && lineTextIndex == 0)
+        {
+            ngY = neumesStartY;
+        }
     }
     //### TITLE 2 ###
     if (ng.t2)
@@ -540,6 +518,11 @@ neumes.forEach(function (ng, i)
         setFont('martyria_title');
         var mtWidth = doc.getTextWidth(ng.mt);
         ngWidth += mtWidth;
+        //TODO check this
+        if (lineNum == 1 && lineTextIndex == 0)
+        {
+            ngY = neumesStartY;
+        }
     }
     //### MARTYRIA TITLE UPPER ###
     if (ng.mtu)
@@ -683,6 +666,35 @@ neumes.forEach(function (ng, i)
         setFont('lyrics');
         var l2Width = doc.getTextWidth(ng.l2);
     }
+    //TODO check this
+    if (lineNum == 1 && lineTextIndex == 0)
+    {
+        if (hasLineNum && lineNum > 0)
+        {
+            //### LINE NUMBER ###
+            writeLineNum(ngY, lineNum);
+        }
+        if (hasPageNum && pageNum > 0)
+        {
+            //### PAGE NUMBER ###
+            writePageNum(pageNum);
+        }
+        if (hasPageMarginRulers)
+        {
+            //### PAGE MARGIN RULERS ###
+            drawPageMarginRulers();
+        }
+        if (hasPageVerticalRulers)
+        {
+            //### PAGE VERTICAL RULERS ###
+            drawPageVerticalRulers();
+        }
+        if (hasBaselineRuler && ngY > 0)
+        {
+            //### BASELINE RULER ###
+            drawBaselineRuler(ngY);
+        }
+    }
     var endX = ngX + ngWidth;
     var endY = ngY + lyricsDistance;
     if (
@@ -697,6 +709,7 @@ neumes.forEach(function (ng, i)
             0
         );
         //TODO check this
+        lineTextIndex = 0;
         lineTexts = [];
     }
     if (
@@ -727,6 +740,7 @@ neumes.forEach(function (ng, i)
                 alignment
             );
             //TODO check this
+            lineTextIndex = 0;
             lineTexts = [];
         }
     }
@@ -757,25 +771,27 @@ neumes.forEach(function (ng, i)
                     availSpace
                 );
                 //TODO check this
+                lineTextIndex = 0;
                 lineTexts = [];
             }
         }
         ngX = startX;
+        //TODO check this
         if (ng.br == 'ln2')
         {
-            ngY += tFS * 1.3;
+            ngY += 18; // 16 * 1.3 = 20.8
         }
         else if (ng.br == 'ln3')
         {
-            ngY += tFS * 1.4;
+            ngY += 22; // 16 * 1.4 = 22.4
         }
         else if (ng.br == 'ln4')
         {
-            ngY += tFS * 1.85;
+            ngY += 26; // 16 * 1.85 = 29.6
         }
         else if (ng.br == 'ln5')
         {
-            ngY += tFS * 2.05;
+            ngY += 34; // 16 * 2.05 = 32.8
         }
         else
         {
@@ -789,10 +805,7 @@ neumes.forEach(function (ng, i)
             if (hasLineNum && lineNum > 0)
             {
                 //### LINE NUMBER ###
-                writeLineNum(
-                    ngY,
-                    lineNum
-                );
+                writeLineNum(ngY, lineNum);
             }
             if (hasBaselineRuler && ngY > 0)
             {
@@ -813,27 +826,30 @@ neumes.forEach(function (ng, i)
         doc.addPage();
         lineNum = 1;
         //TODO check this
+        lineTextIndex = 0;
         //lineTexts = [];
         pageNum++;
         availSpace = 0;
         lyricsBaselineRuler = 0;
         ngX = startX;
-        ngY = startY;
+        //TODO check this
+        if (ng.br == 'pg')
+        {
+            ngY = startY;
+        }
+        else
+        {
+            ngY = neumesStartY;
+        }
         if (hasLineNum && lineNum > 0)
         {
             //### LINE NUMBER ###
-            writeLineNum(
-                ngY,
-                lineNum
-            );
+            writeLineNum(ngY, lineNum);
         }
         if (hasPageNum && pageNum > 0)
         {
             //### PAGE NUMBER ###
-            writePageNum(
-                ngY,
-                pageNum
-            );
+            writePageNum(pageNum);
         }
         if (hasAvailSpace && availSpace > 0)
         {
@@ -2449,7 +2465,7 @@ neumes.forEach(function (ng, i)
     if (texts.length > 0)
     {
         //writeTexts(texts);
-
+        lineTextIndex++;
         lineTexts.push(texts);
         if (textsAfter.length > 0)
         {
@@ -2467,6 +2483,7 @@ neumes.forEach(function (ng, i)
             0
         );
         //TODO check this
+        lineTextIndex = 0;
         lineTexts = [];
     }
 });

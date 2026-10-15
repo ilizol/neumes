@@ -220,12 +220,17 @@ function getTextWidthIgnoringMarks(text)
     return doc.getTextWidth(unmarkedText);
 }
 
-function writeText(text, offsetX)
+function writeText(text, offsetX, offsetY)
 {
     (typeof offsetX == 'undefined') ? offsetX = 0 : null;
+    (typeof offsetY == 'undefined') ? offsetY = 0 : null;
     var textF = text.f;
     var textX = text.x + offsetX;
-    var textY = text.y;
+    //TODO change this for debug
+    // var textX = text.x;
+    var textY = text.y + offsetY;
+    //TODO change this for debug
+    // var textY = text.y;
     var textT = text.t;
     var stroke = setFont(textF);
     if (text.m)
@@ -259,18 +264,20 @@ function writeText(text, offsetX)
     */
 }
 
-function writeTexts(texts, offsetX)
+function writeTexts(texts, offsetX, offsetY)
 {
     (typeof offsetX == 'undefined') ? offsetX = 0 : null;
+    (typeof offsetY == 'undefined') ? offsetY = 0 : null;
     texts.forEach(function (t)
     {
-        writeText(t, offsetX);
+        writeText(t, offsetX, offsetY);
     });
 }
 
-function writeLineTexts(lineTexts, availSpace, alignment)
+function writeLineTexts(lineTexts, availSpace, alignment, offsetY)
 {
     (typeof alignment == 'undefined') ? alignment = 'justify' : null;
+    (typeof offsetY == 'undefined') ? offsetY = 0 : null;
     var offsetX = 0;
     var lineElements = lineTexts.length;
     if (!lineElements)
@@ -314,11 +321,11 @@ function writeLineTexts(lineTexts, availSpace, alignment)
         // justify
         if (alignment == 'justify')
         {
-            writeTexts(t, i * offsetX);
+            writeTexts(t, i * offsetX, offsetY);
         }
         else
         {
-            writeTexts(t, offsetX);
+            writeTexts(t, offsetX, offsetY);
         }
     });
 }
@@ -334,7 +341,7 @@ function writeLineNum(lineNumY, lineNum)
     });
 }
 
-function writePageNum(pageNumY, pageNum)
+function writePageNum(pageNum)
 {
     var pageWidth = doc.internal.pageSize.width;
     var pageHeight = doc.internal.pageSize.height;
