@@ -389,6 +389,8 @@ var availSpace = 0;
 var hasAvailSpace = false;
 // var hasPageMarginRulers = true;
 var hasPageMarginRulers = false;
+// var hasPageHorizontalRulers = true;
+var hasPageHorizontalRulers = false;
 // var hasPageVerticalRulers = true;
 var hasPageVerticalRulers = false;
 // var hasBaselineRuler = true;
@@ -685,6 +687,11 @@ neumes.forEach(function (ng, i)
             //### PAGE MARGIN RULERS ###
             drawPageMarginRulers();
         }
+        if (hasPageHorizontalRulers)
+        {
+            //### PAGE HORIZONTAL RULERS ###
+            drawPageHorizontalRulers();
+        }
         if (hasPageVerticalRulers)
         {
             //### PAGE VERTICAL RULERS ###
@@ -861,6 +868,11 @@ neumes.forEach(function (ng, i)
         {
             //### PAGE MARGIN RULERS ###
             drawPageMarginRulers();
+        }
+        if (hasPageHorizontalRulers)
+        {
+            //### PAGE HORIZONTAL RULERS ###
+            drawPageHorizontalRulers();
         }
         if (hasPageVerticalRulers)
         {

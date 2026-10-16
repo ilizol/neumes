@@ -396,6 +396,37 @@ function drawPageMarginRulers()
     doc.line(0, bottom, pageWidth, bottom);
 }
 
+function drawPageHorizontalRulers()
+{
+    var pageWidth = doc.internal.pageSize.width;
+    var pageHeight = doc.internal.pageSize.height;
+    // var parts = 2;
+    // var parts = 4;
+    // var parts = 8;
+    // var parts = 16;
+    // var parts = 32;
+    var parts = 64;
+
+    // colorRGB = grayRGB;
+    // colorRGB = redRGB;
+    // colorRGB = blackRGB;
+    // doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+    for (var i = 1; i < parts; i++)
+    {
+        var y = i * pageHeight / parts;
+        if (y == pageHeight / 2)
+        {
+            colorRGB = blackRGB;
+        }
+        else
+        {
+            colorRGB = grayRGB;
+        }
+        doc.setDrawColor(colorRGB[0], colorRGB[1], colorRGB[2]);
+        doc.line(0, y, pageWidth, y);
+    }
+}
+
 function drawPageVerticalRulers()
 {
     var pageWidth = doc.internal.pageSize.width;
