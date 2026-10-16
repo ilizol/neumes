@@ -359,10 +359,13 @@ var startX = 46;
 //var startX = 5;
 //TODO check this
 //var startY = 46;
-var startY = 44;
+//var startY = 44;
+//var startY = 42;
+var startY = 40;
 //var startY = 25;
 //var startY = 64;
-var topY = 30;
+//var topY = 30;
+var topY = 28;
 var charSpace = 0;
 //var isonDistance = 20;
 var isonDistance = 16;
@@ -374,7 +377,10 @@ var lineDistance = 60;
 var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDistance : lyricsDistance / 3.5;
 // var martyriaDistance = 0;
 //TODO check this
-var neumesStartY = topY + lineDistance - lyricsDistance;
+//var neumesStartY = topY + lineDistance - lyricsDistance;
+//var neumesStartY = topY + 36;
+//var neumesStartY = topY + 34;
+var neumesStartY = topY + 32;
 
 //### BASIC VARIABLES
 // var hasLineNum = true;
@@ -795,11 +801,11 @@ neumes.forEach(function (ng, i)
         }
         else if (ng.br == 'ln4')
         {
-            ngY += 26; // 16 * 1.85 = 29.6
+            ngY += 28; // 16 * 1.85 = 29.6
         }
         else if (ng.br == 'ln5')
         {
-            ngY += 34; // 16 * 2.05 = 32.8
+            ngY += 32; // 16 * 2.05 = 32.8
         }
         else
         {

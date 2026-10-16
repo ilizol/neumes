@@ -414,8 +414,14 @@ function drawPageHorizontalRulers()
     for (var i = 1; i < parts; i++)
     {
         var y = i * pageHeight / parts;
+        //TODO change this for debug
+        // if (i == 1)
+        // {
+        //     console.log("drawPageHorizontalRulers size: y = " + y);
+        // }
         if (y == pageHeight / 2)
         {
+            // console.log("drawPageHorizontalRulers middle: y = " + y);
             colorRGB = blackRGB;
         }
         else
@@ -445,8 +451,14 @@ function drawPageVerticalRulers()
     for (var i = 1; i < parts; i++)
     {
         var x = i * pageWidth / parts;
+        //TODO change this for debug
+        // if (i == 1)
+        // {
+        //     console.log("drawPageVerticalRulers size: x = " + x);
+        // }
         if (x == pageWidth / 2)
         {
+            // console.log("drawPageVerticalRulers middle: x = " + x);
             colorRGB = blackRGB;
         }
         else
