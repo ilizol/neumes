@@ -364,6 +364,7 @@ var startX = 46;
 var startY = 40;
 //var startY = 25;
 //var startY = 64;
+//var topY = 32;
 //var topY = 30;
 var topY = 28;
 var charSpace = 0;
@@ -814,7 +815,7 @@ neumes.forEach(function (ng, i)
         lineNum++;
         //TODO check this
         // lineTexts = [];
-        if (ngY < pageHeight - topY)
+        if (ngY <= pageHeight - topY)
         {
             if (hasLineNum && lineNum > 0)
             {
@@ -837,6 +838,11 @@ neumes.forEach(function (ng, i)
         endY > pageHeight - topY
     )
     {
+        //TODO change this for debug
+        // if (endY > pageHeight - topY)
+        // {
+        //     console.log("Page break needed", endY, pageHeight - topY);
+        // }
         doc.addPage();
         lineNum = 1;
         //TODO check this
