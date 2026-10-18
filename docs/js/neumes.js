@@ -364,6 +364,7 @@ var startX = 46;
 var startY = 40;
 //var startY = 25;
 //var startY = 64;
+//var topY = 34;
 //var topY = 32;
 //var topY = 30;
 var topY = 28;
@@ -711,7 +712,9 @@ neumes.forEach(function (ng, i)
         }
     }
     var endX = ngX + ngWidth;
-    var endY = ngY + lyricsDistance;
+    //TODO check this
+    //var endY = ngY + lyricsDistance;
+    var endY = ngY;
     if (
         ng.br == 'ln' ||
         ng.br == 'pg'
