@@ -359,15 +359,17 @@ var startX = 46;
 //var startX = 5;
 //TODO check this
 //var startY = 46;
-//var startY = 44;
+var startY = 44;
 //var startY = 42;
-var startY = 40;
+//var startY = 40;
 //var startY = 25;
 //var startY = 64;
+//var topY = 36;
 //var topY = 34;
 //var topY = 32;
 //var topY = 30;
 var topY = 28;
+//var topY = 26;
 var charSpace = 0;
 //var isonDistance = 20;
 var isonDistance = 16;
@@ -380,9 +382,11 @@ var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDi
 // var martyriaDistance = 0;
 //TODO check this
 //var neumesStartY = topY + lineDistance - lyricsDistance;
+//var neumesStartY = topY + 40;
+var neumesStartY = topY + 38;
 //var neumesStartY = topY + 36;
 //var neumesStartY = topY + 34;
-var neumesStartY = topY + 32;
+//var neumesStartY = topY + 32;
 
 //### BASIC VARIABLES
 // var hasLineNum = true;
@@ -712,9 +716,11 @@ neumes.forEach(function (ng, i)
         }
     }
     var endX = ngX + ngWidth;
-    //TODO check this
-    //var endY = ngY + lyricsDistance;
     var endY = ngY;
+    if (ng.l && lFS)
+    {
+        endY += lyricsDistance;
+    }
     if (
         ng.br == 'ln' ||
         ng.br == 'pg'
@@ -805,7 +811,7 @@ neumes.forEach(function (ng, i)
         }
         else if (ng.br == 'ln4')
         {
-            ngY += 28; // 16 * 1.85 = 29.6
+            ngY += 30; // 16 * 1.85 = 29.6
         }
         else if (ng.br == 'ln5')
         {
