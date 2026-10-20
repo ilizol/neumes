@@ -645,6 +645,11 @@ neumes.forEach(function (ng, i)
         var nWidth = doc.getTextWidth(ng.n);
         ngWidth += nWidth;
         ngWidth += charSpace;
+        //TODO check this
+        if (lineNum == 1 && lineTextIndex == 0)
+        {
+            ngY = neumesStartY;
+        }
         //### NEUMES BEFORE ###
         if (ng.nb)
         {

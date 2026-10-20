@@ -11,8 +11,10 @@
             OligonPlusKentimaAbove: '\uE004',
             OligonPlusHypsiliRight: '\uE005',
             OligonPlusHypsiliLeft: '\uE006',
+            OligonPlusHypsiliPlusKentimaHorizontal: '\uE007',
             OligonPlusHypsiliPlusKentimaVertical: '\uE008',
             OligonPlusKentemataPlusHypsiliRight: '\uE086',
+            OligonPlusKentemataPlusHypsiliLeft: '\uE087',
             Apostrophos: '\uE021',
             DoubleApostrophos: '\uE022',
             Elaphron: '\uE024',
@@ -20,6 +22,7 @@
             Petasti: '\uE041',
             PetastiPlusKentimaAbove: '\uE043',
             PetastiPlusHypsiliPlusKentimaHorizontal: '\uE046',
+            PetastiPlusHypsiliPlusKentimaVertical: '\uE047',
             Kentemata: '\uE081',
             KentemataPlusOligon: '\uE082',
             OligonPlusKentemata: '\uE083',
@@ -73,8 +76,12 @@
         },
         accidental: {
             Sharp_2_Left: '\uE1F0',
+            Sharp_4_Left: '\uE1F1',
+            Sharp_6_Left: '\uE1F2',
             Sharp_2_LeftSecondary: '\uE1F6',
-            Flat_2_Right: '\uE200'
+            Flat_2_Right: '\uE200',
+            Flat_4_Right: '\uE201',
+            Flat_6_Right: '\uE202'
         },
         fthora: {
             Kliton_Top: '\uE19E',
@@ -192,6 +199,7 @@
                 .replace(/Kentemata/g, 'Kentimata')
                 .replace(/Hyporoe/g, 'Yporroi')
                 .replace(/Hypsili/g, 'Ypsili')
+                .replace(/Hamili/g, 'Chamili')
                 .replace(/Elaphron/g, 'Elafron')
                 .replace(/_Top$/i, 'Above')
                 .replace(/_Bottom$/i, 'Below');
