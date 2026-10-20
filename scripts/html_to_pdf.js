@@ -1,12 +1,58 @@
-import { basename, dirname, resolve } from "node:path";
+import { basename, dirname, isAbsolute, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import puppeteer from "npm:puppeteer-core@24";
 
 const args = [...Deno.args];
-const outputDirectory = args[0] === "--output-dir" ? resolve(args[1] ?? "") : undefined;
-if (args[0] === "--output-dir")
+let inputDirectory;
+let outputDirectory;
+let suffixDirectory;
+while (args[0]?.startsWith("--"))
 {
-    args.splice(0, 2);
+    const optionArgument = args.shift();
+    const equalsIndex = optionArgument.indexOf("=");
+    const option = equalsIndex === -1 ? optionArgument : optionArgument.slice(0, equalsIndex);
+    const value = equalsIndex === -1 ? args.shift() : optionArgument.slice(equalsIndex + 1);
+    if (!value || value.startsWith("--"))
+    {
+        throw new Error(`Missing value for ${option}.`);
+    }
+
+    if (option === "--input-dir")
+    {
+        inputDirectory = resolve(value);
+    }
+    else if (option === "--output-dir")
+    {
+        outputDirectory = resolve(value);
+    }
+    else if (option === "--suffix-dir")
+    {
+        suffixDirectory = value;
+    }
+    else
+    {
+        throw new Error(`Unknown option: ${option}`);
+    }
+}
+
+if (suffixDirectory)
+{
+    if (!inputDirectory || !outputDirectory)
+    {
+        throw new Error("--suffix-dir requires both --input-dir and --output-dir.");
+    }
+    if (isAbsolute(suffixDirectory) || suffixDirectory.split(/[\\/]/).includes(".."))
+    {
+        throw new Error("--suffix-dir must be a relative path without '..'.");
+    }
+
+    inputDirectory = resolve(inputDirectory, suffixDirectory);
+    outputDirectory = resolve(outputDirectory, suffixDirectory);
+}
+
+if (inputDirectory && args.length)
+{
+    throw new Error("Use either --input-dir or explicit HTML inputs, not both.");
 }
 
 if (outputDirectory && args.some((arg) => arg.toLowerCase().endsWith(".pdf")))
@@ -14,10 +60,24 @@ if (outputDirectory && args.some((arg) => arg.toLowerCase().endsWith(".pdf")))
     throw new Error("Use either --output-dir or explicit HTML/PDF pairs, not both.");
 }
 
-const hasOutputPairs = args.length > 0
-    && args.length % 2 === 0
-    && args.filter((_, index) => index % 2 === 1).every((arg) => arg.toLowerCase().endsWith(".pdf"));
-const hasPdfArgs = args.some((arg) => arg.toLowerCase().endsWith(".pdf"));
+let inputArgs = args;
+if (inputDirectory)
+{
+    inputArgs = [];
+    for await (const entry of Deno.readDir(inputDirectory))
+    {
+        if (entry.isFile && entry.name.toLowerCase().endsWith(".html"))
+        {
+            inputArgs.push(resolve(inputDirectory, entry.name));
+        }
+    }
+    inputArgs.sort();
+}
+
+const hasOutputPairs = inputArgs.length > 0
+    && inputArgs.length % 2 === 0
+    && inputArgs.filter((_, index) => index % 2 === 1).every((arg) => arg.toLowerCase().endsWith(".pdf"));
+const hasPdfArgs = inputArgs.some((arg) => arg.toLowerCase().endsWith(".pdf"));
 
 if (hasPdfArgs && !hasOutputPairs)
 {
@@ -25,15 +85,17 @@ if (hasPdfArgs && !hasOutputPairs)
 }
 
 const inputs = hasOutputPairs
-    ? Array.from({ length: args.length / 2 }, (_, index) => ({
-        inputArg: args[index * 2],
-        outputArg: args[index * 2 + 1]
+    ? Array.from({ length: inputArgs.length / 2 }, (_, index) => ({
+        inputArg: inputArgs[index * 2],
+        outputArg: inputArgs[index * 2 + 1]
     }))
-    : args.map((inputArg) => ({ inputArg }));
+    : inputArgs.map((inputArg) => ({ inputArg }));
 
 if (!inputs.length)
 {
-    console.error("Usage: deno run <permissions> html_to_pdf.js --output-dir <folder> <file1.html> [file2.html ...]");
+    console.error("Usage: deno run <permissions> html_to_pdf.js --input-dir <folder> [--output-dir <folder>]");
+    console.error("   or: deno run <permissions> html_to_pdf.js --input-dir <root> --output-dir <root> --suffix-dir <folder>");
+    console.error("   or: deno run <permissions> html_to_pdf.js --output-dir <folder> <file1.html> [file2.html ...]");
     console.error("   or: deno run <permissions> html_to_pdf.js <file1.html> [file2.html ...]");
     console.error("   or: deno run <permissions> html_to_pdf.js <file1.html> <output1.pdf> [file2.html output2.pdf ...]");
     Deno.exit(1);

@@ -31,7 +31,7 @@
         head.appendChild(script);
     }
 
-    addScript("js/neumes_data.js");
+    addScript("../../js/neumes_data.js");
 
     const pageDataScripts = window.neumesPageData;
     const sources = Array.isArray(pageDataScripts)
@@ -42,8 +42,8 @@
 
     function loadNeumes()
     {
-        addScript("js/neumes_functions.js");
-        addScript("js/neumes.js");
+        addScript("../../js/neumes_functions.js");
+        addScript("../../js/neumes.js");
     }
 
     function waitForHarfBuzz()
