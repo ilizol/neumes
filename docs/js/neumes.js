@@ -359,17 +359,18 @@ var startX = 46;
 //var startX = 5;
 //TODO check this
 //var startY = 46;
-var startY = 44;
+//var startY = 44;
 //var startY = 42;
 //var startY = 40;
+var startY = 38;
 //var startY = 25;
 //var startY = 64;
 //var topY = 36;
 //var topY = 34;
 //var topY = 32;
 //var topY = 30;
-var topY = 28;
-//var topY = 26;
+//var topY = 28;
+var topY = 26;
 var charSpace = 0;
 //var isonDistance = 20;
 var isonDistance = 16;
@@ -383,10 +384,11 @@ var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDi
 //TODO check this
 //var neumesStartY = topY + lineDistance - lyricsDistance;
 //var neumesStartY = topY + 40;
-var neumesStartY = topY + 38;
+//var neumesStartY = topY + 38;
 //var neumesStartY = topY + 36;
-//var neumesStartY = topY + 34;
+var neumesStartY = topY + 34;
 //var neumesStartY = topY + 32;
+//var neumesStartY = topY + 30;
 
 //### BASIC VARIABLES
 // var hasLineNum = true;
@@ -505,6 +507,11 @@ neumes.forEach(function (ng, i)
         setFont('martyria');
         var mWidth = doc.getTextWidth(ng.m);
         ngWidth += mWidth;
+        //TODO check this
+        if (lineNum == 1 && lineTextIndex == 0)
+        {
+            ngY = neumesStartY;
+        }
     }
     //### MARTYRIA NARROW ###
     if (ng.mn)
