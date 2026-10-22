@@ -374,16 +374,18 @@ var topY = 26;
 var charSpace = 0;
 //var isonDistance = 20;
 var isonDistance = 16;
+var neumesDistance = 30;
 var rythmDistance = 10;
 var lyricsDistance = 26;
 //var lyricsDistance = 24;
 //var lyricsDistance = 10;
 //var lineDistance = 52;
 //var lineDistance = 54;
-var lineDistance = 56;
+//var lineDistance = 56;
 //var lineDistance = 58;
 //var lineDistance = 60;
 //var lineDistance = 65;
+var lineDistance = neumesDistance + lyricsDistance;
 var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDistance : lyricsDistance / 3.5;
 // var martyriaDistance = 0;
 //TODO check this
@@ -393,7 +395,8 @@ var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDi
 //var neumesStartY = topY + 36;
 //var neumesStartY = topY + 34;
 //var neumesStartY = topY + 32;
-var neumesStartY = topY + 30;
+//var neumesStartY = topY + 30;
+var neumesStartY = topY + neumesDistance;
 
 //### BASIC VARIABLES
 //TODO change this for debug
@@ -418,7 +421,7 @@ if (DEBUG)
 {
     //TODO change this for debug
     var hasLineNum = true;
-    var hasPageNum = true;
+    // var hasPageNum = true;
     // var hasAvailSpace = true;
     var hasPageMarginRulers = true;
     var hasPageHorizontalRulers = true;
@@ -830,7 +833,7 @@ neumes.forEach(function (ng, i)
         //TODO check this
         if (ng.br == 'ln2')
         {
-            ngY += 20; // 16 * 1.3 = 20.8
+            ngY += 18; // 16 * 1.3 = 20.8
         }
         else if (ng.br == 'ln3')
         {
@@ -838,11 +841,13 @@ neumes.forEach(function (ng, i)
         }
         else if (ng.br == 'ln4')
         {
-            ngY += 26; // 16 * 1.85 = 29.6
+            //ngY += 26; // 16 * 1.85 = 29.6
+            ngY += lyricsDistance;
         }
         else if (ng.br == 'ln5')
         {
-            ngY += 28; // 16 * 2.05 = 32.8
+            //ngY += 28; // 16 * 2.05 = 32.8
+            ngY += neumesDistance;
         }
         else
         {
