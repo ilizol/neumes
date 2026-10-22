@@ -396,27 +396,37 @@ var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDi
 var neumesStartY = topY + 30;
 
 //### BASIC VARIABLES
-// var hasLineNum = true;
+//TODO change this for debug
+// var DEBUG = true;
+var DEBUG = false;
+
 var hasLineNum = false;
 var lineNum = 1;
-// var hasPageNum = true;
 var hasPageNum = false;
 var pageNum = 1;
 // var pageNum = -1; // ignore first 2 pages
 var availSpace = 0;
-// var hasAvailSpace = true;
 var hasAvailSpace = false;
-// var hasPageMarginRulers = true;
 var hasPageMarginRulers = false;
-// var hasPageHorizontalRulers = true;
 var hasPageHorizontalRulers = false;
-// var hasPageVerticalRulers = true;
 var hasPageVerticalRulers = false;
-// var hasBaselineRuler = true;
 var hasBaselineRuler = false;
 var lyricsBaselineRuler = 0;
-// var hasLyricsBaselineRuler = true;
 var hasLyricsBaselineRuler = false;
+//###################################################
+if (DEBUG)
+{
+    //TODO change this for debug
+    var hasLineNum = true;
+    var hasPageNum = true;
+    // var hasAvailSpace = true;
+    var hasPageMarginRulers = true;
+    var hasPageHorizontalRulers = true;
+    // var hasPageVerticalRulers = true;
+    var hasBaselineRuler = true;
+    // var hasLyricsBaselineRuler = true;
+}
+//###################################################
 var pageWidth = doc.internal.pageSize.width;
 var pageHeight = doc.internal.pageSize.height;
 var ngX = startX;
