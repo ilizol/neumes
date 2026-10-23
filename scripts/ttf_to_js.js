@@ -100,5 +100,5 @@ for (const fontFile of fonts)
 
     const outputPath = resolve(destinationDirectory, `${fontName}-normal.js`);
     await Deno.writeTextFile(outputPath, output);
-    console.log(`Created ${outputPath}`);
+    console.log(`FONT JS saved to ${outputPath}`);
 }
