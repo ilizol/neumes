@@ -1,0 +1,25 @@
+Alegreya
+https://github.com/huertatipografica/Alegreya
+
+Almouzios
+https://github.com/ilizol/Almouzios
+https://github.com/ilizol/Almouzios/blob/main/Almouzios.ttf
+#######
+/oligonIsonKentimata/psifiston/oligonIsonKentimata/psifiston.salt01/oligonIsonKentimata/psifiston.alt01/oligonIsonKentimata/apostrofos/antikenoma/apostrofos/apostrofos/antikenoma.alt01/apostrofos
+#######
+
+KA Almouzios
+https://github.com/t-bullock/KA-Almouzios
+https://github.com/t-bullock/KA-Almouzios/tree/master/fonts/ttf
+
+KA EZ
+https://github.com/t-bullock/KA-EZ
+https://github.com/t-bullock/KA-EZ/tree/master/fonts/ttf
+
+KA New Stathis
+https://github.com/t-bullock/KA-New-Stathis
+https://github.com/t-bullock/KA-New-Stathis/tree/master/fonts/ttf
+
+NotoSansSymbols2
+https://github.com/notofonts/NotoSansSymbols2
+https://github.com/notofonts/NotoSansSymbols2/blob/main/fonts/ttf/unhinted/instance_ttf/NotoSansSymbols2-Regular.ttf
