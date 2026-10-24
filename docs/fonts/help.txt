@@ -8,6 +8,10 @@ https://github.com/ilizol/Almouzios/blob/main/Almouzios.ttf
 /oligonIsonKentimata/psifiston/oligonIsonKentimata/psifiston.salt01/oligonIsonKentimata/psifiston.alt01/oligonIsonKentimata/apostrofos/antikenoma/apostrofos/apostrofos/antikenoma.alt01/apostrofos
 #######
 
+Byzantinografos
+https://github.com/ilizol/byzantinografos
+https://github.com/ilizol/byzantinografos/tree/master/fonts/Byzantinografos
+
 KA Almouzios
 https://github.com/t-bullock/KA-Almouzios
 https://github.com/t-bullock/KA-Almouzios/tree/master/fonts/ttf

@@ -21,6 +21,13 @@
     "../../fonts/Alegreya-MediumItalic-normal.js",
     //### Almouzios
     "../../fonts/Almouzios-normal.js",
+    //### Byzantinografos
+    "../../fonts/ByzFthoresDieseis-normal.js",
+    "../../fonts/ByzGreekFonts-normal.js",
+    "../../fonts/ByzIsokratimata-normal.js",
+    "../../fonts/ByzMartiries-normal.js",
+    "../../fonts/ByzMusic-normal.js",
+    "../../fonts/ByzMusicOldSymbols-normal.js",
     //### KA New Stathis
     "../../fonts/KANewStathisArchaia-Regular-normal.js",
     "../../fonts/KANewStathisChronos-Regular-normal.js",

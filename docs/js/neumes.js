@@ -210,7 +210,7 @@ function getCustomFont(fontType)
 {
     return (window.customFonts && window.customFonts[fontType]) || null;
 }
-function resolveFont(fontType, suffix)
+function resolveFont(fontType, kaSuffix, byzSuffix)
 {
     var customFont = getCustomFont(fontType);
     if (customFont)
@@ -222,25 +222,30 @@ function resolveFont(fontType, suffix)
     {
         return musicFontFamily;
     }
-    // KA-prefixed fonts use separate files per character type
-    return musicFontFamily + suffix + '-Regular';
+    // Byzantinografos has Byz-prefixed separate files per character type
+    if (musicFontFamily === 'Byzantinografos')
+    {
+        return 'Byz' + byzSuffix;
+    }
+    // Kassia has KA-prefixed separate files per character type
+    return musicFontFamily + kaSuffix + '-Regular';
 }
 //### NEUMES
-var neumesFont = resolveFont('neumes', 'Main');
+var neumesFont = resolveFont('neumes', 'Main', 'Music');
 //### FTHORA
-var fthoraFont = resolveFont('fthora', 'Fthora');
+var fthoraFont = resolveFont('fthora', 'Fthora', 'FthoresDieseis');
 //### FTHORA INFO
-var fthoraInfoFont = resolveFont('fthoraInfo', 'Fthora');
+var fthoraInfoFont = resolveFont('fthoraInfo', 'Fthora', 'Isokratimata');
 //### CHRONOS
-var chronosFont = resolveFont('chronos', 'Chronos');
+var chronosFont = resolveFont('chronos', 'Chronos', 'Music');
 //### QUALITY
-var qualityFont = resolveFont('quality', 'Main');
+var qualityFont = resolveFont('quality', 'Main', 'Music');
 //### ETERON
-var eteronFont = resolveFont('eteron', 'Main');
+var eteronFont = resolveFont('eteron', 'Main', 'Music');
 //### OLD
-var oldFont = resolveFont('archaia', 'Archaia');
+var oldFont = resolveFont('archaia', 'Archaia', 'MusicOldSymbols');
 //### MARTYRIA
-var martyriaFont = resolveFont('martyria', 'Martyria');
+var martyriaFont = resolveFont('martyria', 'Martyria', 'Martiries');
 //### ISON
 //var isonFont = "Alegreya-BoldItalic";
 var isonFont = "Alegreya-Bold";
@@ -251,9 +256,9 @@ var rythmFont = "Alegreya-Medium";
 //### ASTERISK
 var asteriskFont = "NotoSansSymbols2-Regular";
 //### BREATH
-var breathFont = musicFontFamily + "Main-Regular";
+var breathFont = resolveFont('breath', 'Main', 'Music');
 //### SPECIAL
-var specialFont = musicFontFamily + "Combo-Regular";
+var specialFont = resolveFont('special', 'Combo', 'GreekFonts');
 //### LYRICS
 //var lyricsFont = "Alegreya-MediumItalic";
 var lyricsFont = "Alegreya-Medium";
@@ -386,8 +391,23 @@ var lyricsDistance = 26;
 //var lineDistance = 60;
 //var lineDistance = 65;
 var lineDistance = neumesDistance + lyricsDistance;
-var martyriaDistance = window.martyriaDistance !== undefined ? window.martyriaDistance : lyricsDistance / 3.5;
-// var martyriaDistance = 0;
+//TODO change this
+var martyriaDistance = 0;
+// Almouzios
+if (musicFontFamily === 'Almouzios')
+{
+    martyriaDistance = 0;
+}
+// Byzantinografos
+else if (musicFontFamily === 'Byzantinografos')
+{
+    martyriaDistance = lyricsDistance / 2.2;
+}
+// Kassia
+else
+{
+    martyriaDistance = lyricsDistance / 3.5;
+}
 //TODO check this
 //var neumesStartY = topY + lineDistance - lyricsDistance;
 //var neumesStartY = topY + 40;
