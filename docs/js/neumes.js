@@ -790,7 +790,8 @@ neumes.forEach(function (ng, i)
         ng.br == 'ln2' ||
         ng.br == 'ln3' ||
         ng.br == 'ln4' ||
-        ng.br == 'ln5'
+        ng.br == 'ln5' ||
+        ng.br == 'ln6'
     )
     {
         //TODO check this
@@ -825,6 +826,7 @@ neumes.forEach(function (ng, i)
         ng.br == 'ln3' ||
         ng.br == 'ln4' ||
         ng.br == 'ln5' ||
+        ng.br == 'ln6' ||
         endX >= pageWidth - startX
     )
     {
@@ -868,6 +870,10 @@ neumes.forEach(function (ng, i)
         {
             //ngY += 28; // 16 * 2.05 = 32.8
             ngY += neumesDistance;
+        }
+        else if (ng.br == 'ln6')
+        {
+            ngY += 20;
         }
         else
         {

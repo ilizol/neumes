@@ -4,11 +4,11 @@ neumes.push(
     { "br": "pg" }, // PAGE BREAK
     //###### TITLE ######
     { "h": "ΣΙΓΗΣΑΤΩ ΠΑΣΑ ΣΑΡΞ" },
-    { "br": "ln2" }, // LINE BREAK
+    { "br": "ln3" }, // LINE BREAK
     { "t": "Τῼ ΑΓΙῼ ΚΑΙ ΜΕΓΑΛῼ ΣΑΒΒΑΤῼ" },
-    { "br": "ln2" }, // LINE BREAK
+    { "br": "ln4" }, // LINE BREAK
     { "t": "ΑΝΤΙ ΧΕΡΟΥΒΙΚΟΥ" },
-    { "br": "ln2" }, // LINE BREAK
+    { "br": "ln4" }, // LINE BREAK
     { "t": "Ἰακώβου Πρωτοψάλτου (†1800)" },
     { "br": "ln4" }, // LINE BREAK
     //{"t":"Ἦχος πλ. α' Πα"},

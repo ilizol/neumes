@@ -4,11 +4,11 @@ neumes.push(
     //{ "br": "pg" }, // PAGE BREAK
     //###### TITLE ######
     { "h": "Ο ΤΟΝ ΑΜΠΕΛΩΝΑ" },
-    { "br": "ln2" }, // LINE BREAK
+    { "br": "ln3" }, // LINE BREAK
     { "t": "ΙΔΙΟΜΕΛΟΝ Μ. ΤΕΣΣΑΡΑΚΟΣΤΗΣ" },
-    { "br": "ln2" }, // LINE BREAK
+    { "br": "ln4" }, // LINE BREAK
     { "t": "Δ´ ΚΥΡΙΑΚΗΣ ΝΗΣΤΕΙΩΝ" },
-    { "br": "ln2" }, // LINE BREAK
+    { "br": "ln4" }, // LINE BREAK
     { "t": "Ἰακώβου Πρωτοψάλτου (†1800)" },
     { "br": "ln4" }, // LINE BREAK
     //{"t":"Ἦχος βαρύς Γα"},
