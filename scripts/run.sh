@@ -3,8 +3,8 @@
 # curl -fsSL https://deno.land/install.sh | sh
 
 PROJECT_BASE="$HOME/Projects/neumes"
-TTF_BASE="${PROJECT_BASE}/docs/fonts"
-JS_BASE="${PROJECT_BASE}/docs/fonts"
+FONT_TTF_BASE="${PROJECT_BASE}/docs/fonts"
+FONT_JS_BASE="${PROJECT_BASE}/docs/fonts"
 HTML_BASE="${PROJECT_BASE}/docs/examples"
 #TODO change this for debug
 # DEBUG=1
@@ -31,8 +31,8 @@ else
 	    --allow-read
 	    --allow-write
 	    ttf_to_js.js
-	    --input-dir "${TTF_BASE}"
-	    --output-dir "${JS_BASE}"
+	    --input-dir "${FONT_TTF_BASE}"
+	    --output-dir "${FONT_JS_BASE}"
     )
 fi
 
@@ -41,7 +41,7 @@ if [[ "$DEBUG" == "1" ]]; then
     # TODO change this for debug
 
     # Almouzios
-    "${TTF_TO_JS_RUN[@]}" "${TTF_BASE}/Almouzios.ttf"
+    "${TTF_TO_JS_RUN[@]}" "${FONT_TTF_BASE}/Almouzios.ttf"
 	################################################################
 else
     "${TTF_TO_JS_RUN[@]}"
@@ -52,7 +52,7 @@ if [[ "$DEBUG" == "1" ]]; then
     #TODO change this for debug
     HTML_TO_PDF_RUN=(
         deno run
-        --allow-run=/usr/bin/chromium
+        --allow-run=/usr/bin/chromium,/usr/bin/kill
         --allow-read
         --allow-write
         --allow-env
@@ -62,7 +62,7 @@ if [[ "$DEBUG" == "1" ]]; then
 else
     HTML_TO_PDF_RUN=(
         deno run
-        --allow-run=/usr/bin/chromium
+        --allow-run=/usr/bin/chromium,/usr/bin/kill
         --allow-read
         --allow-write
         --allow-env

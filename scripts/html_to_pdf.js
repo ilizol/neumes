@@ -134,15 +134,59 @@ for (const input of resolvedInputs)
 }
 
 const downloadRoot = await Deno.makeTempDir({ prefix: "neumes-pdf-" });
-const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/chromium",
-    headless: true,
-    args: ["--no-sandbox", "--disable-dev-shm-usage"]
-});
+let browser;
+let forceKillPromise;
+let interrupted = false;
+const forceKillBrowser = () =>
+{
+    if (!browser || forceKillPromise)
+    {
+        return;
+    }
+
+    forceKillPromise = new Promise((resolveKill) => setTimeout(async () =>
+    {
+        const browserProcess = browser.process();
+        if (browserProcess?.exitCode === null)
+        {
+            try
+            {
+                const killProcess = new Deno.Command("/usr/bin/kill", {
+                    args: ["-KILL", "--", `-${browserProcess.pid}`]
+                }).spawn();
+                await killProcess.status;
+            }
+            catch
+            {
+            }
+        }
+        resolveKill();
+    }, 2000));
+};
+const handleSignal = () =>
+{
+    interrupted = true;
+    forceKillBrowser();
+};
+Deno.addSignalListener("SIGINT", handleSignal);
+Deno.addSignalListener("SIGTERM", handleSignal);
 
 try
 {
-    for (const [index, input] of resolvedInputs.entries())
+    browser = await puppeteer.launch({
+        executablePath: "/usr/bin/chromium",
+        headless: true,
+        handleSIGINT: false,
+        handleSIGTERM: false,
+        handleSIGHUP: false,
+        args: ["--no-sandbox", "--disable-dev-shm-usage"]
+    });
+    if (interrupted)
+    {
+        forceKillBrowser();
+    }
+
+    const convertInput = async (input, index) =>
     {
         const downloadDirectory = `${downloadRoot}/${index}`;
         await Deno.mkdir(downloadDirectory);
@@ -191,10 +235,49 @@ try
         {
             await page.close();
         }
+    };
+
+    for (const [index, input] of resolvedInputs.entries())
+    {
+        await convertInput(input, index);
+    }
+}
+catch (error)
+{
+    if (!interrupted)
+    {
+        throw error;
     }
 }
 finally
 {
-    await browser.close();
-    await Deno.remove(downloadRoot, { recursive: true });
+    Deno.removeSignalListener("SIGINT", handleSignal);
+    Deno.removeSignalListener("SIGTERM", handleSignal);
+    try
+    {
+        if (interrupted)
+        {
+            await forceKillPromise;
+        }
+        else
+        {
+            await browser.close();
+        }
+    }
+    catch (error)
+    {
+        if (!interrupted)
+        {
+            throw error;
+        }
+    }
+    finally
+    {
+        await Deno.remove(downloadRoot, { recursive: true });
+    }
+}
+
+if (interrupted)
+{
+    Deno.exit(130);
 }
