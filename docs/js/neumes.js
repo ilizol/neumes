@@ -1,3 +1,7 @@
+//TODO change this for debug
+// var DEBUG = true;
+var DEBUG = false;
+
 var pdfEngine = window.pdfEngine !== undefined ? window.pdfEngine : "jspdf";
 // var pdfEngine = 'pdfkit';
 var hasOpenTypeMarks = window.hasOpenTypeMarks !== undefined ? window.hasOpenTypeMarks : false;
@@ -419,10 +423,6 @@ else
 var neumesStartY = topY + neumesDistance;
 
 //### BASIC VARIABLES
-//TODO change this for debug
-// var DEBUG = true;
-var DEBUG = false;
-
 var hasLineNum = false;
 var lineNum = 1;
 var hasPageNum = false;

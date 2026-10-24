@@ -2,13 +2,15 @@
 
 # curl -fsSL https://deno.land/install.sh | sh
 
+#TODO change this for debug
+# DEBUG=1
+DEBUG=0
+
 PROJECT_BASE="$HOME/Projects/neumes"
 FONT_TTF_BASE="${PROJECT_BASE}/docs/fonts"
 FONT_JS_BASE="${PROJECT_BASE}/docs/fonts"
 HTML_BASE="${PROJECT_BASE}/docs/examples"
-#TODO change this for debug
-# DEBUG=1
-DEBUG=0
+
 if [[ "$DEBUG" == "1" ]]; then
     #TODO change this for debug
     PDF_BASE="${PROJECT_BASE}/pdf_DEBUG"
@@ -19,20 +21,20 @@ fi
 # Generate the JS produced by a local font TTF file.
 if [[ "$DEBUG" == "1" ]]; then
     #TODO change this for debug
-	TTF_TO_JS_RUN=(
-	    deno run
-	    --allow-read
-	    --allow-write
-	    ttf_to_js.js
+    TTF_TO_JS_RUN=(
+        deno run
+        --allow-read
+        --allow-write
+        ttf_to_js.js
     )
 else
     TTF_TO_JS_RUN=(
-	    deno run
-	    --allow-read
-	    --allow-write
-	    ttf_to_js.js
-	    --input-dir "${FONT_TTF_BASE}"
-	    --output-dir "${FONT_JS_BASE}"
+        deno run
+        --allow-read
+        --allow-write
+        ttf_to_js.js
+        --input-dir "${FONT_TTF_BASE}"
+        --output-dir "${FONT_JS_BASE}"
     )
 fi
 
@@ -42,7 +44,7 @@ fi
 
 #     # Almouzios
 #     "${TTF_TO_JS_RUN[@]}" "${FONT_TTF_BASE}/Almouzios.ttf"
-# 	################################################################
+#     ################################################################
 # else
 #     "${TTF_TO_JS_RUN[@]}"
 # fi
@@ -81,6 +83,14 @@ if [[ "$DEBUG" == "1" ]]; then
     # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/doxastikon_holy_cross_elevation" \
     #     "${HTML_BASE}/doxastikon_holy_cross_elevation/doxastikon_holy_cross_elevation_1.html"
 
+    # exams_2020
+    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/exams_2020" \
+        "${HTML_BASE}/exams_2020/exams_2020_1.html"
+
+    # exams_2022
+    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/exams_2022" \
+        "${HTML_BASE}/exams_2022/exams_2022_1.html"
+
     # # idiomela_holy_cross_elevation
     # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/idiomela_holy_cross_elevation" \
     #     "${HTML_BASE}/idiomela_holy_cross_elevation/idiomela_holy_cross_elevation_1.html"
@@ -88,8 +98,8 @@ if [[ "$DEBUG" == "1" ]]; then
     # kontakion_prophet_elias
     # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/kontakion_prophet_elias" \
     #     "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_4.html"
-	"${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/kontakion_prophet_elias" \
-        "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_6.html"
+    # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/kontakion_prophet_elias" \
+        # "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_6.html"
 
     # # test_accidentals
     # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/test_accidentals" \
@@ -104,33 +114,39 @@ if [[ "$DEBUG" == "1" ]]; then
     #     "${HTML_BASE}/test_mode_key/test_mode_key_1.html"
     ################################################################
 else
-    # doxastikon_holy_cross_elevation
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="doxastikon_holy_cross_elevation"
+    # # doxastikon_holy_cross_elevation
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="doxastikon_holy_cross_elevation"
 
-    # idiomela_holy_cross_elevation
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="idiomela_holy_cross_elevation"
+    # exams_2020
+    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="exams_2020"
 
-    # kontakion_prophet_elias
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_prophet_elias"
+    # exams_2022
+    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="exams_2022"
 
-    # kontakion_saint_john_theologian
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_saint_john_theologian"
+    # # idiomela_holy_cross_elevation
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="idiomela_holy_cross_elevation"
 
-    # kontakion_saint_spyridon
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_saint_spyridon"
+    # # kontakion_prophet_elias
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_prophet_elias"
 
-    # test_accidentals
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_accidentals"
+    # # kontakion_saint_john_theologian
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_saint_john_theologian"
 
-    # test_hyporoe
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_hyporoe"
+    # # kontakion_saint_spyridon
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_saint_spyridon"
 
-    # test_martyria_fthora
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_martyria_fthora"
+    # # test_accidentals
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_accidentals"
 
-    # test_martyrias
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_martyrias"
+    # # test_hyporoe
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_hyporoe"
 
-    # test_mode_key
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_mode_key"
+    # # test_martyria_fthora
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_martyria_fthora"
+
+    # # test_martyrias
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_martyrias"
+
+    # # test_mode_key
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_mode_key"
 fi

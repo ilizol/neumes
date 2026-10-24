@@ -33,10 +33,10 @@
 
     addScript("../../js/neumes_data.js");
 
-    const pageDataScripts = window.neumesPageData;
-    const sources = Array.isArray(pageDataScripts)
-        ? pageDataScripts
-        : [pageDataScripts];
+    const dataScripts = window.neumesData;
+    const sources = Array.isArray(dataScripts)
+        ? dataScripts
+        : [dataScripts];
 
     sources.forEach(addScript);
 
