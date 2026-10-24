@@ -36,16 +36,16 @@ else
     )
 fi
 
-if [[ "$DEBUG" == "1" ]]; then
-    ################################################################
-    # TODO change this for debug
+# if [[ "$DEBUG" == "1" ]]; then
+#     ################################################################
+#     # TODO change this for debug
 
-    # Almouzios
-    "${TTF_TO_JS_RUN[@]}" "${FONT_TTF_BASE}/Almouzios.ttf"
-	################################################################
-else
-    "${TTF_TO_JS_RUN[@]}"
-fi
+#     # Almouzios
+#     "${TTF_TO_JS_RUN[@]}" "${FONT_TTF_BASE}/Almouzios.ttf"
+# 	################################################################
+# else
+#     "${TTF_TO_JS_RUN[@]}"
+# fi
 
 # Generate the PDF produced by a local score HTML page.
 if [[ "$DEBUG" == "1" ]]; then
@@ -77,29 +77,31 @@ if [[ "$DEBUG" == "1" ]]; then
     ################################################################
     # TODO change this for debug
 
-    # doxastikon_holy_cross_elevation
-    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/doxastikon_holy_cross_elevation" \
-        "${HTML_BASE}/doxastikon_holy_cross_elevation/doxastikon_holy_cross_elevation_1.html"
+    # # doxastikon_holy_cross_elevation
+    # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/doxastikon_holy_cross_elevation" \
+    #     "${HTML_BASE}/doxastikon_holy_cross_elevation/doxastikon_holy_cross_elevation_1.html"
 
-    # idiomela_holy_cross_elevation
-    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/idiomela_holy_cross_elevation" \
-        "${HTML_BASE}/idiomela_holy_cross_elevation/idiomela_holy_cross_elevation_1.html"
+    # # idiomela_holy_cross_elevation
+    # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/idiomela_holy_cross_elevation" \
+    #     "${HTML_BASE}/idiomela_holy_cross_elevation/idiomela_holy_cross_elevation_1.html"
 
     # kontakion_prophet_elias
-    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/kontakion_prophet_elias" \
-        "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_4.html"
+    # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/kontakion_prophet_elias" \
+    #     "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_4.html"
+	"${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/kontakion_prophet_elias" \
+        "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_6.html"
 
-    # test_accidentals
-    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/test_accidentals" \
-        "${HTML_BASE}/test_accidentals/test_accidentals_1.html"
+    # # test_accidentals
+    # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/test_accidentals" \
+    #     "${HTML_BASE}/test_accidentals/test_accidentals_1.html"
 
-    # test_martyria_fthora
-    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/test_martyria_fthora" \
-        "${HTML_BASE}/test_martyria_fthora/test_martyria_fthora_1.html"
+    # # test_martyria_fthora
+    # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/test_martyria_fthora" \
+    #     "${HTML_BASE}/test_martyria_fthora/test_martyria_fthora_1.html"
 
-    # test_mode_key
-    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/test_mode_key" \
-        "${HTML_BASE}/test_mode_key/test_mode_key_1.html"
+    # # test_mode_key
+    # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/test_mode_key" \
+    #     "${HTML_BASE}/test_mode_key/test_mode_key_1.html"
     ################################################################
 else
     # doxastikon_holy_cross_elevation

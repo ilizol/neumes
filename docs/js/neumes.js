@@ -1043,12 +1043,17 @@ neumes.forEach(function (ng, i)
             if (ng.t)
             {
                 xOffset = tWidth / 2;
-                yOffset = tHeight / 2;
+                yOffset = -tHeight / 2;
+            }
+            else
+            {
+                //yOffset = martyriaDistance;
+                yOffset = martyriaDistance / 3;
             }
             texts.push({
                 f: 'martyria_title',
                 x: currentX + xOffset,
-                y: ngY - yOffset,
+                y: ngY + yOffset,
                 t: ng.mt
             });
         }
