@@ -15,7 +15,7 @@ neumes.push(
     { "t": " " }, // SPACE
     { "t": "Γα" },
     { "mt": "/////" }, // SPACE
-    { "mt": "4" },
+    { "mtu": "4" },
     { "br": "ln5" }, // LINE BREAK
     //###### DROPCAP ######
     { "d": "Μ" },
