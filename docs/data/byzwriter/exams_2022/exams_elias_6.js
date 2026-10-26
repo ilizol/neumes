@@ -13,7 +13,7 @@ neumes.push(
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
     { "mt": "w" },
-    { "mt": "Y" },
+    { "mtu": "Y" },
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
     { "mt": "6" },

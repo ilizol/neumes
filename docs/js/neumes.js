@@ -591,6 +591,13 @@ neumes.forEach(function (ng, i)
         var mtuWidth = doc.getTextWidth(ng.mtu);
         ngWidth += mtuWidth;
     }
+    //### MARTYRIA TITLE UPPER 2 ###
+    if (ng.mtu2)
+    {
+        setFont('martyria_title');
+        var mtu2Width = doc.getTextWidth(ng.mtu2);
+        ngWidth += mtu2Width;
+    }
     //### ASTERISK ###
     if (ng.a && aFS)
     {
@@ -1092,13 +1099,24 @@ neumes.forEach(function (ng, i)
     if (ng.mtu)
     {
         setFont('martyria_title');
-        var mtuHeight = doc.internal.getLineHeight();
-        var yOffset = mtuHeight / 23;
+        texts.push({
+            f: 'martyria_title',
+            x: currentX,
+            y: ngY,
+            t: ng.mtu
+        });
+    }
+    //### MARTYRIA TITLE UPPER 2 ###
+    if (ng.mtu2)
+    {
+        setFont('martyria_title');
+        var mtu2Height = doc.internal.getLineHeight();
+        var yOffset = mtu2Height / 5;
         texts.push({
             f: 'martyria_title',
             x: currentX,
             y: ngY - yOffset,
-            t: ng.mtu
+            t: ng.mtu2
         });
     }
     //### MARTYRIA TITLE FTHORA ###

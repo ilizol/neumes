@@ -126,14 +126,14 @@ else
     # # idiomela_holy_cross_elevation
     # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="idiomela_holy_cross_elevation"
 
-    # # kontakion_prophet_elias
-    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_prophet_elias"
+    # kontakion_prophet_elias
+    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_prophet_elias"
 
-    # # kontakion_saint_john_theologian
-    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_saint_john_theologian"
+    # kontakion_saint_john_theologian
+    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_saint_john_theologian"
 
-    # # kontakion_saint_spyridon
-    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_saint_spyridon"
+    # kontakion_saint_spyridon
+    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_saint_spyridon"
 
     # # test_accidentals
     # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="test_accidentals"

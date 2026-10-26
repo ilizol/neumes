@@ -16,7 +16,7 @@ neumes.push(
     // { "t": "Ηχος" },
     { "t": " " }, // SPACE
     //###### MARTYRIA ######
-    { "mt": "/u/" },
+    { "mtu": "/u/" },
     { "t": " " }, // SPACE
     { "t": "Γα" },
     { "br": "ln5" }, // LINE BREAK
