@@ -710,8 +710,21 @@ neumes.forEach(function (ng, i)
         if (ng.v)
         {
             setFont('quality');
-            var vWidth = doc.getTextWidth(ng.v);
-            ngWidth += vWidth;
+            // Byzantinografos
+            if (musicFontFamily === 'Byzantinografos')
+            {
+                var vWidth = doc.getTextWidth(ng.v) / 1.2;
+                //var vWidth = doc.getTextWidth(ng.v) / 1.35;
+                var vsWidth = doc.getTextWidth(" ") / 1.6;
+                //var vsWidth = doc.getTextWidth(" ") / 15;
+                ngWidth += vWidth;
+                ngWidth += vsWidth;
+            }
+            else
+            {
+                var vWidth = doc.getTextWidth(ng.v);
+                ngWidth += vWidth;
+            }
         }
         //### NEUMES AFTER (2) ###
         if (ng.n2)
@@ -1336,10 +1349,30 @@ neumes.forEach(function (ng, i)
         if (ng.v)
         {
             setFont('quality');
+            var yOffset = 0;
+            // Byzantinografos
+            if (musicFontFamily === 'Byzantinografos')
+            {
+                var vHeight = doc.internal.getLineHeight();
+                var yOffset = vHeight / 18;
+                //var yOffset = -vHeight / 6;
+                if (currentX > startX)
+                {
+                    lxOffset += vsWidth;
+                    currentX += vsWidth;
+                }
+                else
+                {
+                    var xOffset = vsWidth / 1.5;
+                    lxOffset += xOffset
+                    currentX += xOffset;
+                    ngWidth -= vsWidth - xOffset;
+                }
+            }
             texts.push({
                 f: 'quality',
                 x: currentX,
-                y: ngY,
+                y: ngY + yOffset,
                 t: ng.v
             });
             lxOffset += vWidth;
