@@ -1,7 +1,7 @@
 # Neumes
 
 Neumes is a scoring program for creating music written in Byzantine notation. It takes js files (schema file to be released later), parses the neumes and lyrics, and generates a formatted PDF using [jsPDF](https://github.com/parallax/jsPDF) or [PDFKit](https://github.com/foliojs/pdfkit).
-W
+
 ## Credits & Fonts
 
 This project utilizes various third-party fonts to render Byzantine notation and text. All font files included in the `docs/fonts/` directory are used under their respective distribution terms for functional and non-commercial development purposes.
