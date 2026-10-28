@@ -1,0 +1,630 @@
+{
+  "version": "1.1",
+  "appVersion": "0.5.45",
+  "pageSetup": {
+    "pageSize": "A4",
+    "pageSizeUnit": "pt",
+    "pageWidth": 793.7007874015749,
+    "pageHeight": 1122.5196850393702,
+    "topMargin": 96,
+    "bottomMargin": 96,
+    "leftMargin": 96,
+    "rightMargin": 96,
+    "headerMargin": 48,
+    "footerMargin": 48,
+    "firstPageNumber": 1,
+    "lineHeight": 80,
+    "lyricsVerticalOffset": 0,
+    "lyricsMinimumSpacing": 0,
+    "lyricsMelismaCutoffWidth": 6.666666666666667,
+    "neumeDefaultFontFamily": "Almouzios",
+    "neumeDefaultFontSize": 34.666666666666664,
+    "neumeDefaultColor": "#000000",
+    "neumeDefaultSpacing": 0,
+    "neumeDefaultStrokeWidth": 0,
+    "alternateLineDefaultFontSize": 16,
+    "alternateLineDefaultColor": "#ED0000",
+    "modeKeyDefaultColor": "#ED0000",
+    "modeKeyDefaultStrokeWidth": 0,
+    "modeKeyDefaultFontSize": 26.666666666666668,
+    "modeKeyDefaultHeightAdjustment": 0,
+    "accidentalDefaultColor": "#ED0000",
+    "accidentalDefaultStrokeWidth": 0,
+    "fthoraDefaultColor": "#ED0000",
+    "fthoraDefaultStrokeWidth": 0,
+    "heteronDefaultColor": "#ED0000",
+    "heteronDefaultStrokeWidth": 0,
+    "gorgonDefaultColor": "#ED0000",
+    "gorgonDefaultStrokeWidth": 0,
+    "measureBarDefaultColor": "#ED0000",
+    "measureBarDefaultStrokeWidth": 0,
+    "measureNumberDefaultColor": "#000000",
+    "measureNumberDefaultStrokeWidth": 0,
+    "noteIndicatorDefaultColor": "#ED0000",
+    "noteIndicatorDefaultStrokeWidth": 0,
+    "isonDefaultColor": "#ED0000",
+    "isonDefaultStrokeWidth": 0,
+    "breathDefaultColor": "#000000",
+    "breathDefaultStrokeWidth": 0,
+    "crossDefaultColor": "#000000",
+    "crossDefaultStrokeWidth": 0,
+    "koronisDefaultColor": "#ED0000",
+    "koronisDefaultStrokeWidth": 0,
+    "martyriaDefaultColor": "#ED0000",
+    "martyriaDefaultStrokeWidth": 0,
+    "tempoDefaultColor": "#ED0000",
+    "tempoDefaultStrokeWidth": 0,
+    "dropCapDefaultLineSpan": 1,
+    "hyphenSpacing": 0,
+    "minimumSyllableToHyphenClearance": 0,
+    "martyriaVerticalOffset": 0,
+    "chrysanthineAccidentals": true
+  },
+  "paragraphStyles": [
+    {
+      "id": "default-text",
+      "displayName": "Default Text",
+      "fontSize": 26.666666666666668
+    },
+    {
+      "id": "annotation",
+      "displayName": "Annotation",
+      "parentStyleId": "default-text",
+      "fontSize": 21.333333333333332
+    },
+    {
+      "id": "title",
+      "displayName": "Title",
+      "parentStyleId": "default-text",
+      "alignment": "center",
+      "fontSize": 37.333333333333336
+    },
+    {
+      "id": "subtitle",
+      "displayName": "Subtitle",
+      "parentStyleId": "default-text",
+      "alignment": "center",
+      "fontSize": 29.333333333333332
+    },
+    {
+      "id": "chapter",
+      "displayName": "Chapter",
+      "parentStyleId": "default-text",
+      "alignment": "center",
+      "fontSize": 32
+    },
+    {
+      "id": "section",
+      "displayName": "Section",
+      "parentStyleId": "default-text",
+      "fontSize": 26.666666666666668
+    },
+    {
+      "id": "header",
+      "displayName": "Header",
+      "parentStyleId": "default-text",
+      "alignment": "center"
+    },
+    {
+      "id": "footer",
+      "displayName": "Footer",
+      "parentStyleId": "default-text",
+      "alignment": "center"
+    },
+    {
+      "id": "lyrics",
+      "displayName": "Lyrics",
+      "parentStyleId": "default-text",
+      "fontFamily": "Alegreya",
+      "fontSize": 21.333333333333332,
+      "fontSubfamily": "Medium"
+    },
+    {
+      "id": "drop-cap",
+      "displayName": "Drop Cap",
+      "parentStyleId": "default-text",
+      "fontSize": 80
+    }
+  ],
+  "headers": {
+    "default": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "odd": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "even": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "firstPage": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "chapterOpening": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    }
+  },
+  "footers": {
+    "default": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "odd": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "even": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "firstPage": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    },
+    "chapterOpening": {
+      "elements": [
+        {
+          "elementType": "TextBox",
+          "alignment": "left",
+          "content": "",
+          "contentBottom": "",
+          "contentLeft": "",
+          "contentCenter": "",
+          "contentRight": "",
+          "multipanel": true,
+          "height": 20,
+          "marginTop": 0,
+          "marginBottom": 0
+        }
+      ]
+    }
+  },
+  "staff": {
+    "elements": [
+      {
+        "id": 1,
+        "elementType": "TextBox",
+        "alignment": "center",
+        "content": "Title",
+        "contentBottom": "",
+        "contentLeft": "",
+        "contentCenter": "",
+        "contentRight": "",
+        "height": 37,
+        "marginTop": 0,
+        "marginBottom": 0
+      },
+      {
+        "id": 2,
+        "elementType": "ModeKey",
+        "templateId": 100,
+        "alignment": "center",
+        "mode": 1,
+        "scale": "Diatonic",
+        "scaleNote": "Pa",
+        "martyria": "ModeSign.AlphaWithDeltaHat",
+        "note": "ModeSign.Pa",
+        "color": "#ED0000",
+        "fontSize": 26.666666666666668,
+        "strokeWidth": 0,
+        "height": 35,
+        "heightAdjustment": 0,
+        "marginTop": 0,
+        "marginBottom": 0,
+        "bpm": 120,
+        "useDefaultStyle": true,
+        "ambitusLowNote": "Pa",
+        "ambitusLowRootSign": "Alpha",
+        "ambitusHighNote": "Pa",
+        "ambitusHighRootSign": "Alpha"
+      },
+      {
+        "id": 3,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 4,
+        "elementType": "Note",
+        "quantitativeNeume": "Apostrophos",
+        "lyrics": "α"
+      },
+      {
+        "id": 5,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 6,
+        "elementType": "Note",
+        "quantitativeNeume": "Apostrophos",
+        "lyrics": "α"
+      },
+      {
+        "id": 9,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 10,
+        "elementType": "Note",
+        "quantitativeNeume": "Apostrophos",
+        "lyrics": "α"
+      },
+      {
+        "id": 11,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 12,
+        "elementType": "Note",
+        "quantitativeNeume": "Apostrophos",
+        "lyrics": "α"
+      },
+      {
+        "id": 13,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 14,
+        "elementType": "Note",
+        "quantitativeNeume": "Apostrophos",
+        "lyrics": "α"
+      },
+      {
+        "id": 15,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 16,
+        "elementType": "Note",
+        "quantitativeNeume": "Apostrophos",
+        "lyrics": "α"
+      },
+      {
+        "id": 17,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 18,
+        "elementType": "Note",
+        "quantitativeNeume": "Apostrophos",
+        "lyrics": "α"
+      },
+      {
+        "id": 19,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 21,
+        "elementType": "Note",
+        "quantitativeNeume": "Apostrophos",
+        "lyrics": "α"
+      },
+      {
+        "id": 22,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 23,
+        "elementType": "Note",
+        "quantitativeNeume": "Apostrophos",
+        "lyrics": "α"
+      },
+      {
+        "id": 24,
+        "lineBreak": true,
+        "lineBreakType": "Left",
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 28,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "ZoLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 29,
+        "elementType": "Note",
+        "quantitativeNeume": "Oligon",
+        "lyrics": "α"
+      },
+      {
+        "id": 30,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "NiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 31,
+        "elementType": "Note",
+        "quantitativeNeume": "Oligon",
+        "lyrics": "α"
+      },
+      {
+        "id": 32,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "PaLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 33,
+        "elementType": "Note",
+        "quantitativeNeume": "Oligon",
+        "lyrics": "α"
+      },
+      {
+        "id": 34,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "VouLow",
+        "rootSign": "LegetosLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 35,
+        "elementType": "Note",
+        "quantitativeNeume": "Oligon",
+        "lyrics": "α"
+      },
+      {
+        "id": 36,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "GaLow",
+        "rootSign": "NanaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 37,
+        "elementType": "Note",
+        "quantitativeNeume": "Oligon",
+        "lyrics": "α"
+      },
+      {
+        "id": 38,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "ThiLow",
+        "rootSign": "DeltaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 39,
+        "elementType": "Note",
+        "quantitativeNeume": "Oligon",
+        "lyrics": "α"
+      },
+      {
+        "id": 40,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "KeLow",
+        "rootSign": "AlphaLow",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 41,
+        "elementType": "Note",
+        "quantitativeNeume": "Oligon",
+        "lyrics": "α"
+      },
+      {
+        "id": 42,
+        "lineBreak": true,
+        "lineBreakType": "Left",
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 50,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "Zo",
+        "rootSign": "Varys",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 44,
+        "elementType": "Note",
+        "quantitativeNeume": "Oligon",
+        "lyrics": "α"
+      },
+      {
+        "id": 45,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "Ni",
+        "rootSign": "Delta",
+        "scale": "Diatonic"
+      },
+      {
+        "id": 46,
+        "elementType": "Note",
+        "quantitativeNeume": "Oligon",
+        "lyrics": "α"
+      },
+      {
+        "id": 47,
+        "elementType": "Martyria",
+        "auto": true,
+        "note": "Pa",
+        "rootSign": "Alpha",
+        "scale": "Diatonic"
+      },
+      {
+        "elementType": "Empty"
+      }
+    ],
+    "lyrics": {
+      "text": "α α α α α α α α α\n\nα α α α α α α\n\nα α"
+    }
+  }
+}
