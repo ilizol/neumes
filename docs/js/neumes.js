@@ -203,10 +203,13 @@ var title2Font = "Alegreya-Medium";
 //var dropcapsFont = "Alegreya-BoldItalic";
 var dropcapsFont = "Alegreya-Bold";
 //### MUSIC FONT FAMILY
-var musicFontFamily = window.musicFontFamily || "KANewStathis";
+var musicFontFamily = window.musicFontFamily || "NeumeSans";
+//var musicFontFamily = "Almouzios";
+//var musicFontFamily = "Byzantinografos";
 //var musicFontFamily = "KAAlmouzios";
 //var musicFontFamily = "KAEZ";
-//var musicFontFamily = "Almouzios";
+//var musicFontFamily = "KANewStathis";
+//var musicFontFamily = "NeumeSans";
 var musicFontStroke = window.musicFontStroke !== undefined ? window.musicFontStroke : false;
 //var musicFontStroke = true;
 //### DYNAMIC FONT RESOLVER
@@ -230,6 +233,11 @@ function resolveFont(fontType, kaSuffix, byzSuffix)
     if (musicFontFamily === 'Byzantinografos')
     {
         return 'Byz' + byzSuffix;
+    }
+    // Neume Sans uses a single unified font file
+    if (musicFontFamily === 'NeumeSans')
+    {
+        return musicFontFamily + '-Regular';
     }
     // Kassia has KA-prefixed separate files per character type
     return musicFontFamily + kaSuffix + '-Regular';

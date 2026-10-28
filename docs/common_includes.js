@@ -46,6 +46,8 @@
     "../../fonts/KAEZFthora-Regular-normal.js",
     "../../fonts/KAEZMain-Regular-normal.js",
     "../../fonts/KAEZMartyria-Regular-normal.js",
+    //### Neume Sans
+    "../../fonts/NeumeSans-Regular-normal.js",
     //### Noto Sans Symbols2 
     "../../fonts/NotoSansSymbols2-Regular-normal.js"
   ];

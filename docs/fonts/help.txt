@@ -24,6 +24,10 @@ KA New Stathis
 https://github.com/t-bullock/KA-New-Stathis
 https://github.com/t-bullock/KA-New-Stathis/tree/master/fonts/ttf
 
-NotoSansSymbols2
+Neume Sans
+https://github.com/ilizol/Neume-Sans
+https://github.com/ilizol/Neume-Sans/blob/sbmufl/fonts/ttf/NeumeSans-Regular.ttf
+
+Noto Sans Symbols2
 https://github.com/notofonts/NotoSansSymbols2
 https://github.com/notofonts/NotoSansSymbols2/blob/main/fonts/ttf/unhinted/instance_ttf/NotoSansSymbols2-Regular.ttf

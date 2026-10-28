@@ -38,16 +38,19 @@ else
     )
 fi
 
-# if [[ "$DEBUG" == "1" ]]; then
-#     ################################################################
-#     # TODO change this for debug
+if [[ "$DEBUG" == "1" ]]; then
+    ################################################################
+    # TODO change this for debug
 
-#     # Almouzios
-#     "${TTF_TO_JS_RUN[@]}" "${FONT_TTF_BASE}/Almouzios.ttf"
-#     ################################################################
+    # Almouzios
+    # "${TTF_TO_JS_RUN[@]}" "${FONT_TTF_BASE}/Almouzios.ttf"
+
+    # Neume Sans
+    "${TTF_TO_JS_RUN[@]}" "${FONT_TTF_BASE}/NeumeSans-Regular.ttf"
+    ################################################################
 # else
 #     "${TTF_TO_JS_RUN[@]}"
-# fi
+fi
 
 # Generate the PDF produced by a local score HTML page.
 if [[ "$DEBUG" == "1" ]]; then
@@ -84,12 +87,12 @@ if [[ "$DEBUG" == "1" ]]; then
     #     "${HTML_BASE}/doxastikon_holy_cross_elevation/doxastikon_holy_cross_elevation_1.html"
 
     # exams_2020
-    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/exams_2020" \
-        "${HTML_BASE}/exams_2020/exams_2020_1.html"
+    # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/exams_2020" \
+    #     "${HTML_BASE}/exams_2020/exams_2020_1.html"
 
     # exams_2022
-    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/exams_2022" \
-        "${HTML_BASE}/exams_2022/exams_2022_1.html"
+    # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/exams_2022" \
+    #     "${HTML_BASE}/exams_2022/exams_2022_1.html"
 
     # # idiomela_holy_cross_elevation
     # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/idiomela_holy_cross_elevation" \
@@ -99,7 +102,9 @@ if [[ "$DEBUG" == "1" ]]; then
     # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/kontakion_prophet_elias" \
     #     "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_4.html"
     # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/kontakion_prophet_elias" \
-        # "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_6.html"
+    #     "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_6.html"
+    "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/kontakion_prophet_elias" \
+        "${HTML_BASE}/kontakion_prophet_elias/kontakion_prophet_elias_7.html"
 
     # # test_accidentals
     # "${HTML_TO_PDF_RUN[@]}" --output-dir "${PDF_BASE}/test_accidentals" \
@@ -117,17 +122,17 @@ else
     # # doxastikon_holy_cross_elevation
     # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="doxastikon_holy_cross_elevation"
 
-    # exams_2020
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="exams_2020"
+    # # exams_2020
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="exams_2020"
 
-    # exams_2022
-    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="exams_2022"
+    # # exams_2022
+    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="exams_2022"
 
     # # idiomela_holy_cross_elevation
     # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="idiomela_holy_cross_elevation"
 
-    # # kontakion_prophet_elias
-    # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_prophet_elias"
+    # kontakion_prophet_elias
+    "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_prophet_elias"
 
     # # kontakion_saint_john_theologian
     # "${HTML_TO_PDF_RUN[@]}" --suffix-dir="kontakion_saint_john_theologian"
